@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn about Facilon Services, its purpose, facilitation model, operating principles, leadership and commitment to structured, consent-led investor journeys." />
+  <title>About Facilon | Facilon Services</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="fs-style.css">
+
+  <style>
+
+    :root{
+      --blue:#07579b;
+      --blue-dark:#073b69;
+      --blue-deep:#052f55;
+      --cyan:#1ca6d9;
+      --sky:#eaf5fc;
+      --gold:#d5a438;
+      --gold-soft:#fbf5e8;
+      --green:#2a7a5b;
+      --green-soft:#e9f6f1;
+      --ink:#202a34;
+      --muted:#687783;
+      --paper:#f7f9fb;
+      --white:#ffffff;
+      --border:#dce5ec;
+      --shadow:0 10px 28px rgba(7,59,105,.10);
+      --shadow-hover:0 16px 36px rgba(7,59,105,.16);
+      --radius:8px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Montserrat',Arial,Helvetica,sans-serif;
+      background:#fff;
+      color:var(--ink);
+      line-height:1.68;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(255,255,255,.97);
+      border-bottom:1px solid rgba(7,87,155,.12);
+      box-shadow:0 3px 14px rgba(7,59,105,.06);
+      backdrop-filter:blur(12px);
+    }
+
+    .nav::before{
+      content:'';
+      display:block;
+      height:4px;
+      background:linear-gradient(90deg,var(--blue-dark),var(--cyan));
+    }
+
+    .nav-inner{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .brand{
+      color:var(--blue-dark);
+      font-weight:700;
+      font-size:22px;
+      letter-spacing:.3px;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    .brand span{color:var(--gold)}
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:26px;
+      font-size:12px;
+      font-weight:600;
+      color:#44596a;
+      text-transform:uppercase;
+      letter-spacing:.45px;
+    }
+
+    .nav-links a{
+      position:relative;
+      padding:8px 0;
+    }
+
+    .nav-links a::after{
+      content:'';
+      position:absolute;
+      left:0;
+      right:100%;
+      bottom:0;
+      height:2px;
+      background:var(--cyan);
+      transition:.2s;
+    }
+
+    .nav-links a:hover{color:var(--blue)}
+    .nav-links a:hover::after{right:0}
+
+    .nav-actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .menu-toggle{
+      display:none;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--blue-dark);
+      padding:9px 11px;
+      border-radius:4px;
+      cursor:pointer;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      color:#fff;
+      background:
+        radial-gradient(circle at 88% 18%,rgba(28,166,217,.30),transparent 30%),
+        linear-gradient(100deg,rgba(5,47,85,.98),rgba(7,87,155,.91));
+    }
+
+    .hero::after{
+      content:'';
+      position:absolute;
+      right:-130px;
+      bottom:-170px;
+      width:470px;
+      height:470px;
+      border:75px solid rgba(255,255,255,.045);
+      border-radius:50%;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: inherit;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+    border-bottom: 2px solid var(--gold);
+}
+
+    h1,h2,h3{margin-top:0;color:var(--blue-dark)}
+
+    h1{
+      font-family:'Playfair Display',Georgia,serif;
+      color:#fff;
+      font-size:50px;
+      line-height:1.08;
+      letter-spacing:-.03em;
+      margin-bottom:22px;
+      max-width:850px;
+    }
+
+    h2{
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:36px;
+      line-height:1.2;
+      margin-bottom:14px;
+    }
+
+    h3{
+      font-size:16px;
+      line-height:1.35;
+      margin-bottom:10px;
+    }
+
+    .hero-copy p{
+      margin:0 0 28px;
+      max-width:760px;
+      color:#e4f0f6;
+      font-size:16px;
+      line-height:1.8;
+    }
+
+    .hero-panel{
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.24);
+      border-radius:8px;
+      padding:28px;
+      backdrop-filter:blur(5px);
+      box-shadow:0 18px 38px rgba(3,31,56,.24);
+    }
+
+    .hero-panel h3{color:#fff;font-size:18px}
+    .hero-panel p{color:#ffffff;font-size:14px;margin:0 0 20px}
+
+    .principle-list{
+      display:grid;
+      gap:11px;
+    }
+
+    .principle-item{
+      display:grid;
+      grid-template-columns:26px 1fr;
+      gap:10px;
+      align-items:start;
+      font-size:14px;
+      color:#eef6fa;
+    }
+
+    .principle-item::before{
+      content:'✓';
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,.12);
+      color:var(--gold);
+      font-weight:700;
+      font-size:11px;
+    }
+
+    .section-alt{
+      background:var(--paper);
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+    }
+
+    .section-head{
+      margin-bottom:30px;
+    }
+
+    .section-head h2::after{
+      content:'';
+      display:block;
+      width:54px;
+      height:3px;
+      background:var(--gold);
+      margin-top:14px;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--ink);
+      font-size:14px;
+    }
+
+    .story-grid,
+    .role-grid,
+    .values-grid,
+    .audience-grid,
+    .trust-grid,
+    .leadership-grid{
+      display:grid;
+      gap:22px;
+    }
+
+    .story-grid{
+      grid-template-columns:1.05fr .95fr;
+      align-items:start;
+    }
+
+    .story-card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:8px;
+      padding:30px;
+      box-shadow:var(--shadow);
+      min-height: 345px;
+    }
+
+    .story-card p{
+      color:var(--ink);
+      font-size:14px;
+      margin:0 0 16px;
+    }
+    
+    .story-card h3 {
+            font-size: 22px;
+    }
+
+    .story-card p:last-child{margin-bottom:0}
+
+    .statement-card{
+      background:linear-gradient(135deg,var(--blue-dark),var(--blue));
+      color:#fff;
+      border-radius:8px;
+      padding:30px;
+      min-height: 345px;
+          display: flex;
+    flex-direction: column;
+    justify-content: center;
+    }
+
+    .statement-card h3{color:#fff;font-size:22px}
+    .statement-card p{color:#ffffff;font-size:14px;margin:0 0 10px}
+
+    .statement-card strong{
+      display:block;
+      color:#fff;
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:22px;
+      line-height:1.35;
+      margin-top:0;
+    }
+
+    .role-grid{
+      grid-template-columns:1fr 1fr;
+    }
+
+    .role-card{
+      border-radius:8px;
+      padding:28px;
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow:var(--shadow);
+    }
+
+    .role-card.positive{border-top:4px solid var(--green)}
+    .role-card.boundary{border-top:4px solid var(--gold)}
+
+    .role-list{
+      list-style:none;
+      padding:0;
+      margin:20px 0 0;
+      display:grid;
+      gap:11px;
+    }
+
+    .role-list li{
+      
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 10px;
+    font-size: 14px;
+    color: #000000;
+    }
+
+    .role-card.positive .role-list li::before{
+      content:'✓';
+      width:20px;height:20px;border-radius:50%;
+      display:grid;place-items:center;
+      background:var(--green-soft);
+      color:var(--green);
+      font-size:11px;font-weight:700;
+    }
+
+    .role-card.boundary .role-list li::before{
+      content:'—';
+      width:20px;height:20px;border-radius:50%;
+      display:grid;place-items:center;
+      background:var(--gold-soft);
+      color:#8d6817;
+      font-size:11px;font-weight:700;
+    }
+
+    .values-grid{
+      grid-template-columns:repeat(3,1fr);
+    }
+
+    .value-card,
+    .audience-card,
+    .trust-card,
+    .leader-card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:6px;
+      padding:20px;
+      transition:.2s;
+    }
+
+    .value-card:hover,
+    .audience-card:hover,
+    .trust-card:hover,
+    .leader-card:hover{
+      transform:translateY(-3px);
+      box-shadow:var(--shadow-hover);
+      border-color:#bdd7e7;
+    }
+
+    .icon{
+      width:46px;
+      height:46px;
+      border-radius:5px;
+      display:grid;
+      place-items:center;
+      background:var(--sky);
+      color:var(--blue);
+      font-size:21px;
+      margin-bottom:15px;
+    }
+.icon img{
+    width: 25px;
+}
+    .value-card p,
+    .audience-card p,
+    .trust-card p,
+    .leader-card p{
+      color:var(--ink);
+      margin:0;
+      font-size:14px;
+    }
+
+    .audience-grid{
+      grid-template-columns:repeat(4,1fr);
+    }
+
+    .trust-grid{
+      grid-template-columns:repeat(4,1fr);
+    }
+
+    .trust-card{
+      background:var(--green-soft);
+      border-color:#d4ebe2;
+    }
+
+    .leadership-grid{
+      grid-template-columns:repeat(3,1fr);
+    }
+
+    .leader-card{
+      text-align:left;
+    }
+
+    .leader-photo{
+      /*width:72px;*/
+      /*height:72px;*/
+      /*border-radius:50%;*/
+      /*display:grid;*/
+      /*place-items:center;*/
+      /*background:linear-gradient(135deg,var(--blue),var(--cyan));*/
+      /*color:#fff;*/
+      /*font-weight:700;*/
+      /*font-size:22px;*/
+      /*margin-bottom:18px;*/
+    }
+    
+    .leader-card h3 {
+        margin-bottom: 0;
+    }
+    
+    .leader-photo img {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, var(--blue), var(--cyan));
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .leader-role{
+      color:var(--gold);
+      font-size:12px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+      margin-bottom:10px;
+          margin-top: 0;
+    }
+
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .timeline-card{
+      position:relative;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:6px;
+      padding:20px;
+    }
+
+    .timeline-card::before{
+      content:'';
+      position:absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height:4px;
+      background:var(--blue);
+    }
+
+    .timeline-card:nth-child(even)::before{background:var(--gold)}
+
+    .timeline-label{
+      color:var(--blue);
+      font-size:12px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+      margin-bottom:10px;
+    }
+
+    .timeline-card p{
+      margin:0;
+      color:var(--ink);
+      font-size:14px;
+    }
+
+    .band{
+      background:linear-gradient(105deg,var(--blue-dark),var(--blue));
+      color:#fff;
+    }
+
+    .band-inner{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:30px;
+      align-items:center;
+    }
+
+    .band h2{color:#fff;margin-bottom:10px}
+    .band p{margin:0;color:#ffffff;font-size:14px;max-width:760px}
+
+
+    @media(max-width:1050px){
+      .nav-links{display:none}
+      .menu-toggle{display:inline-flex}
+      .audience-grid,.trust-grid{grid-template-columns:repeat(2,1fr)}
+      .timeline{grid-template-columns:repeat(2,1fr)}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media(max-width:820px){
+      .hero-inner,
+      .story-grid,
+      .role-grid,
+      .band-inner{
+        grid-template-columns:1fr;
+      }
+
+      .values-grid,
+      .leadership-grid{
+        grid-template-columns:1fr;
+      }
+
+      .nav-actions .btn-outline{display:none}
+    }
+
+    @media(max-width:620px){
+      .container{width:min(calc(100% - 28px),var(--max))}
+      .topbar{display:none}
+      .nav-inner{min-height:66px}
+      .nav-actions .btn-primary{display:none}
+      section{padding:58px 0}
+      .hero-inner{padding:64px 0 60px}
+      .audience-grid,
+      .trust-grid,
+      .timeline,
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+      .band .btn{width:100%}
+    }
+  </style>
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="container topbar-inner d-flex justify-content-between align-items-center flex-wrap gap-3 py-1">
+            <div>Facilon Services Private Limited</div>
+            <div class="topbar-links d-flex flex-wrap gap-3">
+                <a href="contact.html">Contact</a>
+                <a href="#privacy">Privacy</a>
+            </div>
+        </div>
+    </div>
+    <header class="nav navbar">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/logo.webp" alt="Facilon">
+            </a>
+            <div class="nav-actions d-flex align-items-center gap-2">
+              <!--<div class="dropdown d-none d-sm-inline-flex">-->
+              <!--  <button class="btn btn-outline dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+              <!--    Sign In-->
+              <!--  </button>-->
+              <!--  <ul class="dropdown-menu dropdown-menu-end">-->
+              <!--    <li>-->
+              <!--      <a class="dropdown-item" href="investor-sign-in.html">Investor Sign In</a>-->
+              <!--    </li>-->
+              <!--    <li>-->
+              <!--      <a class="dropdown-item" href="service-provider-sign-in.html">Service Provider Sign In</a>-->
+              <!--    </li>-->
+              <!--  </ul>-->
+              <!--</div>-->
+              <a class="btn btn-primary d-none d-sm-inline-flex" href="investor-access-navigator.html">
+                Investor Access Navigator
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarNav"
+                aria-controls="sidebarNav" aria-label="Open menu">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+        </div>
+    </header>
+    <!-- Sidebar navigation: same offcanvas menu on desktop and mobile -->
+    <div class="offcanvas offcanvas-end sidebar-nav" tabindex="-1" id="sidebarNav" aria-labelledby="sidebarNavLabel">
+        <div class="offcanvas-header">
+          <a class="navbar-brand" href="index.html"><img src="images/logo.webp" alt="Facilon"></a>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+          <ul class="navbar-nav flex-grow-1" aria-label="Main navigation">
+              <li class="nav-item"><a class="nav-link" href="./"><img src="images/icon/sb-img-0.webp" alt=""> Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="investor-access-navigator.html"><img src="images/icon/sb-img-1.webp" alt=""> Investor Access Navigator</a></li>
+            <li class="nav-item"><a class="nav-link" href="for-service-providers.html"><img src="images/icon/sb-img-2.webp" alt=""> For Service Providers</a></li>
+            <li class="nav-item"><a class="nav-link" href="how-facilon-works.html"><img src="images/icon/sb-img-3.webp" alt=""> How Facilon Works</a></li>
+            <li class="nav-item"><a class="nav-link" href="learning-centre.html"><img src="images/icon/sb-img-4.webp" alt=""> Learning Centre</a></li>
+            <li class="nav-item"><a class="nav-link" href="about-facilon.html"><img src="images/icon/sb-img-5.webp" alt=""> About Facilon</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html"><img src="images/icon/sb-img-6.webp" alt=""> Contact</a></li>
+          </ul>
+        </div>
+    </div>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow">About Facilon</div>
+          <h1>Building a More Structured Investor Journey</h1>
+          <p>
+            Facilon was created to help investors and financial Service Providers navigate complex,
+            multi-participant investment journeys through clearer education, structured workflows,
+            controlled information sharing and better visibility.
+          </p>
+          <a class="btn btn-primary" href="#our-purpose" style="background:var(--gold);">Our Purpose</a>
+        </div>
+
+        <aside class="hero-panel">
+          <h3>Facilon at a glance</h3>
+          <p>
+            A neutral digital facilitation and workflow platform supporting investors,
+            authorised participants and Service Providers.
+          </p>
+
+          <div class="principle-list">
+            <div class="principle-item">Investor education before formal engagement</div>
+            <div class="principle-item">Structured, consent-led digital journeys</div>
+            <div class="principle-item">Service Provider control over regulated decisions</div>
+            <div class="principle-item">Support across discovery, onboarding and servicing</div>
+            <div class="principle-item">Domestic and cross-border investor orientation</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="our-purpose">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow" style="color:var(--blue);">Why Facilon exists</div>
+          <h2>Complex Journeys Need Better Coordination</h2>
+          <p>
+            Investment journeys often involve more than selecting a product or opening an account.
+            They can require several providers, repeated information requests, route-specific documentation
+            and ongoing communication.
+          </p>
+        </div>
+
+        <div class="story-grid">
+          <article class="story-card">
+            <h3>The Problem We Are Addressing</h3>
+            <p>
+              Investors may not know which route applies to them, which Service Providers are required,
+              which accounts or documents may be relevant or how long the process may take.
+            </p>
+            <p>
+              Service Providers may receive incomplete enquiries, repeat the same educational explanations,
+              coordinate several participants through email and spreadsheets, and respond to frequent
+              status requests.
+            </p>
+            <p>
+              Facilon is designed to bring structure to these interactions without replacing the regulated
+              responsibilities, core systems or decision-making of the participating Service Provider.
+            </p>
+          </article>
+
+          <aside class="statement-card">
+            <h3>Our Purpose</h3>
+            <p>
+              To help investors move from uncertainty to a clearer, better-prepared and more transparent
+              engagement with relevant Service Providers.
+            </p>
+            <strong>
+              Learn about the journey. Identify your access route. Prepare for the requirements. Connect when ready.
+            </strong>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow" style="color:var(--blue);">Our role</div>
+          <h2>What Facilon Does—and Does Not Do</h2>
+          <p>
+            Clear role boundaries are central to Facilon’s operating model.
+          </p>
+        </div>
+
+        <div class="role-grid">
+          <article class="role-card positive">
+            <h3>Facilon helps to</h3>
+            <ul class="role-list">
+              <li>Educate investors about routes, provider roles and preparation requirements</li>
+              <li>Structure investor intent and access-requirement information</li>
+              <li>Enable controlled discovery and Service Provider engagement</li>
+              <li>Support provider-configured data, document and consent workflows</li>
+              <li>Improve status visibility and pending-action tracking</li>
+              <li>Support structured instructions, requests and reporting</li>
+              <li>Coordinate authorised participants through role-based access</li>
+              <li>Maintain evidence of consents, reviews, acknowledgements and status changes</li>
+            </ul>
+          </article>
+
+          <article class="role-card boundary">
+            <h3>Facilon does not</h3>
+            <ul class="role-list">
+              <li>Provide investment advice or tax or legal advice</li>
+              <li>Recommend a particular investment product</li>
+              <li>Rank Service Providers based on expected returns</li>
+              <li>Guarantee account opening, eligibility or regulatory acceptance</li>
+              <li>Execute investment transactions</li>
+              <li>Hold investor money, securities or other assets</li>
+              <li>Replace the KYC, compliance or suitability responsibilities of a regulated entity</li>
+              <li>Make final investor-acceptance decisions on behalf of the Service Provider</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow" style="color:var(--blue);">Our operating principles</div>
+          <h2>How We Approach the Investor Journey</h2>
+          <p>
+            Facilon’s platform and service model are guided by a consistent set of principles.
+          </p>
+        </div>
+
+        <div class="values-grid">
+          <article class="value-card">
+            <div class="icon">
+              <img src="images/icon/clarity.svg">
+            </div>
+            <h3>Clarity Before Action</h3>
+            <p>Investors should understand their access route before entering a formal onboarding process.</p>
+          </article>
+
+          <article class="value-card">
+            <div class="icon">
+              <img src="images/icon/peace.svg">
+            </div>
+            <h3>Consent-Led Engagement</h3>
+            <p>Information sharing should occur progressively, for defined purposes and with appropriate control.</p>
+          </article>
+
+          <article class="value-card">
+            <div class="icon">
+              <img src="images/icon/accountability.svg">
+            </div>
+            <h3>Defined Accountability</h3>
+            <p>Each participant retains responsibility for the regulated, contractual and operational role it performs.</p>
+          </article>
+
+          <article class="value-card">
+            <div class="icon">
+              <img src="images/icon/modualr.svg">
+            </div>
+            <h3>Modular Adoption</h3>
+            <p>Service Providers can begin with one use case and expand across the investor lifecycle over time.</p>
+          </article>
+
+          <article class="value-card">
+            <div class="icon">
+              <img src="images/icon/aware.svg">
+            </div>
+            <h3>Cross-Border Awareness</h3>
+            <p>Investor residence, citizenship, tax status, market and route can materially affect the journey.</p>
+          </article>
+
+          <article class="value-card">
+            <div class="icon">
+              <img src="images/icon/transparancy.svg">
+            </div>
+            <h3>Transparency and Evidence</h3>
+            <p>Investors and authorised participants should have clearer visibility into actions, observations and status.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow" style="color:var(--blue);">Who we support</div>
+          <h2>Designed for a Multi-Participant Ecosystem</h2>
+          <p>
+            One investment journey may involve several people and institutions. Facilon is designed
+            to support these interactions within clearly defined roles.
+          </p>
+        </div>
+
+        <div class="audience-grid">
+          <article class="audience-card">
+            <div class="icon">              
+              <img src="images/icon/investor.svg">
+            </div>
+            <h3>Investors</h3>
+            <p>Individuals, joint holders, families and legal entities navigating domestic or cross-border journeys.</p>
+          </article>
+
+          <article class="audience-card">
+            <div class="icon">              
+              <img src="images/icon/service-provider.svg">
+            </div>
+            <h3>Service Providers</h3>
+            <p>Brokers, PMSs, custodians, banks, fund managers, distributors and other financial institutions.</p>
+          </article>
+
+          <article class="audience-card">
+            <div class="icon">              
+              <img src="images/icon/authorizes.svg">
+            </div>
+            <h3>Authorised Participants</h3>
+            <p>Advisers, EAMs, family offices, representatives and provider-approved operational participants.</p>
+          </article>
+
+          <article class="audience-card">
+            <div class="icon">              
+              <img src="images/icon/globe.svg">
+            </div>
+            <h3>Ecosystem Participants</h3>
+            <p>Trustees, registrars, administrators, brokers, banks, custodians and professional advisers involved in the journey.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow" style="color:var(--blue);">The Facilon platform</div>
+          <h2>Supporting the Journey From Education to Ongoing Service</h2>
+          <p>
+            Facilon’s modules are intended to work together as a facilitation layer across the investor lifecycle.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-card">
+            <div class="timeline-label">Stage 1</div>
+            <h3>Learn and Assess</h3>
+            <p>Investor education and Investor Access Navigator before formal provider engagement.</p>
+          </article>
+
+          <article class="timeline-card">
+            <div class="timeline-label">Stage 2</div>
+            <h3>Discover and Engage</h3>
+            <p>Structured provider information, requests, meetings and controlled introductions.</p>
+          </article>
+
+          <article class="timeline-card">
+            <div class="timeline-label">Stage 3</div>
+            <h3>Onboard and Track</h3>
+            <p>Provider-configured information, documents, consents, reviews and status visibility.</p>
+          </article>
+
+          <article class="timeline-card">
+            <div class="timeline-label">Stage 4</div>
+            <h3>Instruct and Report</h3>
+            <p>Ongoing service requests, instructions, communications, reports and investor servicing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow" style="color:var(--blue);">Trust framework</div>
+          <h2>Built Around Privacy, Security and Operational Control</h2>
+          <p>
+            Facilon is intended to support clear information handling, participant accountability and evidence across the journey.
+          </p>
+        </div>
+
+        <div class="trust-grid">
+          <article class="trust-card">
+            <div class="icon">
+              <img src="images/icon/purpose.svg">
+            </div>
+            <h3>Purpose-Specific Processing</h3>
+            <p>Information is collected and used for defined journey stages and purposes.</p>
+          </article>
+
+          <article class="trust-card">
+            <div class="icon">
+              <img src="images/icon/progress.svg">
+            </div>
+            <h3>Progressive Disclosure</h3>
+            <p>Detailed investor information need not be disclosed merely because an investor is exploring.</p>
+          </article>
+
+          <article class="trust-card">
+            <div class="icon">
+              <img src="images/icon/role.svg">
+            </div>
+            <h3>Role-Based Access</h3>
+            <p>Users and authorised participants receive access based on assigned responsibilities.</p>
+          </article>
+
+          <article class="trust-card">
+            <div class="icon">
+              <img src="images/icon/audit.svg">
+            </div>
+            <h3>Auditability</h3>
+            <p>Consents, reviews, observations, acknowledgements and status changes can be evidenced.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="leadership">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow" style="color:var(--blue);">Leadership</div>
+          <h2>Experience Across Financial Services, Operations and Technology</h2>
+          <p>
+            Replace the placeholders below with approved leadership biographies and photographs.
+          </p>
+        </div>
+
+        <div class="leadership-grid">
+          <article class="leader-card">
+            <div class="leader-photo">
+                <img src="images/team/suneet-luthra.webp" alt="">
+            </div>
+            <h3>Suneet Luthra</h3>
+            <div class="leader-role">CEO & Co-Founder</div>
+            <p>Suneet Luthra is a Chartered Accountant with over 30 years of experience in the securities and financial services industry. He has held senior roles at organizations including Price Waterhouse, Morgan Stanley, and J.P. Morgan across Mumbai, Bahrain, New York, Shanghai, and Hong Kong. His expertise spans securities processing, custody, clearing, market management, product development, and business transformation across Asian and Australian markets.</p>
+          </article>
+
+          <article class="leader-card">
+            <div class="leader-photo">
+                <img src="images/team/jaydeep-jayakar.webp" alt="">
+            </div>
+            <h3>Jaydeep Jayakar</h3>
+            <div class="leader-role">Co-Founder</div>
+            <p>Jaydeep Jayakar was a founding member of Facilon who played a key role in shaping its vision and early development.
+His dedication and insights helped lay the foundation for Facilon’s mission of simplifying investment processes and enabling growth.
+Jaydeep passed away in February 2026, and Facilon remains deeply grateful for his contributions and the values he helped establish.</p>
+          </article>
+
+          <article class="leader-card">
+            <div class="leader-photo">
+                <img src="images/team/rajiv-shah.webp" alt="">
+            </div>
+            <h3>Rajiv Shah</h3>
+            <div class="leader-role">CXO & Director</div>
+            <p>Rajiv Shah has over 30 years of experience across Indian capital markets and the life insurance industry, spanning operations and customer service.
+He has worked with organizations including Morgan Stanley Trust Company, Chase Manhattan Bank, AVIVA, AEGON Life, and Reliance Life.
+His expertise includes customer-facing operations, process simplification, technology-driven solutions, claims management, and customer experience.</p>
+          </article>
+          
+          <article class="leader-card">
+            <div class="leader-photo">
+                <img src="images/team/nitin-panchal.webp" alt="">
+            </div>
+            <h3>Nitin Panchal</h3>
+            <div class="leader-role">Technology Lead</div>
+            <p>Nitin Panchal has over 23 years of experience in IT operations, cloud infrastructure, and cybersecurity, bringing strong technical leadership to Facilon.
+He has led large-scale projects across Capgemini, Gyan, and PriemX, leveraging multi-cloud platforms to build secure and scalable systems.
+His expertise combines strategic thinking and hands-on technology leadership to drive innovation, improve customer experience, and support long-term growth.</p>
+            </article>
+          
+          <article class="leader-card">
+            <div class="leader-photo">
+                <img src="images/team/kamakshi-verma.webp" alt="">
+            </div>
+            <h3>Kamakshi Verma</h3>
+            <div class="leader-role">Legal Lead</div>
+            <p>Kamakshi Verma is a law graduate from ILS Law College, Pune, with experience across law firms, litigation, legal research, and international organizations.
+She has expertise in legal research, document review, drafting, civil and criminal litigation, protocol training, and team management.
+Her strong legal, communication, and analytical skills enable her to effectively review, interpret, and draft complex legal documents.</p>
+            </article>
+          
+          <article class="leader-card">
+            <div class="leader-photo">
+                <img src="images/team/rohit-bapat.webp" alt="">
+            </div>
+            <h3>Rohit Bapat</h3>
+            <div class="leader-role">Technology Risk Lead</div>
+            <p>Rohit Bapat is a technology professional with over two decades of experience delivering software solutions across diverse industries and global B2B and B2C platforms.
+He has worked across startups and large enterprises, progressing from hands-on development to technology leadership, team management, and mentoring.
+His strengths include bridging business and technology, project and stakeholder management, clear communication, and reliable delivery, supported by a B.S. in Computer Science from Rutgers University.</p>
+            </article>
+          
+          
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container band-inner">
+        <div>
+          <h2>Explore the Facilon Journey</h2>
+          <p>
+            Investors can identify an indicative access route. Service Providers can explore how Facilon may support
+            a defined investor segment, product, market or operational use case.
+          </p>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a class="btn" style="background:var(--gold);color:#fff;" href="investor-access-navigator.html">Start Investor Access Navigator</a>
+          <a class="btn" style="background:#fff;color:var(--blue-dark);" href="for-service-providers.html">For Service Providers</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand-sec navbar-brand">
+            <img src="images/logo.webp" alt="Facilon">
+          </div>
+          <p>
+            A neutral digital facilitation and workflow platform supporting structured,
+            consent-led engagement between investors, authorised participants and Service Providers.
+          </p>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <h3>Investors</h3>
+          <div class="footer-links">
+            <a href="investor-access-navigator.html">Investor Access Navigator</a>
+            <a href="learning-centre.html">Learning Centre</a>
+            <a href="#faq">Investor FAQs</a>
+            <a href="#support">Investor Support</a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <h3>Service Providers</h3>
+          <div class="footer-links">
+            <a href="for-service-providers.html">For Service Providers</a>
+            <a href="#modules">Facilon Modules</a>
+            <a href="#discussion">Request a Discussion</a>
+            <a href="#signin">Service Provider Sign In</a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <h3>Trust &amp; Legal</h3>
+          <div class="footer-links">
+            <a href="#privacy">Privacy Notice</a>
+            <a href="#cookies">Cookie Policy</a>
+            <a href="#terms">Terms of Use</a>
+            <a href="#disclaimer">Platform Disclaimer</a>
+            <a href="#rights">Investor Rights</a>
+            <a href="#security">Security at Facilon</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex justify-content-between flex-wrap gap-3">
+        <div>© <span id="year"></span> Facilon Services Private Limited. All rights reserved.</div>
+        <div>Final investor acceptance and regulated decisions remain with the relevant Service Provider.</div>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

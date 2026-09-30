@@ -1,0 +1,3509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Facilon helps investors use the Investor Access Navigator to understand their investment access route and helps Service Providers educate, engage, onboard and service investors through structured, consent-led digital journeys." />
+  <title>Facilon Investor Learning Centre | Investor Access Navigator and Service Provider Facilitation</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="fs-style.css">
+
+
+  <style>
+    :root {
+      --ink: #0f1923;
+      --ink2: #4a5568;
+      --faint: #8b98a7;
+      --paper: #f7f5f0;
+      --white: #fff;
+      --blue: #1a4d6e;
+      --blue2: #2d7da8;
+      --bluebg: #e8f3fa;
+      --gold: #c5922a;
+      --goldbg: #fdf6e3;
+      --green: #2a7a5b;
+      --greenbg: #e6f5ef;
+      --orange: #b45309;
+      --orangebg: #fff7ed;
+      --red: #b42318;
+      --border: #dce3ea;
+      --shadow: 0 4px 20px rgba(15, 25, 35, .08);
+      --r: 12px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    .hidden {
+      display: none !important
+    }
+
+    .brand {
+      font-family: 'DM Serif Display';
+      font-size: 21px;
+      white-space: nowrap
+    }
+
+    .brand span {
+      color: var(--gold)
+    }
+
+    .phase {
+      font-size: 10px;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-weight: 700
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 7px;
+      flex: 1
+    }
+
+    .step {
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 8px;
+      padding: 9px 8px;
+      font-size: 12px;
+      color: var(--ink2);
+      text-align: center
+    }
+
+    .step.active {
+      background: var(--bluebg);
+      border-color: var(--blue);
+      color: var(--blue);
+      font-weight: 700
+    }
+
+    .step.done {
+      background: var(--greenbg);
+      border-color: #9fd3be;
+      color: var(--green)
+    }
+
+    .shell {
+      max-width: 1040px;
+      margin: auto;
+      padding: 38px 22px 70px
+    }
+
+    .screen {
+      display: none
+    }
+
+    .screen.active {
+      display: block
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--blue2);
+      font-weight: 700;
+      margin-bottom: 10px
+    }
+
+    .title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 36px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      margin-top: 0;
+      font-weight: 700;
+      color: var(--blue-dark);
+    }
+
+    .sub {
+      color: var(--ink2);
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow)
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px
+    }
+
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px
+    }
+
+    .choice {
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      padding: 17px;
+      cursor: pointer;
+      transition: .15s;
+      text-align: left
+    }
+
+    .choice:hover {
+      border-color: var(--blue2);
+      transform: translateY(-1px)
+    }
+
+    .choice.selected {
+      border-color: var(--blue);
+      background: var(--bluebg)
+    }
+
+    .choice-title {
+      font-weight: 700;
+      margin-bottom: 5px
+    }
+
+    .choice-desc {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.5
+    }
+
+    .icon {
+      font-size: 23px;
+      margin-bottom: 8px
+    }
+
+    .learn-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px
+    }
+
+    .tab {
+      border: 1px solid var(--border);
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink2)
+    }
+
+    .tab.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue)
+    }
+
+    .learn-panel {
+      display: none
+    }
+
+    .learn-panel.active {
+      display: block
+    }
+
+    .route {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 17px;
+      background: #fff
+    }
+
+    .route h3 {
+      font-size: 16px;
+      margin: 0 0 10px
+    }
+
+    .route p {
+      font-size: 14px;
+      color: var(--ink2);
+      line-height: 1.6;
+      margin: 0
+    }
+
+    .tagrow {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 10px
+    }
+
+    .tag {
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 5px;
+      padding: 4px 8px;
+      background: var(--paper);
+      color: var(--ink2)
+    }
+
+    .btn:disabled {
+      opacity: .45;
+      cursor: not-allowed
+    }
+
+    .qtitle {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 13px
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px
+    }
+
+    .opt {
+      border: 1.5px solid var(--border);
+      background: var(--paper);
+      border-radius: 7px;
+      padding: 9px 15px;
+      font-size: 12px;
+      cursor: pointer
+    }
+
+    .opt.selected {
+      background: var(--bluebg);
+      border-color: var(--blue);
+      color: var(--blue);
+      font-weight: 700
+    }
+
+    .select,
+    .input {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      background: #fff;
+      font-size: 14px;
+      color: var(--ink)
+    }
+
+    .field {
+      margin-bottom: 17px
+    }
+
+    .label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      font-weight: 700;
+      color: var(--faint);
+      margin-bottom: 7px
+    }
+
+    .help {
+      font-size: 12px;
+      color: var(--faint);
+      margin-top: 6px;
+      line-height: 1.5
+    }
+
+    .assess-progress {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 22px
+    }
+
+    .ap {
+      height: 5px;
+      background: var(--border);
+      border-radius: 4px;
+      flex: 1
+    }
+
+    .ap.on {
+      background: var(--blue)
+    }
+
+    .result-banner {
+      background: linear-gradient(135deg, var(--blue), #286f98);
+      color: #fff;
+      border-radius: 14px;
+      padding: 26px;
+      margin-bottom: 20px
+    }
+
+    .result-label {
+      font-size: 12px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      opacity: .75;
+      font-weight: 700
+    }
+
+    .result-type {
+      font-family: 'DM Serif Display';
+      font-size: 27px;
+      margin: 6px 0
+    }
+
+    .result-note {
+      font-size: 12px;
+      line-height: 1.6;
+      opacity: .88
+    }
+
+    .impact-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--faint);
+      font-weight: 700;
+      margin-bottom: 12px
+    }
+
+    .impact-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px
+    }
+
+    .impact {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px
+    }
+
+    .impact strong {
+      font-size: 12px;
+      display: block;
+      margin-bottom: 6px
+    }
+
+    .impact span {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.55;
+      display: block
+    }
+
+    .status {
+      border-radius: 10px;
+      padding: 10px 20px;
+      border-left: 4px solid var(--gold);
+      background: var(--goldbg);
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--ink2)
+    }
+
+    .status strong {
+      color: var(--ink)
+    }
+
+    .checklist {
+      padding-left: 19px;
+      margin: 0;
+      color: var(--ink2);
+      font-size: 12px;
+      line-height: 1.8
+    }
+
+    .consent {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 14px;
+      margin-bottom: 11px;
+      background: var(--paper)
+    }
+
+    .consent input {
+      margin-top: 3px
+    }
+
+    .consent div {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.6
+    }
+
+    .required {
+      color: var(--red)
+    }
+
+    .verify-box {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto
+    }
+
+    .mailicon {
+      font-size: 50px
+    }
+
+    .code {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 20px 0
+    }
+
+    .code input {
+      width: 46px;
+      height: 50px;
+      text-align: center;
+      font-size: 20px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px
+    }
+
+    .success {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--greenbg);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      margin: 0 auto 18px
+    }
+
+    .profile-summary {
+      background: var(--paper);
+      border-radius: 10px;
+      padding: 17px;
+      text-align: left;
+      margin: 20px 0
+    }
+
+    .sumrow {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding: 8px 0;
+      font-size: 12px
+    }
+
+    .sumrow:last-child {
+      border-bottom: 0
+    }
+
+    .sumrow span {
+      color: var(--ink2)
+    }
+
+    .phase2 {
+      margin-top: 28px;
+      background: #f2f5f7;
+      border: 1px dashed #aeb9c4;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 11px;
+      color: var(--ink2);
+      line-height: 1.6
+    }
+
+    .disclaimer {
+      font-size: 10px;
+      color: var(--faint);
+      line-height: 1.6;
+      margin-top: 18px
+    }
+
+    .privacy-notice {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fbfdff;
+      padding: 16px;
+      font-size: 11px;
+      color: var(--ink2);
+      line-height: 1.65;
+      margin-bottom: 14px
+    }
+
+    .privacy-notice strong {
+      color: var(--ink)
+    }
+
+    .privacy-notice a {
+      color: var(--blue);
+      font-weight: 700
+    }
+
+    .legal-banner {
+      border-left: 4px solid var(--blue);
+      background: var(--bluebg);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--ink2);
+      margin: 0 0 18px
+    }
+
+    .legal-banner strong {
+      color: var(--ink)
+    }
+
+    @media(max-width:700px) {
+      .steps {
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        order: 3
+      }
+
+      .topinner {
+        flex-wrap: wrap
+      }
+
+      .grid2,
+      .grid3,
+      .impact-list {
+        grid-template-columns: 1fr
+      }
+
+      .title {
+        font-size: 29px
+      }
+
+      .shell {
+        padding-top: 26px
+      }
+    }
+
+    .detail-route {
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .detail-route p {
+      margin: 0
+    }
+
+    .route-badge {
+      align-self: flex-start;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      color: var(--blue);
+      background: var(--bluebg);
+      padding: 4px 8px;
+      border-radius: 999px;
+      display: inline-flex;
+    }
+
+    .route-list {
+      margin: 2px 0 0;
+      padding-left: 18px;
+      color: var(--ink2);
+      font-size: 14px;
+      line-height: 1.65
+    }
+
+    .route-fit {
+      margin-top: auto;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--paper);
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.5
+    }
+
+    .detail-route h3 {
+      margin: 0
+    }
+
+    .detail-route .route-fit strong {
+      color: var(--ink)
+    }
+
+    .route-select-card {
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      margin-bottom: 12px;
+      overflow: hidden
+    }
+
+    .route-select-head {
+      width: 100%;
+      border: 0;
+      background: #fff;
+      padding: 17px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start
+    }
+
+    .route-select-head:hover {
+      background: #fbfdff
+    }
+
+    .route-select-card.selected {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 1px var(--bluebg)
+    }
+
+    .route-check {
+      width: 21px;
+      height: 21px;
+      border: 1.5px solid var(--border);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      font-size: 14px;
+      color: #fff;
+      margin-top: 1px
+    }
+
+    .route-select-card.selected .route-check {
+      background: var(--blue);
+      border-color: var(--blue)
+    }
+
+    .route-select-copy {
+      flex: 1
+    }
+
+    .route-select-title {
+      font-weight: 700;
+      margin-bottom: 5px
+    }
+
+    .route-select-desc {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.5
+    }
+
+    .route-services {
+      border-top: 1px solid var(--border);
+      background: var(--paper);
+      padding: 16px
+    }
+
+    .route-services-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px
+    }
+
+    .route-services .options {
+      gap: 8px
+    }
+
+    .route-services .opt {
+      background: #fff
+    }
+
+    .route-services-empty {
+      font-size: 11px;
+      color: var(--faint)
+    }
+
+    .pathway-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px
+    }
+
+    .pathway-table th,
+    .pathway-table td {
+      border: 1px solid var(--border);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    .pathway-table th {
+      background: var(--paper)
+    }
+
+    .guide-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      padding: 19px;
+      margin-bottom: 14px
+    }
+
+    .guide-card h3 {
+      margin: 0 0 10px;
+      font-size: 16px
+    }
+
+    .guide-card p {
+      margin: 0 0 10px;
+      color: var(--ink2);
+      font-size: 14px;
+      line-height: 1.65
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    .guide-box {
+      border: 1px solid var(--border);
+      background: var(--paper);
+      border-radius: 9px;
+      padding: 14px
+    }
+
+    .guide-box strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 6px
+    }
+
+    .guide-box span,
+    .guide-box li {
+      font-size: 14px;
+      color: var(--ink2);
+      line-height: 1.6
+    }
+
+    .guide-box ul,
+    .numbered {
+      margin: 6px 0 0;
+      padding-left: 18px
+    }
+
+    .callout-blue {
+      border-left: 4px solid var(--blue);
+      background: var(--bluebg);
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--ink2);
+      margin-top: 12px
+    }
+
+    .callout-red {
+      border-left: 4px solid var(--red);
+      background: #fff1f0;
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--ink2);
+      margin-top: 12px
+    }
+
+    .readiness-panel {
+      margin-top: 12px
+    }
+
+    .readiness-panel .guide-card {
+      box-shadow: none;
+      margin-bottom: 0
+    }
+
+    .link-btn {
+      display: inline-block;
+      margin-top: 8px;
+      border: 1px solid var(--blue);
+      color: var(--blue);
+      background: #fff;
+      border-radius: 7px;
+      padding: 8px 11px;
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none
+    }
+
+    .mini-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      font-weight: 700;
+      color: var(--blue2);
+      margin-bottom: 7px
+    }
+
+    @media(max-width:700px) {
+      .guide-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* Pre-assessment homepage */
+    .hp {
+      background: #fff;
+      color: var(--ink);
+      min-height: 100vh
+    }
+
+    .hp * {
+      box-sizing: border-box
+    }
+
+    .hp-container {
+      max-width: 1160px;
+      margin: auto;
+      padding-left: 22px;
+      padding-right: 22px
+    }
+
+    .hp-header {
+      position: sticky;
+      top: 0;
+      z-index: 70;
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border)
+    }
+
+    .hp-nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px
+    }
+
+    .hp-brand {
+      font-family: 'DM Serif Display';
+      font-size: 23px;
+      white-space: nowrap
+    }
+
+    .hp-brand span {
+      color: var(--gold)
+    }
+
+    .hp-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink2)
+    }
+
+    .hp-links a:hover {
+      color: var(--blue)
+    }
+
+    .hp-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center
+    }
+
+    .hp-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 9px;
+      padding: 12px 18px;
+      border: 1.5px solid transparent;
+      font: 700 12px;
+      cursor: pointer;
+      text-decoration: none
+    }
+
+    .hp-primary {
+      background: var(--blue);
+      color: #fff
+    }
+
+    .hp-primary:hover {
+      background: #123d58
+    }
+
+    .hp-secondary {
+      background: #fff;
+      border-color: var(--border);
+      color: var(--ink2)
+    }
+
+    .hp-secondary:hover {
+      border-color: var(--blue);
+      color: var(--blue)
+    }
+
+    .hp-hero {
+      padding: 82px 0 72px;
+      background: radial-gradient(circle at 88% 15%, rgba(197, 146, 42, .15), transparent 30%), radial-gradient(circle at 8% 12%, rgba(45, 125, 168, .15), transparent 34%), linear-gradient(180deg, #fff, #f6fafc)
+    }
+
+    .hp-hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 54px;
+      align-items: center
+    }
+
+    .hp-eyebrow {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--blue2);
+      background: var(--bluebg);
+      border-radius: 999px;
+      padding: 7px 11px;
+      margin-bottom: 20px
+    }
+
+    .hp h1,
+    .hp h2,
+    .hp h3 {
+      font-family: 'DM Serif Display';
+      color: var(--ink);
+      margin-top: 0
+    }
+
+    .hp h1 {
+      font-size: 56px;
+      line-height: 1.04;
+      letter-spacing: -1.5px;
+      margin-bottom: 21px
+    }
+
+    .hp h2 {
+      font-size: 38px;
+      line-height: 1.12;
+      margin-bottom: 12px
+    }
+
+    .hp h3 {
+      font-size: 19px;
+      margin-bottom: 8px
+    }
+
+    .hp-lead {
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--ink2);
+      max-width: 700px;
+      margin: 0 0 27px
+    }
+
+    .hp-hero-actions {
+      display: flex;
+      gap: 11px;
+      flex-wrap: wrap
+    }
+
+    .hp-micro {
+      font-size: 10px;
+      color: var(--faint);
+      line-height: 1.6;
+      margin-top: 14px
+    }
+
+    .hp-path-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 16px 45px rgba(15, 25, 35, .11)
+    }
+
+    .hp-path-card p {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.65
+    }
+
+    .hp-flow {
+      display: grid;
+      gap: 10px;
+      margin-top: 17px
+    }
+
+    .hp-flow-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 12px;
+      align-items: start;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px
+    }
+
+    .hp-flow-num {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--bluebg);
+      color: var(--blue);
+      font-weight: 700
+    }
+
+    .hp-flow-item strong {
+      font-size: 12px
+    }
+
+    .hp-flow-item span {
+      display: block;
+      font-size: 10px;
+      color: var(--faint);
+      line-height: 1.5;
+      margin-top: 3px
+    }
+
+    .hp-section {
+      padding: 72px 0
+    }
+
+    .hp-alt {
+      background: var(--paper)
+    }
+
+    .hp-heading {
+      max-width: 760px;
+      margin-bottom: 30px
+    }
+
+    .hp-heading p {
+      color: var(--ink2);
+      font-size: 14px;
+      line-height: 1.7;
+      margin: 0
+    }
+
+    .hp-grid6,
+    .hp-grid3,
+    .hp-grid4 {
+      display: grid;
+      gap: 15px
+    }
+
+    .hp-grid6 {
+      grid-template-columns: repeat(6, 1fr)
+    }
+
+    .hp-grid3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .hp-grid4 {
+      grid-template-columns: repeat(4, 1fr)
+    }
+
+    .hp-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 20px;
+      transition: .15s
+    }
+
+    .hp-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: #b7ccda
+    }
+
+    .hp-icon {
+      font-size: 22px;
+      margin-bottom: 10px
+    }
+
+    .hp-card p {
+      font-size: 11px;
+      color: var(--ink2);
+      line-height: 1.6;
+      margin: 0
+    }
+
+    .hp-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px
+    }
+
+    .hp-step {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px
+    }
+
+    .hp-step-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      margin-bottom: 16px
+    }
+
+    .hp-trust {
+      background: var(--greenbg);
+      border-color: #b8ddcd
+    }
+
+    .hp-example {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 22px
+    }
+
+    .hp-profile,
+    .hp-route {
+      border-radius: 16px;
+      padding: 25px
+    }
+
+    .hp-profile {
+      background: linear-gradient(145deg, var(--blue), #11364d);
+      color: #fff
+    }
+
+    .hp-profile h3 {
+      color: #fff
+    }
+
+    .hp-profile p {
+      font-size: 12px;
+      line-height: 1.65;
+      color: #dcecf5
+    }
+
+    .hp-profile-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 15px
+    }
+
+    .hp-profile-list div {
+      background: rgba(255, 255, 255, .09);
+      border: 1px solid rgba(255, 255, 255, .14);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 11px
+    }
+
+    .hp-route {
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow)
+    }
+
+    .hp-check {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0;
+      display: grid;
+      gap: 9px
+    }
+
+    .hp-check li {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--ink2)
+    }
+
+    .hp-check li:before {
+      content: '✓';
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--greenbg);
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 700
+    }
+
+    .hp-final {
+      padding: 62px 0;
+      background: linear-gradient(135deg, var(--blue), #12384f);
+      color: #fff
+    }
+
+    .hp-final-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px
+    }
+
+    .hp-final h2 {
+      color: #fff
+    }
+
+    .hp-final p {
+      color: #dbeaf2;
+      max-width: 700px;
+      font-size: 14px;
+      line-height: 1.7
+    }
+
+    .hp-footer {
+      background: #0b1720;
+      color: #aebbc6;
+      padding: 28px 0;
+      font-size: 11px
+    }
+
+    .hp-footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap
+    }
+
+    .hp-footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap
+    }
+
+    .app-home-link {
+      display: inline-flex;
+      margin-top: 14px;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      background: none;
+      border: 0;
+      padding: 0
+    }
+
+    @media(max-width:980px) {
+      .hp-links {
+        display: none
+      }
+
+      .hp-grid6 {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .hp-grid4 {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:700px) {
+
+      .hp-hero-grid,
+      .hp-example {
+        grid-template-columns: 1fr
+      }
+
+      .hp-grid3,
+      .hp-steps {
+        grid-template-columns: 1fr
+      }
+
+      .hp h1 {
+        font-size: 43px
+      }
+
+      .hp-final-inner {
+        align-items: flex-start;
+        flex-direction: column
+      }
+    }
+
+    @media(max-width:560px) {
+      .hp-nav {
+        min-height: 65px
+      }
+
+      .hp-actions .hp-secondary {
+        display: none
+      }
+
+      .hp-hero {
+        padding: 56px 0
+      }
+
+      .hp h1 {
+        font-size: 38px
+      }
+
+      .hp h2 {
+        font-size: 31px
+      }
+
+      .hp-grid6,
+      .hp-grid4 {
+        grid-template-columns: 1fr
+      }
+
+      .hp-hero-actions {
+        flex-direction: column
+      }
+
+      .hp-btn {
+        width: 100%
+      }
+    }
+
+
+
+    body {
+      background: var(--paper)
+    }
+
+    .lc-container {
+      max-width: 1160px;
+      margin: auto;
+      padding-left: 22px;
+      padding-right: 22px
+    }
+
+    .lc-header {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      background: rgba(255, 255, 255, .97);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px)
+    }
+
+    .lc-nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px
+    }
+
+    .lc-nav nav {
+      display: flex;
+      gap: 22px;
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    .lc-nav a {
+      text-decoration: none;
+      color: var(--ink2)
+    }
+
+    .lc-nav nav a:hover {
+      color: var(--blue)
+    }
+
+    .lc-hero {
+      padding: 70px 0;
+      background: radial-gradient(circle at 88% 15%, rgba(197, 146, 42, .15), transparent 30%), radial-gradient(circle at 8% 12%, rgba(45, 125, 168, .15), transparent 34%), linear-gradient(180deg, #fff, #f6fafc)
+    }
+
+    .lc-hero h1 {
+      color: var(--ink);
+      font-size: 50px;
+      line-height: 1.07;
+      max-width: 760px;
+      margin: 0 0 20px;
+    }
+
+    .lc-hero p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--ink2);
+      max-width: 820px;
+      margin: 0 0 25px
+    }
+
+    .lc-main {
+      margin: auto;
+      padding: 70px 0;
+    }
+
+    .lc-main .screen {
+      display: block
+    }
+
+    .lc-cta {
+      background: linear-gradient(135deg, var(--blue), #12384f);
+      color: #fff;
+      padding: 54px 0
+    }
+
+    .lc-cta-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px
+    }
+
+    .lc-cta h2 {
+      color: #fff;
+      margin-bottom: 10px;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 36px;
+      line-height: 1.2;
+      margin-top: 0;
+      font-weight: 700;
+    }
+
+    .lc-cta p {
+      color: #dbeaf2;
+      max-width: 720px;
+      line-height: 1.7
+    }
+
+    .lc-cta .hp-primary {
+      background: #fff;
+      color: var(--blue)
+    }
+
+    @media(max-width:700px) {
+      .lc-nav nav {
+        display: none
+      }
+
+      .lc-hero h1 {
+        font-size: 39px
+      }
+
+      .lc-cta-inner {
+        flex-direction: column;
+        align-items: flex-start
+      }
+    }
+
+    /* Interactive Learning Centre navigation */
+    .learn-tabs {
+      position: sticky;
+      top: 73px;
+      z-index: 35;
+      background: rgba(247, 245, 240, .96);
+      backdrop-filter: blur(10px);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: thin
+    }
+
+    .learn-tabs .tab {
+      flex: 0 0 auto;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(15, 25, 35, .04)
+    }
+
+    .learn-tabs .tab:focus-visible,
+    .market-btn:focus-visible,
+    .accordion-toggle:focus-visible {
+      outline: 3px solid rgba(45, 125, 168, .3);
+      outline-offset: 2px
+    }
+
+    .section-intro {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin: 8px 0 18px
+    }
+
+    .section-intro h2 {
+      font-family: 'DM Serif Display';
+      font-size: 28px;
+      margin: 0 0 6px
+    }
+
+    .section-intro p {
+      margin: 0;
+      color: var(--ink2);
+      font-size: 14px;
+      line-height: 1.6
+    }
+
+    .route-market-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 0 0 20px
+    }
+
+    .market-btn {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      width: 100%;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      border-radius: 13px;
+      padding: 16px;
+      text-align: left;
+      cursor: pointer;
+      transition: .16s
+    }
+
+    .market-btn:hover {
+      border-color: var(--blue2);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow)
+    }
+
+    .market-btn.active {
+      border-color: var(--blue);
+      background: var(--bluebg);
+      box-shadow: 0 0 0 1px rgba(26, 77, 110, .08)
+    }
+
+    .market-icon {
+      font-size: 24px
+    }
+
+    .market-btn strong {
+      display: block;
+      font-size: 16px;
+      color: var(--ink)
+    }
+
+    .market-btn small {
+      display: block;
+      margin-top: 4px;
+      color: var(--ink2);
+      font-size: 14px;
+      line-height: 1.45
+    }
+
+    .market-panel {
+      display: none
+    }
+
+    .market-panel.active {
+      display: block
+    }
+
+    .accordion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: start
+    }
+
+    .accordion-grid .detail-route {
+      padding: 0;
+      overflow: hidden;
+      gap: 0
+    }
+
+    .accordion-toggle {
+      width: 100%;
+      border: 0;
+      background: #fff;
+      padding: 17px;
+      text-align: left;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 1fr 30px;
+      gap: 12px;
+      align-items: center
+    }
+
+    .accordion-toggle:hover {
+      background: #fbfdff
+    }
+
+    .accordion-title h3 {
+      margin: 7px 0 0;
+      font-size: 16px
+    }
+
+    .accordion-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--paper);
+      color: var(--blue);
+      font-size: 18px;
+      font-weight: 700;
+      transition: .18s
+    }
+
+    .detail-route.open .accordion-icon {
+      transform: rotate(45deg);
+      background: var(--blue);
+      color: #fff
+    }
+
+    .accordion-body {
+      display: none;
+      padding: 0 17px 17px;
+      border-top: 1px solid var(--border)
+    }
+
+    .detail-route.open .accordion-body {
+      display: block
+    }
+
+    .accordion-body>p {
+      padding-top: 14px
+    }
+
+    .accordion-body .route-fit {
+      margin-top: 12px
+    }
+
+    .topic-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border)
+    }
+
+    /*.topic-footer button {*/
+    /*  border: 1px solid var(--border);*/
+    /*  background: #fff;*/
+    /*  color: var(--blue);*/
+    /*  border-radius: 9px;*/
+    /*  padding: 10px 14px;*/
+    /*  font: 700 11px;*/
+    /*  cursor: pointer*/
+    /*}*/
+
+    .topic-footer button:hover {
+      border-color: var(--blue);
+      background: var(--bluebg)
+    }
+
+    @media(max-width:700px) {
+      .learn-tabs {
+        top: 65px
+      }
+
+      .route-market-switch,
+      .accordion-grid {
+        grid-template-columns: 1fr
+      }
+
+      .market-btn {
+        padding: 14px
+      }
+
+      .section-intro {
+        align-items: flex-start;
+        flex-direction: column
+      }
+
+      .topic-footer {
+        position: sticky;
+        bottom: 0;
+        background: rgba(247, 245, 240, .96);
+        padding: 12px 0;
+        margin-top: 18px
+      }
+    }
+
+    .topic-chooser {
+      margin: 20px 0 0;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow)
+    }
+
+    .topic-chooser-head {
+      max-width: 760px;
+      margin-bottom: 18px
+    }
+
+    .topic-chooser-head h2 {
+      font-family: 'DM Serif Display';
+      font-size: 30px;
+      margin: 0 0 8px
+    }
+
+    .topic-chooser-head p {
+      margin: 0;
+      color: var(--ink2);
+      font-size: 14px;
+      line-height: 1.65
+    }
+
+    .topic-choice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px
+    }
+
+    .topic-choice {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: left;
+      cursor: pointer;
+      transition: .16s
+    }
+
+    .topic-choice:hover {
+      border-color: var(--blue2);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow)
+    }
+
+    .topic-choice:focus-visible {
+      outline: 3px solid rgba(45, 125, 168, .3);
+      outline-offset: 2px
+    }
+
+    .topic-choice-icon img {
+      width: 40px;
+    }
+
+    .topic-choice strong {
+      display: block;
+      font-size: 16px;
+      color: var(--ink);
+      margin-bottom: 4px
+    }
+
+    .topic-choice small {
+      display: block;
+      color: var(--ink2);
+      font-size: 14px;
+    }
+
+    .learn-tabs {
+      display: none
+    }
+
+    .learn-tabs.visible {
+      display: flex
+    }
+
+    .topic-chooser.hidden {
+      display: none
+    }
+
+    .choose-another {
+      display: none;
+      margin: 0 0 12px;
+      border: 0;
+      background: none;
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      padding: 0
+    }
+
+    .choose-another.visible {
+      display: inline-flex
+    }
+
+    @media(max-width:900px) {
+      .topic-choice-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:560px) {
+      .topic-choice-grid {
+        grid-template-columns: 1fr
+      }
+
+      .topic-chooser {
+        padding: 18px
+      }
+    }
+  </style>
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="container topbar-inner d-flex justify-content-between align-items-center flex-wrap gap-3 py-1">
+            <div>Facilon Services Private Limited</div>
+            <div class="topbar-links d-flex flex-wrap gap-3">
+                <a href="contact.html">Contact</a>
+                <a href="#privacy">Privacy</a>
+            </div>
+        </div>
+    </div>
+    <header class="nav navbar">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/logo.webp" alt="Facilon">
+            </a>
+            <div class="nav-actions d-flex align-items-center gap-2">
+              <!--<div class="dropdown d-none d-sm-inline-flex">-->
+              <!--  <button class="btn btn-outline dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+              <!--    Sign In-->
+              <!--  </button>-->
+              <!--  <ul class="dropdown-menu dropdown-menu-end">-->
+              <!--    <li>-->
+              <!--      <a class="dropdown-item" href="investor-sign-in.html">Investor Sign In</a>-->
+              <!--    </li>-->
+              <!--    <li>-->
+              <!--      <a class="dropdown-item" href="service-provider-sign-in.html">Service Provider Sign In</a>-->
+              <!--    </li>-->
+              <!--  </ul>-->
+              <!--</div>-->
+              <a class="btn btn-primary d-none d-sm-inline-flex" href="investor-access-navigator.html">
+                Investor Access Navigator
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarNav"
+                aria-controls="sidebarNav" aria-label="Open menu">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+        </div>
+    </header>
+    <!-- Sidebar navigation: same offcanvas menu on desktop and mobile -->
+    <div class="offcanvas offcanvas-end sidebar-nav" tabindex="-1" id="sidebarNav" aria-labelledby="sidebarNavLabel">
+        <div class="offcanvas-header">
+          <a class="navbar-brand" href="index.html"><img src="images/logo.webp" alt="Facilon"></a>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+          <ul class="navbar-nav flex-grow-1" aria-label="Main navigation">
+              <li class="nav-item"><a class="nav-link" href="./"><img src="images/icon/sb-img-0.webp" alt=""> Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="investor-access-navigator.html"><img src="images/icon/sb-img-1.webp" alt=""> Investor Access Navigator</a></li>
+            <li class="nav-item"><a class="nav-link" href="for-service-providers.html"><img src="images/icon/sb-img-2.webp" alt=""> For Service Providers</a></li>
+            <li class="nav-item"><a class="nav-link" href="how-facilon-works.html"><img src="images/icon/sb-img-3.webp" alt=""> How Facilon Works</a></li>
+            <li class="nav-item"><a class="nav-link" href="learning-centre.html"><img src="images/icon/sb-img-4.webp" alt=""> Learning Centre</a></li>
+            <li class="nav-item"><a class="nav-link" href="about-facilon.html"><img src="images/icon/sb-img-5.webp" alt=""> About Facilon</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html"><img src="images/icon/sb-img-6.webp" alt=""> Contact</a></li>
+          </ul>
+        </div>
+    </div>
+
+  <section class="lc-hero">
+    <div class="container">
+      <div class="lc-container">
+        <span class="hp-eyebrow">Investor education before investor action</span>
+        <h1>Learn about investing in India and through GIFT City / IFSC</h1>
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-2 mb-3 border rounded-pill bg-white"
+          style="font-size:12px;font-weight:700;color:var(--blue)">
+          Markets covered: India <span style="color:var(--faint)">|</span> GIFT City / IFSC
+        </div>
+        <p>
+          Explore investor classifications, investment access routes, products, accounts, Service Providers, tax and
+          compliance concepts for investing in India and through GIFT City / IFSC. Additional markets may be added over
+          time.
+        </p>
+        <div class="hp-hero-actions gap-2">
+          <a class="btn btn-primary" href="#topics">Explore Learning Topics</a>
+          <a class="btn btn-outline" href="investor-access-navigator.html#assessment">Open My Access Navigator</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="lc-main" id="topics">
+    <section class="screen active pt-0 pb-0" id="learn">
+      <div class="container">
+        <div class="eyebrow">Facilon Investor Learning Centre</div>
+        <div class="title">Understand investment access routes before you proceed</div>
+        <div
+          style="display:inline-flex;align-items:center;gap:7px;padding:6px 10px;margin:0 0 14px;border:1px solid var(--border);border-radius:999px;background:#fff;font-size:12px;font-weight:700;color:var(--blue)">
+          Current scope: India &amp; GIFT City / IFSC</div>
+        <div class="sub">Learn how investor status, destination market and investment objective can affect the routes,
+          products, accounts, Service Providers and onboarding requirements for investing in India and through GIFT City
+          /
+          IFSC. No registration is required. Additional markets may be added over time.</div>
+        <div class="legal-banner"><strong>Facilon’s role:</strong> This Learning Centre is an educational and
+          facilitation
+          tool. Facilon does not, through this assessment, provide investment advice, recommend or distribute a
+          financial
+          product, execute a transaction, hold investor money or assets, or confirm legal, tax, regulatory or product
+          eligibility. Any regulated activity and final acceptance remain with the relevant authorised Service Provider.
+        </div>
+        <div class="topic-chooser" id="topicChooser">
+          <div class="topic-chooser-head">
+            <div class="mini-label">Choose what you want to understand</div>
+            <h2>Select a learning topic</h2>
+            <p>Start with the subject most relevant to you. You can move to another topic at any time.</p>
+          </div>
+          <div class="topic-choice-grid">
+            <button class="topic-choice" onclick="selectTopic('types')" type="button"><span
+                class="topic-choice-icon"><img src="images/icon/investor-type-icon.webp"
+                  alt=""></span><span><strong>Investor Types</strong><small>Resident, NRI/OCI,
+                  foreign
+                  individual and legal-entity classifications.</small></span></button>
+            <button class="topic-choice" onclick="selectTopic('routes')" type="button"><span
+                class="topic-choice-icon"><img src="images/icon/way.webp"
+                  alt="">️</span><span><strong>India &amp; GIFT City Routes</strong><small>Compare
+                  domestic India and IFSC investment access routes.</small></span></button>
+            <button class="topic-choice" onclick="selectTopic('giftcity')" type="button"><span
+                class="topic-choice-icon"><img src="images/icon/localization.webp"
+                  alt=""></span><span><strong>Investing through GIFT City</strong><small>Understand
+                  IFSC products, providers, currency and due diligence.</small></span></button>
+            <button class="topic-choice" onclick="selectTopic('products')" type="button"><span
+                class="topic-choice-icon"><img src="images/icon/investment.webp"
+                  alt=""></span><span><strong>Investment Products</strong><small>Equities, PMS, AIFs,
+                  funds, debt and other structures.</small></span></button>
+            <button class="topic-choice" onclick="selectTopic('services')" type="button"><span
+                class="topic-choice-icon"><img src="images/icon/mobile-banking.webp"
+                  alt="">️</span><span><strong>Service Providers</strong><small>Banks, brokers,
+                  managers, custodians and professional support.</small></span></button>
+            <button class="topic-choice" onclick="selectTopic('ecosystem')" type="button"><span
+                class="topic-choice-icon"><img src="images/icon/accounting.webp"
+                  alt=""></span><span><strong>Accounts &amp; Ecosystem</strong><small>See how
+                  accounts
+                  and providers connect within each route.</small></span></button>
+            <button class="topic-choice" onclick="selectTopic('pis')" type="button"><span
+                class="topic-choice-icon"><img src="images/icon/link.webp"
+                  alt=""></span><span><strong>PIS Guide</strong><small>Understand PIS and NRI
+                  banking-linked investment arrangements.</small></span></button>
+            <button class="topic-choice" onclick="selectTopic('pan')" type="button"><span
+                class="topic-choice-icon"><img src="images/icon/id-card.webp"
+                  alt=""></span><span><strong>PAN Guide</strong><small>Learn when PAN is needed and
+                  how
+                  investors may obtain it.</small></span></button>
+            <button class="topic-choice" onclick="selectTopic('tax')" type="button"><span
+                class="topic-choice-icon"><img src="images/icon/taxes.webp"
+                  alt=""></span><span><strong>Tax Guide</strong><small>Review tax-residency,
+                  withholding and reporting concepts.</small></span></button>
+            <button class="topic-choice" onclick="selectTopic('compliance')" type="button"><span
+                class="topic-choice-icon"><img src="images/icon/compliance.webp"
+                  alt=""></span><span><strong>Compliance &amp; Reporting</strong><small>KYC, FATCA,
+                  CRS,
+                  FEMA and continuing obligations.</small></span></button>
+            <button class="topic-choice" onclick="selectTopic('protection')" type="button"><span
+                class="topic-choice-icon"><img src="images/icon/cybersecurity.webp"
+                  alt="">️</span><span><strong>Investor Protection</strong><small>Fees, liquidity,
+                  verification, complaints and digital safety.</small></span></button>
+          </div>
+        </div><button class="btn btn-outline" id="chooseAnother" style="visibility: hidden;" onclick="showTopicChooser()" type="button">Choose another learning topic</button>
+        <div class="learn-tabs" id="topicTabs"><button class="tab" onclick="learnTab('types',this)">Investor
+            Types</button><button class="tab" onclick="learnTab('routes',this)">India &amp; GIFT City
+            Routes</button><button class="tab" onclick="learnTab('giftcity',this)">Investing through GIFT
+            City</button><button class="tab" onclick="learnTab('products',this)">Products</button><button class="tab"
+            onclick="learnTab('services',this)">Services</button><button class="tab"
+            onclick="learnTab('ecosystem',this)">Accounts &amp; Ecosystem</button><button class="tab"
+            onclick="learnTab('pis',this)">PIS Guide</button><button class="tab" onclick="learnTab('pan',this)">PAN
+            Guide</button><button class="tab" onclick="learnTab('tax',this)">Tax Guide</button><button class="tab"
+            onclick="learnTab('compliance',this)">Compliance &amp; Reporting</button><button class="tab"
+            onclick="learnTab('protection',this)">Investor Protection &amp; Awareness</button></div>
+        <div class="learn-panel" id="lp-types">
+          <div class="grid3">
+            <div class="route">
+              <h3>Resident Indian Individual</h3>
+              <p>An individual resident in India who generally uses resident banking, trading and investment
+                arrangements.
+              </p>
+              <div class="tagrow"><span class="tag">India Domestic</span><span class="tag">Individual</span></div>
+            </div>
+            <div class="route">
+              <h3>NRI / OCI Individual</h3>
+              <p>An Indian citizen residing outside India or an OCI cardholder. NRE/NRO and product-specific
+                non-resident
+                arrangements may be relevant.</p>
+              <div class="tagrow"><span class="tag">India</span><span class="tag">GIFT City</span></div>
+            </div>
+            <div class="route">
+              <h3>Foreign Individual</h3>
+              <p>A foreign citizen without NRI/OCI status. Access should be assessed separately and should not be
+                assumed
+                to follow an NRE/NRO retail route.</p>
+              <div class="tagrow"><span class="tag">Foreign Investor</span><span class="tag">Provider Review</span>
+              </div>
+            </div>
+            <div class="route">
+              <h3>Indian Legal Entity</h3>
+              <p>An Indian company, LLP, trust, family office or other legal structure investing through entity-specific
+                accounts and authority documents.</p>
+            </div>
+            <div class="route">
+              <h3>Foreign Legal Entity</h3>
+              <p>An overseas company, fund, trust, partnership or family structure that may require institutional, FPI,
+                fund-subscription or IFSC access routes.</p>
+            </div>
+            <div class="route">
+              <h3>Further Classification Required</h3>
+              <p>Some structures require clarification of residence, legal form, ownership, control, regulatory status
+                or
+                the intended transaction.</p>
+            </div>
+          </div>
+          <div class="topic-footer fac-nav-investor-form-sec"><button class="btn btn-outline" onclick="moveTopic(-1)" type="button">Learning topics</button>
+          <button class="btn btn-outline" onclick="moveTopic(1)" type="button">Next topic</button></div>
+        </div>
+        <div class="learn-panel" id="lp-routes">
+          <div class="section-intro">
+            <div>
+              <div class="mini-label">Choose a market framework</div>
+              <h2>Investment Access Routes</h2>
+              <p>Select India or GIFT City to view only the routes relevant to that market framework.</p>
+            </div>
+          </div>
+          <div aria-label="Route market" class="route-market-switch" role="tablist"><button aria-selected="true"
+              class="market-btn active" onclick="marketTab('india',this)" type="button"><span
+                class="market-icon">🇮🇳</span><span><strong>India</strong><small>Domestic and cross-border access to
+                  Indian markets</small></span></button><button aria-selected="false" class="market-btn"
+              onclick="marketTab('gift',this)" type="button"><span class="market-icon">🌐</span><span><strong>GIFT
+                  City</strong><small>IFSC-based international and foreign-currency pathways</small></span></button>
+          </div>
+          <div class="market-panel active" id="route-market-india">
+            <div class="accordion-grid">
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">India · self-directed</div>
+                    <h3>India direct-investment route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>The investor opens or uses the required banking, trading and demat arrangements and makes
+                    investment
+                    decisions directly.</p>
+                  <ul class="route-list">
+                    <li>May involve: NRE/NRO bank, broker and depository participant.</li>
+                    <li>Common access: listed shares, eligible exchange-traded products and other broker-supported
+                      instruments.</li>
+                    <li>Investor controls: security selection and transaction instructions.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: the investor wants direct control and understands the operational
+                    account structure.</div>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">India · professionally managed</div>
+                    <h3>Portfolio Management Service route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>A SEBI-registered portfolio manager manages a portfolio under the selected discretionary or
+                    non-discretionary arrangement.</p>
+                  <ul class="route-list">
+                    <li>May involve: portfolio manager, bank, broker, demat participant and sometimes custodian.</li>
+                    <li>Key dependency: the manager may support defined banking, brokerage or custody arrangements.</li>
+                    <li>Investor decision: provider, strategy and mandate—not each transaction in a discretionary PMS.
+                    </li>
+                  </ul>
+                  <div class="route-fit">Useful when: the investor prefers a separately managed portfolio and meets
+                    applicable provider requirements.</div>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">India · pooled investment</div>
+                    <h3>Alternative Investment Fund route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>The investor subscribes to units of a pooled investment vehicle managed according to the fund's
+                    stated strategy and documents.</p>
+                  <ul class="route-list">
+                    <li>May involve: AIF manager, trustee, custodian, banker, registrar or administrator.</li>
+                    <li>Investor reviews: category, strategy, tenure, drawdowns, liquidity, fees and risk disclosures.
+                    </li>
+                    <li>Account structure: differs from direct equity or PMS onboarding.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: the investor seeks access to a pooled alternative strategy and
+                    accepts its investment terms.</div>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Institutional</div>
+                    <h3>FPI / institutional route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>Eligible foreign entities and institutional investors access Indian markets through an FPI-oriented
+                    registration and custody framework.</p>
+                  <ul class="route-list">
+                    <li>May involve: designated depository participant, custodian, bank, broker and tax advisers.</li>
+                    <li>Higher complexity: entity classification, ownership, control, KYC and regulatory documentation.
+                    </li>
+                    <li>Not generally the retail NRI route.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: an overseas fund, institution, family structure or eligible entity
+                    requires institutional market access.</div>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Foreign individual · India</div>
+                    <h3>Foreign individual portfolio-investment route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>A person who is neither an Indian citizen nor an OCI may require a foreign-investor pathway rather
+                    than the NRI route to access Indian securities.</p>
+                  <ul class="route-list">
+                    <li>Possible route: FPI-oriented access, a permitted fund or managed product, or another route
+                      supported by the relevant provider.</li>
+                    <li>May involve: designated depository participant, custodian, designated bank, broker and tax
+                      advisers.</li>
+                    <li>Provider checks: home jurisdiction, sanctions screening, tax status, source of wealth/funds and
+                      product acceptance.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: a foreign citizen wants exposure to Indian securities without
+                    NRI/OCI status. Final route and eligibility must be confirmed by the regulated provider.</div>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Foreign legal entity · portfolio</div>
+                    <h3>Foreign legal entity FPI route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>An overseas company, fund, trust, partnership, foundation or other legal arrangement may seek
+                    portfolio access through the FPI framework.</p>
+                  <ul class="route-list">
+                    <li>May involve: designated depository participant, custodian, designated bank, broker, legal
+                      counsel
+                      and tax adviser.</li>
+                    <li>Entity due diligence: constitutional documents, registration evidence, ownership/control chain,
+                      beneficial owners, authorised persons and regulatory status.</li>
+                    <li>Ongoing obligations: disclosures, change reporting, tax and regulatory reporting may apply.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: the entity wants portfolio exposure to listed or otherwise
+                    permitted
+                    Indian securities.</div>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Foreign legal entity · direct ownership</div>
+                    <h3>Foreign Direct Investment (FDI) route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>A person resident outside India invests in the capital instruments of an Indian company, or in
+                    another permitted Indian entity or structure, under the applicable foreign-investment framework.</p>
+                  <ul class="route-list">
+                    <li>May involve: Indian investee, authorised dealer bank, legal counsel, company secretary,
+                      valuation
+                      and tax professionals.</li>
+                    <li>Key checks: investor and beneficial-owner eligibility, sectoral conditions, automatic or
+                      government approval route, pricing, instruments, approvals and FEMA reporting.</li>
+                    <li>Nature of route: ownership-oriented investment in an Indian business, rather than exchange-based
+                      portfolio investing.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: the investor proposes to acquire, subscribe to or hold a strategic
+                    or ownership interest in an Indian business.</div>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Foreign investor · venture capital</div>
+                    <h3>Foreign Venture Capital Investor (FVCI) route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>An eligible overseas investment vehicle registered with SEBI as an FVCI invests through the
+                    specialised venture-capital framework in permitted Indian venture-capital investments.</p>
+                  <ul class="route-list">
+                    <li>May involve: SEBI registration, domestic custodian, designated bank, Indian venture-capital
+                      undertaking or eligible fund, legal and tax advisers.</li>
+                    <li>Investor checks: overseas legal form, regulatory or tax status, fit-and-proper assessment,
+                      investment strategy and registration eligibility.</li>
+                    <li>Important distinction: FVCI is a specialised registered investor route and should not be treated
+                      as the same as FPI or ordinary FDI.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: an eligible foreign fund or investment vehicle intends to make
+                    venture-capital investments under the FVCI framework.</div>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">NRI / OCI · non-repatriation</div>
+                    <h3>NRI/OCI non-repatriation investment route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>An NRI or OCI invests in eligible Indian securities, entities or investment vehicles on a
+                    non-repatriation basis using permitted funds and an appropriate NRO-linked arrangement.</p>
+                  <ul class="route-list">
+                    <li>May include eligible listed securities, capital instruments, LLP interests, investment-vehicle
+                      units and qualifying start-up convertible notes.</li>
+                    <li>Sale or maturity proceeds are generally credited to an NRO account and are not freely
+                      repatriable.
+                    </li>
+                    <li>Provider checks include investor status, instrument eligibility, payment route, KYC, tax and
+                      transaction documentation.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: an NRI/OCI is comfortable investing on a non-repatriation basis or
+                    using Indian-source funds.</div>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Foreign investor · pooled vehicles</div>
+                    <h3>Foreign investment in Indian Investment Vehicles route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>A person resident outside India subscribes to units of an eligible Indian investment vehicle, such
+                    as
+                    an AIF, REIT or InvIT, under the applicable vehicle and investor-eligibility framework.</p>
+                  <ul class="route-list">
+                    <li>May involve a manager, trustee, sponsor, custodian, registrar/administrator, banker and tax
+                      advisers.</li>
+                    <li>Key checks include vehicle type, investor category, minimum commitment, beneficial ownership,
+                      payment route, liquidity and distribution terms.</li>
+                    <li>This is the cross-border regulatory route into the vehicle; the AIF, REIT or InvIT is the
+                      underlying product or structure.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: a foreign individual or entity wants pooled or unit-based exposure
+                    to Indian assets.</div>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Foreign investor · fixed income</div>
+                    <h3>Foreign debt-investment route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>An eligible foreign investor accesses permitted Indian government, corporate or other debt
+                    instruments through the applicable FPI, NRI/OCI or instrument-specific framework.</p>
+                  <ul class="route-list">
+                    <li>May include government securities, treasury bills, corporate bonds, non-convertible debentures,
+                      commercial paper and other permitted debt instruments.</li>
+                    <li>May involve a DDP/custodian, designated bank, broker or debt platform, issuer, depository and
+                      tax
+                      advisers.</li>
+                    <li>Key checks include investor category, instrument eligibility, investment limits, settlement,
+                      withholding, maturity and repatriation treatment.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: the investor seeks Indian fixed-income or private-debt exposure
+                    rather than equity ownership.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="market-panel" id="route-market-gift">
+            <div class="accordion-grid">
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">IFSC · international financial centre</div>
+                    <h3>GIFT City / IFSC route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>The investor accesses products or services offered through entities regulated in India's
+                    International Financial Services Centre.</p>
+                  <ul class="route-list">
+                    <li>May involve: IFSC bank, broker, fund manager, portfolio manager or custodian.</li>
+                    <li>Important distinction: IFSC products and account structures are separate from India domestic
+                      products.</li>
+                    <li>Currency and eligibility: depend on the provider, product and applicable IFSC framework.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: the investor is considering internationally structured or
+                    foreign-currency opportunities through GIFT City.</div>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Foreign individual · IFSC</div>
+                    <h3>Foreign individual GIFT City route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>A foreign individual may explore funds, portfolio services, brokerage or other products offered by
+                    IFSCA-regulated entities in GIFT IFSC.</p>
+                  <ul class="route-list">
+                    <li>May involve: IFSC bank, broker, fund manager, portfolio manager, custodian or distributor.</li>
+                    <li>Account structure: generally product- and provider-specific and may use foreign-currency
+                      arrangements.</li>
+                    <li>Checks: investor category, country acceptance, accredited-investor conditions where applicable
+                      and
+                      KYC/tax documentation.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: a foreign investor is considering internationally structured
+                    products through GIFT City.</div>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Foreign legal entity · IFSC</div>
+                    <h3>Foreign entity GIFT City route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>Foreign companies, funds, family structures and institutions may access eligible IFSC funds,
+                    portfolio services, capital markets, banking and custody offerings.</p>
+                  <ul class="route-list">
+                    <li>May involve: IFSC fund manager, broker, exchange member, bank, custodian, trustee or
+                      administrator.</li>
+                    <li>Entity checks: legal form, jurisdiction, regulatory status, ownership/control, beneficial
+                      ownership and authorised signatories.</li>
+                    <li>Product checks: minimum commitment, currency, liquidity, leverage, investor-category and
+                      placement
+                      conditions.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: an overseas entity wants internationally structured exposure
+                    through
+                    an IFSCA-regulated ecosystem.</div>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Guided selection</div>
+                    <h3>Adviser- or wealth-manager-assisted route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>An adviser, external asset manager or wealth manager helps the investor evaluate options and
+                    coordinate providers.</p>
+                  <ul class="route-list">
+                    <li>May sit across: direct investing, PMS, AIF and GIFT City journeys.</li>
+                    <li>Role: advice or coordination depends on the participant's licence and engagement.</li>
+                    <li>Execution and custody: remain with the relevant regulated providers.</li>
+                  </ul>
+                  <div class="route-fit">Useful when: the investor wants support understanding choices or coordinating a
+                    multi-provider journey.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topic-footer"><button class="btn btn-outline" onclick="moveTopic(-1)" type="button">Previous topic</button><button
+              class="btn btn-outline" onclick="moveTopic(1)" type="button">Next topic</button></div>
+        </div>
+        <div class="learn-panel" id="lp-giftcity">
+          <div class="status" style="margin-bottom:16px"><strong>GIFT City and GIFT IFSC are not the same as India’s
+              domestic financial market.</strong> GIFT IFSC is India’s international financial services centre and is
+            regulated by the International Financial Services Centres Authority (IFSCA). Products, legal entities,
+            account
+            structures, currencies, eligibility rules and investor protections must be checked for the specific IFSC
+            offering.</div>
+          <div class="guide-card">
+            <div class="mini-label">The basic concept</div>
+            <h3>What does investing through GIFT City mean?</h3>
+            <p>It generally means investing in, or using financial services offered by, an entity established in GIFT
+              IFSC. Depending on the investor and offering, this may include an IFSC fund, portfolio management service,
+              brokerage or exchange access, banking, custody, insurance or another IFSCA-regulated financial service.
+            </p>
+            <div class="guide-grid">
+              <div class="guide-box"><strong>Separate regulated entity</strong><span>An Indian financial group may have
+                  both a domestic entity and an IFSC entity. The investor should identify the exact legal entity and its
+                  IFSCA authorisation.</span></div>
+              <div class="guide-box"><strong>International orientation</strong><span>Offerings may be structured for
+                  cross-border investors, foreign-currency investment and international assets or strategies, subject to
+                  the provider and product framework.</span></div>
+              <div class="guide-box"><strong>Product-specific access</strong><span>Eligibility does not arise merely
+                  because an investor is an NRI, OCI, resident Indian or foreign investor. Each scheme or service
+                  applies
+                  its own permitted-investor and onboarding criteria.</span></div>
+              <div class="guide-box"><strong>Different from domestic India</strong><span>An IFSC fund, PMS account or
+                  brokerage arrangement should not be treated as the same product as a domestic AIF, PMS, mutual fund or
+                  broking account.</span></div>
+            </div>
+          </div>
+          <div class="guide-card">
+            <div class="mini-label">Possible access routes</div>
+            <h3>How investors may access the GIFT IFSC ecosystem</h3>
+            <div class="grid3">
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Funds</div>
+                    <h3>IFSC fund or scheme</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>The investor subscribes to units or interests in a scheme managed by an IFSCA-registered Fund
+                    Management Entity.</p>
+                  <ul class="route-list">
+                    <li>May include retail, restricted, venture-capital or other permitted schemes.</li>
+                    <li>Review the offer document or placement memorandum, strategy, currency, commitment, fees,
+                      liquidity
+                      and valuation terms.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Managed account</div>
+                    <h3>IFSC portfolio management</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>An eligible investor appoints an IFSC Fund Management Entity to manage or advise a segregated
+                    portfolio under a portfolio-management agreement.</p>
+                  <ul class="route-list">
+                    <li>Confirm minimum eligibility, mandate, custody, banking and asset universe.</li>
+                    <li>Understand discretionary versus non-discretionary authority and reporting.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Markets</div>
+                    <h3>IFSC brokerage and capital markets</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>An investor may obtain access to products supported by an IFSCA-regulated broker, exchange member,
+                    bank and custodian.</p>
+                  <ul class="route-list">
+                    <li>The available securities and derivatives depend on the provider and exchange framework.</li>
+                    <li>Account, margin, settlement and custody requirements must be confirmed.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Banking</div>
+                    <h3>IFSC banking arrangements</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>An IFSC Banking Unit may support permitted foreign-currency accounts, remittances, deposits,
+                    financing or investment-related cash flows.</p>
+                  <ul class="route-list">
+                    <li>The account type and permitted use depend on investor status and transaction purpose.</li>
+                    <li>Funding should follow the remittance and foreign-exchange rules applicable to the investor.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Custody</div>
+                    <h3>Custody and administration</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>A custodian, administrator, trustee, registrar or other fiduciary may support safekeeping,
+                    settlement, records, valuation and investor reporting.</p>
+                  <ul class="route-list">
+                    <li>The exact ecosystem differs for a fund, PMS mandate and brokerage account.</li>
+                    <li>Identify who holds the assets and who maintains the investor records.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <div class="route-badge">Advice</div>
+                    <h3>Adviser- or wealth-manager-supported route</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>A suitably authorised adviser, distributor or wealth manager may help the investor evaluate and
+                    access an IFSC offering.</p>
+                  <ul class="route-list">
+                    <li>Confirm the participant’s licence, role and compensation.</li>
+                    <li>Facilitation, advice, distribution, execution and custody are different functions.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-card">
+            <div class="mini-label">Who may consider it</div>
+            <h3>Investor categories and key questions</h3>
+            <div class="grid2">
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <h3>NRI or OCI investor</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>May consider IFSC funds, portfolio services, banking or market products, subject to the scheme and
+                    provider accepting the investor’s country of residence and status.</p>
+                  <ul class="route-list">
+                    <li>Is the investment funded from overseas or from India?</li>
+                    <li>What is the permitted remittance route?</li>
+                    <li>What are the tax and reporting implications in both jurisdictions?</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <h3>Foreign individual or entity</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>May use an IFSC access route for internationally structured products without assuming that the
+                    domestic NRI or India retail route applies.</p>
+                  <ul class="route-list">
+                    <li>Is the home jurisdiction accepted?</li>
+                    <li>Are beneficial ownership, sanctions and source-of-wealth checks satisfied?</li>
+                    <li>Is the investor eligible for the specific retail or non-retail offering?</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <h3>Resident Indian investor</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>Access depends on the product and the remittance or investment framework available to a resident.
+                    Availability should not be assumed solely because the product is located in India.</p>
+                  <ul class="route-list">
+                    <li>Is resident participation permitted?</li>
+                    <li>Does the investment use the Liberalised Remittance Scheme or another permitted route?</li>
+                    <li>What limits, declarations and tax reporting apply?</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                  onclick="toggleAccordion(this)" type="button">
+                  <div class="accordion-title">
+                    <h3>Family office or legal structure</h3>
+                  </div><span aria-hidden="true" class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                  <p>May consider funds, portfolio services, family-investment arrangements or other offerings, subject
+                    to
+                    legal-form, ownership, control and regulatory-status review.</p>
+                  <ul class="route-list">
+                    <li>Who is the investing legal person?</li>
+                    <li>Who are the beneficial owners and authorised signatories?</li>
+                    <li>Are constitutional, tax and regulatory documents current?</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="guide-card">
+            <div class="mini-label">Typical journey</div>
+            <h3>From interest to investment</h3>
+            <ol class="numbered">
+              <li><strong>Define the objective:</strong> fund investment, managed portfolio, brokerage access, banking
+                or
+                another service.</li>
+              <li><strong>Identify the exact IFSC entity:</strong> verify the legal name and IFSCA registration or
+                authorisation.</li>
+              <li><strong>Check investor eligibility:</strong> residence, legal status, country acceptance, investor
+                category and minimum commitment.</li>
+              <li><strong>Review the offering:</strong> strategy, assets, currency, risk, fees, liquidity, leverage,
+                valuation, conflicts and exit terms.</li>
+              <li><strong>Confirm the operating structure:</strong> bank, custodian, broker, administrator, trustee and
+                reporting parties.</li>
+              <li><strong>Complete KYC and tax documentation:</strong> identity, address, tax residence, FATCA/CRS,
+                source
+                of funds or wealth and beneficial ownership as applicable.</li>
+              <li><strong>Fund through the permitted route:</strong> follow the provider’s banking instructions and the
+                investor’s applicable foreign-exchange rules.</li>
+              <li><strong>Retain records and monitor:</strong> statements, valuations, distributions, tax documents,
+                material changes and grievance channels.</li>
+            </ol>
+          </div>
+          <div class="guide-card">
+            <div class="mini-label">Before appointing a provider</div>
+            <h3>Questions an investor should ask</h3>
+            <div class="guide-grid">
+              <div class="guide-box"><strong>Regulatory identity</strong>
+                <ul>
+                  <li>What is the exact legal entity?</li>
+                  <li>What activity is it authorised to perform?</li>
+                  <li>Can the registration be verified in the IFSCA directory?</li>
+                </ul>
+              </div>
+              <div class="guide-box"><strong>Investment structure</strong>
+                <ul>
+                  <li>What am I legally acquiring?</li>
+                  <li>Who owns and holds the underlying assets?</li>
+                  <li>Is the offering open-ended, closed-ended or mandate-based?</li>
+                </ul>
+              </div>
+              <div class="guide-box"><strong>Economics and liquidity</strong>
+                <ul>
+                  <li>What are all management, performance, custody and transaction fees?</li>
+                  <li>When and how can I redeem or exit?</li>
+                  <li>Can withdrawals be gated, suspended or delayed?</li>
+                </ul>
+              </div>
+              <div class="guide-box"><strong>Currency and tax</strong>
+                <ul>
+                  <li>What is the subscription and reporting currency?</li>
+                  <li>Who bears currency risk?</li>
+                  <li>What tax, withholding and home-country reporting may apply?</li>
+                </ul>
+              </div>
+              <div class="guide-box"><strong>Risk and governance</strong>
+                <ul>
+                  <li>What are the principal investment and counterparty risks?</li>
+                  <li>Who values the portfolio?</li>
+                  <li>What conflicts, leverage or related-party transactions are permitted?</li>
+                </ul>
+              </div>
+              <div class="guide-box"><strong>Service and protection</strong>
+                <ul>
+                  <li>Who handles complaints and investor servicing?</li>
+                  <li>How often are reports issued?</li>
+                  <li>What happens if the manager, broker or custodian changes?</li>
+                </ul>
+              </div>
+            </div>
+            <div class="callout-red"><strong>Avoid assumptions:</strong> “GIFT City product” is not itself a product
+              category, risk rating or guarantee. Review the exact regulated entity, legal documents, investment
+              strategy,
+              account and custody structure, currency, liquidity and investor-eligibility conditions.</div>
+          </div>
+          <div class="topic-footer"><button class="btn btn-outline" onclick="moveTopic(-1)" type="button">Previous topic</button><button
+              class="btn btn-outline" onclick="moveTopic(1)" type="button">Next topic</button></div>
+        </div>
+        <div class="learn-panel" id="lp-products">
+          <div class="grid3">
+            <div class="route">
+              <h3>Listed Equities</h3>
+              <p>Shares traded on recognised exchanges through an eligible brokerage and holding structure.</p>
+            </div>
+            <div class="route">
+              <h3>Derivatives</h3>
+              <p>Exchange-traded derivative products, subject to provider support, segment activation and applicable
+                investor restrictions.</p>
+            </div>
+            <div class="route">
+              <h3>PMS</h3>
+              <p>A portfolio manager manages or advises a portfolio under the applicable mandate and provider terms.</p>
+            </div>
+            <div class="route">
+              <h3>AIF / Private Funds</h3>
+              <p>Pooled investment vehicles with category, strategy, commitment and eligibility requirements.</p>
+            </div>
+            <div class="route">
+              <h3>GIFT City Funds</h3>
+              <p>IFSC fund products offered under the relevant scheme documents and investor-acceptance criteria.</p>
+            </div>
+            <div class="route">
+              <h3>Private Company / Strategic Equity</h3>
+              <p>Equity or permitted capital instruments issued by an Indian business through an FDI or other
+                private-investment transaction.</p>
+            </div>
+            <div class="route">
+              <h3>Venture Capital Investments</h3>
+              <p>Permitted venture-capital undertakings, eligible funds or related instruments accessed through an FVCI
+                or
+                other applicable route.</p>
+            </div>
+            <div class="route">
+              <h3>REITs / InvITs</h3>
+              <p>Units of real estate or infrastructure investment trusts, subject to investor-category, market and
+                product eligibility.</p>
+            </div>
+            <div class="route">
+              <h3>Indian Debt Instruments</h3>
+              <p>Government securities, corporate bonds, debentures and other permitted fixed-income instruments under
+                the
+                applicable investor route.</p>
+            </div>
+            <div class="route">
+              <h3>Custody / Reporting</h3>
+              <p>Safekeeping, settlement, reporting and asset-servicing arrangements rather than an investment product
+                by
+                themselves.</p>
+            </div>
+          </div>
+          <div class="topic-footer"><button class="btn btn-outline" onclick="moveTopic(-1)" type="button">Previous topic</button><button
+              class="btn btn-outline" onclick="moveTopic(1)" type="button">Next topic</button></div>
+        </div>
+        <div class="learn-panel" id="lp-services">
+          <div class="grid3">
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <h3>Banking</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Provides the account through which money is received, held, remitted or linked to an investment
+                  route.
+                </p>
+                <ul class="route-list">
+                  <li>NRE, NRO, current or IFSC banking arrangements may be relevant.</li>
+                  <li>The appropriate account depends on investor status, source of funds and route.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <h3>Brokerage and execution</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Provides market access and executes eligible transactions based on investor or authorised
+                  instructions.
+                </p>
+                <ul class="route-list">
+                  <li>May also coordinate trading, demat and bank-account integration.</li>
+                  <li>Products and countries supported vary by broker.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <h3>Depository participant</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Opens and services the demat account in which eligible securities are held electronically.</p>
+                <ul class="route-list">
+                  <li>The broker and depository participant may be the same group or different entities.</li>
+                  <li>Joint-holder and non-resident account rules may affect the setup.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <h3>Portfolio manager</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Manages an investor's portfolio under a PMS agreement and the selected mandate.</p>
+                <ul class="route-list">
+                  <li>May require compatible bank, broker, demat or custody arrangements.</li>
+                  <li>Strategy, mandate, fees and reporting should be reviewed separately.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <h3>AIF manager</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Manages a pooled Alternative Investment Fund according to its private-placement memorandum and
+                  governing documents.</p>
+                <ul class="route-list">
+                  <li>The investor subscribes to fund units rather than holding each underlying asset directly.</li>
+                  <li>Category, tenure, drawdown and liquidity terms vary.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <h3>Custodian</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Safekeeps assets and may support settlement, asset servicing, reporting and institutional controls.
+                </p>
+                <ul class="route-list">
+                  <li>Common in institutional and some managed-investment structures.</li>
+                  <li>The selected manager may work with a particular custodian.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <h3>Designated Depository Participant</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Performs registration and regulatory interface functions for investors entering through the FPI
+                  framework.</p>
+                <ul class="route-list">
+                  <li>Reviews investor category, legal status, documentation and beneficial ownership information.</li>
+                  <li>Usually works with the custodian, bank and broker ecosystem.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <h3>Entity verification and corporate services</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Supports validation of a foreign entity, its ownership/control chain and the authority of persons
+                  acting for it.</p>
+                <ul class="route-list">
+                  <li>May include registry documents, constitutive documents, board resolutions, incumbency and
+                    authorised-signatory evidence.</li>
+                  <li>Legalisation, apostille, notarisation or certified translation may be required depending on
+                    jurisdiction and provider.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <h3>Tax, legal and regulatory support</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Helps interpret cross-border tax, FEMA, securities, corporate and reporting implications.</p>
+                <ul class="route-list">
+                  <li>Particularly relevant for foreign individuals and legal entities where route selection depends on
+                    investor and transaction facts.</li>
+                  <li>Facilon should identify the need for advice but should not provide regulated legal, tax or
+                    investment advice itself.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <h3>Investment adviser / wealth manager</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Helps the investor understand objectives, evaluate choices or coordinate execution, subject to the
+                  participant's regulatory permissions.</p>
+                <ul class="route-list">
+                  <li>Advice, distribution and facilitation are distinct roles.</li>
+                  <li>Investors should understand how the adviser is compensated.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <h3>Tax, legal and compliance support</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Supports tax residency, reporting, remittance, legal-entity and regulatory questions that the
+                  investment provider may not determine for the investor.</p>
+                <ul class="route-list">
+                  <li>Cross-border investors may need advice in both residence and investment jurisdictions.</li>
+                  <li>Facilon's educational content does not replace professional advice.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="topic-footer"><button class="btn btn-outline" onclick="moveTopic(-1)" type="button">Previous topic</button><button
+              class="btn btn-outline" onclick="moveTopic(1)" type="button">Next topic</button></div>
+        </div>
+        <div class="learn-panel" id="lp-ecosystem">
+          <div class="status" style="margin-bottom:16px"><strong>How to read this section:</strong> Each investment
+            route
+            may require a different combination of accounts and Service Providers. The sequence below is indicative; the
+            selected regulated provider must confirm the exact operating structure.</div>
+          <div class="grid2">
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <div class="route-badge">Resident Indian · direct investing</div>
+                  <h3>Resident Indian brokerage and demat ecosystem</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p><strong>Typical flow:</strong> PAN and KYC → resident bank account → trading account with broker →
+                  demat account with Depository Participant → exchange transactions and settlement.</p>
+                <ul class="route-list">
+                  <li><strong>Bank account:</strong> receives deposits, dividends and sale proceeds and funds purchases.
+                  </li>
+                  <li><strong>Broker:</strong> accepts and executes eligible buy and sell instructions.</li>
+                  <li><strong>Depository Participant:</strong> maintains the demat account where securities are held
+                    electronically.</li>
+                  <li><strong>Possible additions:</strong> adviser, research provider, nominee and tax-reporting
+                    support.
+                  </li>
+                </ul>
+                <div class="route-fit">The broker and Depository Participant may be the same organisation, but they
+                  perform different functions.</div>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <div class="route-badge">NRI / OCI · India direct</div>
+                  <h3>NRI/OCI direct-investment ecosystem</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p><strong>Typical flow:</strong> PAN and non-resident KYC → NRE and/or NRO banking arrangement → broker
+                  →
+                  NRI demat account → eligible Indian market access.</p>
+                <ul class="route-list">
+                  <li><strong>NRE route:</strong> may be used for eligible investments on a repatriation basis; a
+                    designated NRE (PIS) arrangement may be required for certain exchange-traded equity transactions.
+                  </li>
+                  <li><strong>NRO route:</strong> generally supports non-repatriation-basis investments and
+                    Indian-source
+                    funds, subject to applicable conditions.</li>
+                  <li><strong>Broker/DP compatibility:</strong> the banking, trading and demat accounts must be opened
+                    and
+                    linked under a supported NRI structure.</li>
+                  <li><strong>Tax and FEMA:</strong> withholding, repatriation evidence and transaction eligibility may
+                    differ from resident accounts.</li>
+                </ul>
+                <div class="route-fit">The investor should first decide whether repatriability is important and then
+                  confirm the required account combination with the bank and broker.</div>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <div class="route-badge">India · Portfolio Management Service</div>
+                  <h3>PMS account and participant ecosystem</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p><strong>Typical flow:</strong> investor classification and PAN/KYC → portfolio manager selection →
+                  PMS
+                  agreement and mandate → compatible bank, broker, demat or custody setup → funding and portfolio
+                  management.</p>
+                <ul class="route-list">
+                  <li><strong>Portfolio Manager:</strong> manages or advises the separately held portfolio under the
+                    agreed mandate.</li>
+                  <li><strong>Bank and broker:</strong> provide cash movement and execution arrangements accepted by the
+                    manager.</li>
+                  <li><strong>Demat or custodian:</strong> holds the investor's securities and supports settlement and
+                    reporting.</li>
+                  <li><strong>Operational model:</strong> some managers coordinate the complete setup; others require
+                    the
+                    investor to open specified accounts separately.</li>
+                </ul>
+                <div class="route-fit">Before appointment, confirm which institutions the manager works with, whether
+                  existing accounts can be used and who coordinates onboarding.</div>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <div class="route-badge">India · Alternative Investment Fund</div>
+                  <h3>AIF subscription ecosystem</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p><strong>Typical flow:</strong> investor eligibility and PAN/KYC → review of fund documents →
+                  commitment
+                  and subscription → bank transfer or drawdown → units recorded by the fund/registrar.</p>
+                <ul class="route-list">
+                  <li><strong>AIF Manager:</strong> manages the pooled vehicle according to the stated strategy.</li>
+                  <li><strong>Trustee:</strong> performs oversight functions where the fund uses a trust structure.</li>
+                  <li><strong>Custodian:</strong> safekeeps fund assets where required or appointed.</li>
+                  <li><strong>Registrar/administrator:</strong> maintains investor records, capital accounts, notices
+                    and
+                    reporting.</li>
+                </ul>
+                <div class="route-fit">Unlike direct investing or PMS, the investor normally subscribes to fund units
+                  and
+                  does not open a separate trading and demat structure for each underlying investment.</div>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <div class="route-badge">Foreign investor · institutional India</div>
+                  <h3>FPI registration and custody ecosystem</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p><strong>Typical flow:</strong> legal-form and eligibility review → Designated Depository Participant
+                  →
+                  PAN and KYC coordination → custodian and designated bank → demat and broker setup → market access and
+                  ongoing compliance.</p>
+                <ul class="route-list">
+                  <li><strong>DDP:</strong> reviews the application and performs the registration interface under the
+                    FPI
+                    framework.</li>
+                  <li><strong>Custodian:</strong> coordinates safekeeping, settlement, asset servicing and institutional
+                    controls.</li>
+                  <li><strong>Designated bank:</strong> supports permitted cash and foreign-exchange flows.</li>
+                  <li><strong>Broker:</strong> executes eligible market transactions after the institutional structure
+                    is
+                    activated.</li>
+                  <li><strong>Ongoing requirements:</strong> ownership, control, beneficial ownership and material
+                    changes
+                    may require continuing disclosure.</li>
+                </ul>
+                <div class="route-fit">The DDP/custodian should ordinarily coordinate the integrated setup, including
+                  PAN,
+                  rather than the investor approaching each participant independently.</div>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <div class="route-badge">GIFT City / IFSC</div>
+                  <h3>IFSC product and account ecosystem</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p><strong>Typical flow:</strong> investor category and country review → selection of IFSC product or
+                  provider → foreign-currency banking and custody structure → product-specific onboarding, funding and
+                  reporting.</p>
+                <ul class="route-list">
+                  <li><strong>Possible providers:</strong> IFSC bank, broker, portfolio manager, fund manager,
+                    custodian,
+                    distributor or adviser.</li>
+                  <li><strong>Account structure:</strong> depends on whether the investor is using an IFSC fund, managed
+                    account, brokerage service or another permitted product.</li>
+                  <li><strong>Currency:</strong> funding and reporting may occur in a permitted foreign currency,
+                    subject
+                    to provider and product rules.</li>
+                  <li><strong>Separate framework:</strong> IFSC products and accounts should not be assumed to be the
+                    same
+                    as India domestic products offered by the same group.</li>
+                </ul>
+                <div class="route-fit">The investor should compare the exact IFSC product, legal issuer, currency,
+                  liquidity and custody structure rather than relying only on the provider's brand name.</div>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <div class="route-badge">Foreign legal entity · FDI</div>
+                  <h3>Foreign Direct Investment ecosystem</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p><strong>Typical flow:</strong> sector and entry-route review → investee and transaction due diligence
+                  →
+                  valuation and agreements → authorised dealer bank → funds transfer and allotment/transfer → statutory
+                  and FEMA reporting.</p>
+                <ul class="route-list">
+                  <li><strong>Investee company or LLP:</strong> receives the investment and completes corporate actions
+                    and records.</li>
+                  <li><strong>Authorised dealer bank:</strong> supports permitted remittance and regulatory reporting.
+                  </li>
+                  <li><strong>Legal and company-secretarial advisers:</strong> coordinate agreements, approvals, filings
+                    and corporate records.</li>
+                  <li><strong>Valuation and tax professionals:</strong> support pricing, tax and transaction-structure
+                    requirements.</li>
+                </ul>
+                <div class="route-fit">This is an ownership or transaction route, not a retail securities-account
+                  journey,
+                  and normally requires professional legal, tax and regulatory advice.</div>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <div class="route-badge">Foreign investor · FVCI</div>
+                  <h3>FVCI registration and investment ecosystem</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p><strong>Typical flow:</strong> FVCI eligibility and legal-form review → SEBI registration →
+                  appointment
+                  of domestic custodian and designated bank → account and KYC setup → investment into permitted
+                  venture-capital opportunities → continuing reporting and compliance.</p>
+                <ul class="route-list">
+                  <li><strong>SEBI:</strong> grants and supervises the FVCI registration under the applicable
+                    regulations.
+                  </li>
+                  <li><strong>Domestic custodian:</strong> supports custody, transaction processing, records and
+                    regulatory coordination.</li>
+                  <li><strong>Designated bank:</strong> supports permitted remittances, cash flows and foreign-exchange
+                    arrangements.</li>
+                  <li><strong>Investment counterparties:</strong> may include eligible Indian venture-capital
+                    undertakings
+                    or funds, subject to the current regulatory framework.</li>
+                  <li><strong>Professional advisers:</strong> support registration, investment eligibility, transaction
+                    documents, tax and FEMA compliance.</li>
+                </ul>
+                <div class="route-fit">FVCI is intended for qualifying overseas investment vehicles and requires
+                  route-specific regulatory confirmation before it is presented as available.</div>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <div class="route-badge">NRI / OCI · non-repatriation</div>
+                  <h3>NRI/OCI non-repatriation ecosystem</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p><strong>Typical flow:</strong> NRI/OCI status and PAN/KYC → eligible instrument or vehicle selection
+                  →
+                  NRO-linked payment → investment or subscription → proceeds credited under the permitted
+                  non-repatriation
+                  arrangement.</p>
+                <ul class="route-list">
+                  <li><strong>Bank:</strong> confirms the permitted NRO funding and receipt structure.</li>
+                  <li><strong>Broker, investee or fund:</strong> completes route-specific onboarding and transaction
+                    documentation.</li>
+                  <li><strong>Tax adviser:</strong> supports withholding, filing and any later remittance documentation.
+                  </li>
+                </ul>
+                <div class="route-fit">Confirm instrument eligibility and the non-repatriation payment route before
+                  investing.</div>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <div class="route-badge">Foreign investor · investment vehicles</div>
+                  <h3>Investment Vehicle subscription ecosystem</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p><strong>Typical flow:</strong> investor-category review → vehicle and scheme-document review → KYC
+                  and
+                  beneficial-ownership checks → commitment or purchase → permitted banking route → units and ongoing
+                  reporting.</p>
+                <ul class="route-list">
+                  <li><strong>Manager/sponsor:</strong> explains the vehicle, strategy, risks, commitments and investor
+                    eligibility.</li>
+                  <li><strong>Trustee/custodian:</strong> provides oversight or safekeeping as applicable.</li>
+                  <li><strong>Registrar/administrator:</strong> maintains unit-holder records, notices, capital accounts
+                    and distributions.</li>
+                </ul>
+                <div class="route-fit">Distinguish the regulatory investment route from the specific AIF, REIT or InvIT
+                  product.</div>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <div class="route-badge">Foreign investor · debt</div>
+                  <h3>Foreign debt-investment ecosystem</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p><strong>Typical flow:</strong> investor and instrument eligibility review → route-specific
+                  registration
+                  or KYC → designated banking/custody and demat setup where required → purchase or subscription →
+                  interest, maturity and tax reporting.</p>
+                <ul class="route-list">
+                  <li><strong>DDP/custodian or bank:</strong> confirms the applicable framework and account structure.
+                  </li>
+                  <li><strong>Broker, debt platform or arranger:</strong> supports execution or placement.</li>
+                  <li><strong>Issuer/depository:</strong> records holdings, interest, redemption and corporate actions.
+                  </li>
+                </ul>
+                <div class="route-fit">Eligibility, limits, liquidity and repatriation can differ materially by investor
+                  category and instrument.</div>
+              </div>
+            </div>
+            <div class="route detail-route"><button aria-expanded="false" class="accordion-toggle"
+                onclick="toggleAccordion(this)" type="button">
+                <div class="accordion-title">
+                  <div class="route-badge">Multi-provider journey</div>
+                  <h3>Adviser- or wealth-manager-coordinated ecosystem</h3>
+                </div><span aria-hidden="true" class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p><strong>Typical flow:</strong> investor objectives and constraints → adviser or wealth manager →
+                  selection of one or more routes → appointment of the relevant regulated providers → consolidated
+                  coordination and reporting.</p>
+                <ul class="route-list">
+                  <li><strong>Adviser/wealth manager:</strong> may help evaluate choices and coordinate the journey
+                    within
+                    the scope of its licence and engagement.</li>
+                  <li><strong>Execution and custody:</strong> remain with the appointed bank, broker, manager, fund or
+                    custodian.</li>
+                  <li><strong>Consent and authority:</strong> the investor should understand what information may be
+                    shared and whether the coordinator can issue instructions.</li>
+                  <li><strong>Fees and conflicts:</strong> advisory, distribution, referral and facilitation
+                    compensation
+                    should be clearly distinguished.</li>
+                </ul>
+                <div class="route-fit">Useful where the investor is exploring several routes or needs a single
+                  coordination layer, but each regulated activity remains with the appropriately authorised participant.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="status" style="margin-top:16px"><strong>Why this matters:</strong> A product is not the same as an
+            investment route, and an investment route is not the same as a Service Provider. One investor may select
+            several routes, and each route may require a different combination of accounts, regulated entities and
+            professional advisers.</div>
+          <div class="topic-footer"><button class="btn btn-outline" onclick="moveTopic(-1)" type="button">Previous topic</button><button
+              class="btn btn-outline" onclick="moveTopic(1)" type="button">Next topic</button></div>
+        </div>
+        <div class="learn-panel" id="lp-pis">
+          <div class="guide-card">
+            <div class="mini-label">For NRI / OCI investors using India direct investing</div>
+            <h3>What is a PIS account?</h3>
+            <p>A Portfolio Investment Scheme (PIS) arrangement is a designated banking mechanism used for certain
+              NRI/OCI
+              purchases and sales of listed Indian equity on a repatriation basis through a recognised stock exchange.
+              The
+              designated bank monitors eligible transactions and applicable holding limits.</p>
+            <div class="guide-grid">
+              <div class="guide-box"><strong>NRE (PIS): repatriation basis</strong>
+                <ul>
+                  <li>Funded by inward remittance or eligible NRE funds.</li>
+                  <li>Used exclusively for transactions permitted under the applicable repatriation route.</li>
+                  <li>Net sale proceeds may generally be remitted outside India, subject to taxes and compliance.</li>
+                  <li>Useful when repatriability of eligible investment proceeds is important.</li>
+                </ul>
+              </div>
+              <div class="guide-box"><strong>NRO account: non-repatriation basis</strong>
+                <ul>
+                  <li>Used for investments on a non-repatriation basis and for Indian income or other permitted NRO
+                    funds.
+                  </li>
+                  <li>“NRO PIS” is largely legacy terminology; existing NRO (PIS) accounts were redesignated as ordinary
+                    NRO accounts.</li>
+                  <li>Repatriation from NRO is subject to applicable FEMA, tax and banking conditions.</li>
+                  <li>The bank or broker should confirm the exact account linkage required for the chosen product.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="callout-blue"><strong>Important:</strong> A PIS arrangement is not required for every NRI/OCI
+              investment. Mutual funds, AIFs, PMS, GIFT City products and other instruments can follow different payment
+              and account rules. The relevant bank, broker or manager must confirm whether PIS is required for the
+              selected route.</div>
+          </div>
+          <div class="topic-footer"><button class="btn btn-outline" onclick="moveTopic(-1)" type="button">Previous topic</button><button
+              class="btn btn-outline" onclick="moveTopic(1)" type="button">Next topic</button></div>
+        </div>
+        <div class="learn-panel" id="lp-pan">
+          <div class="guide-card">
+            <div class="mini-label">Separate PAN application guide</div>
+            <h3>Obtain or verify PAN before Indian investment-account opening</h3>
+            <p>A valid PAN is generally required before Resident Indian, NRI/OCI and Indian entity securities onboarding
+              can be completed. Investors may continue learning and preparing documents, but the flow should not
+              represent
+              brokerage, demat, PMS, AIF or other Indian investment accounts as activated until PAN has been allotted
+              and
+              verified.</p>
+            <div class="guide-grid">
+              <div class="guide-box"><strong>Resident Indian individual eligible for Instant e-PAN</strong>
+                <ol class="numbered">
+                  <li>Use the Income Tax Department's free Instant e-PAN service.</li>
+                  <li>You must be an individual who has never been allotted PAN.</li>
+                  <li>A valid Aadhaar and Aadhaar-linked mobile number are required.</li>
+                  <li>The service issues a digitally signed e-PAN; a physical card is not required for PAN validity.
+                  </li>
+                </ol>
+                <p><a class="btn primary"
+                    href="https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/instant-e-pan"
+                    rel="noopener noreferrer" target="_blank">Open official Instant e-PAN guide ↗</a></p>
+              </div>
+              <div class="guide-box"><strong>NRI / OCI, applicant without eligible Aadhaar, or legal entity</strong>
+                <ol class="numbered">
+                  <li>Use an authorised PAN service provider's new-PAN application service.</li>
+                  <li>Select the applicant category shown by the provider and follow the current application form and
+                    document instructions.</li>
+                  <li>Overseas applicants may need prescribed certification, attestation or physical-document dispatch.
+                  </li>
+                  <li>Keep the acknowledgement number and track allotment before completing investment-account opening.
+                  </li>
+                </ol>
+                <p><a class="btn primary" href="https://www.protean-tinpan.com/services/pan/pan-index.html"
+                    rel="noopener noreferrer" target="_blank">Apply through Protean PAN Services ↗</a></p>
+                <p class="help">The authorised provider may update forms, evidence requirements and fees. Follow the
+                  instructions displayed on the official application site.</p>
+              </div>
+              <div class="guide-box"><strong>Foreign Portfolio Investor route</strong>
+                <ul>
+                  <li>The appointed Designated Depository Participant/custodian should coordinate PAN with the
+                    integrated
+                    FPI registration, KYC, bank, custody and demat process.</li>
+                  <li>The applicant should follow the custodian's document, certification and application instructions.
+                  </li>
+                  <li>A retail applicant should not independently choose an FPI PAN process without the DDP/custodian.
+                  </li>
+                </ul>
+              </div>
+              <div class="guide-box"><strong>Check before applying</strong>
+                <ul>
+                  <li>Do not apply for a second PAN.</li>
+                  <li>Check whether PAN has already been allotted and whether it is active.</li>
+                  <li>Use matching names and core particulars across passport, Aadhaar, incorporation and investment
+                    documents.</li>
+                  <li>Resolve discrepancies or use the authorised correction process before account activation.</li>
+                </ul>
+                <p><a class="btn ghost"
+                    href="https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/verify-your-pan"
+                    rel="noopener noreferrer" target="_blank">Verify PAN on Income Tax portal ↗</a></p>
+              </div>
+            </div>
+            <div class="callout-red"><strong>Do not create a second PAN.</strong> Possession of more than one PAN can
+              attract consequences. Where PAN may already exist, verify it first and use the authorised correction or
+              reprint process instead of making a new application.</div>
+          </div>
+          <div class="topic-footer"><button class="btn btn-outline" onclick="moveTopic(-1)" type="button">Previous topic</button>
+          <a class="btn btn-outline" href="investor-access-navigator.html">Start Access Navigator</a></div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <section class="band">
+    <div class="container">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-8">
+          <h2>Ready to identify your investment access route?</h2>
+          <p>Use the Facilon Access Navigator to identify indicative routes, provider categories and preparation areas.
+          </p>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="d-flex gap-3 justify-content-lg-end">
+            <a class="btn btn-gold" href="investor-access-navigator.html#assessment">Open the Access Navigator</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand-sec navbar-brand">
+            <img src="images/logo.webp" alt="Facilon">
+          </div>
+          <p>
+            A neutral digital facilitation and workflow platform supporting structured,
+            consent-led engagement between investors, authorised participants and Service Providers.
+          </p>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <h3>Investors</h3>
+          <div class="footer-links">
+            <a href="investor-access-navigator.html">Investor Access Navigator</a>
+            <a href="learning-centre.html">Learning Centre</a>
+            <a href="#faq">Investor FAQs</a>
+            <a href="#support">Investor Support</a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <h3>Service Providers</h3>
+          <div class="footer-links">
+            <a href="for-service-providers.html">For Service Providers</a>
+            <a href="#modules">Facilon Modules</a>
+            <a href="#discussion">Request a Discussion</a>
+            <a href="#signin">Service Provider Sign In</a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <h3>Trust &amp; Legal</h3>
+          <div class="footer-links">
+            <a href="#privacy">Privacy Notice</a>
+            <a href="#cookies">Cookie Policy</a>
+            <a href="#terms">Terms of Use</a>
+            <a href="#disclaimer">Platform Disclaimer</a>
+            <a href="#rights">Investor Rights</a>
+            <a href="#security">Security at Facilon</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex justify-content-between flex-wrap gap-3">
+        <div>© <span id="year"></span> Facilon Services Private Limited. All rights reserved.</div>
+        <div>Final investor acceptance and regulated decisions remain with the relevant Service Provider.</div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    const topicButtons = [...document.querySelectorAll('.learn-tabs .tab')];
+    function selectTopic(id) {
+      const btn = topicButtons.find(x => x.getAttribute('onclick')?.includes("'" + id + "'"));
+      if (btn) learnTab(id, btn);
+    }
+    function learnTab(id, btn) {
+      document.getElementById('topicChooser').classList.add('hidden');
+      document.getElementById('topicTabs').classList.add('visible');
+      document.getElementById('chooseAnother').classList.add('visible');
+      document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('.learn-panel').forEach(x => x.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const panel = document.getElementById('lp-' + id); if (panel) panel.classList.add('active');
+      if (btn) btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      window.scrollTo({ top: document.getElementById('topics').offsetTop - 68, behavior: 'smooth' });
+    }
+    function showTopicChooser() {
+      document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('.learn-panel').forEach(x => x.classList.remove('active'));
+      document.getElementById('topicTabs').classList.remove('visible');
+      document.getElementById('chooseAnother').classList.remove('visible');
+      document.getElementById('topicChooser').classList.remove('hidden');
+      window.scrollTo({ top: document.getElementById('topics').offsetTop - 68, behavior: 'smooth' });
+    }
+    function marketTab(id, btn) {
+      document.querySelectorAll('.market-btn').forEach(x => { x.classList.remove('active'); x.setAttribute('aria-selected', 'false') });
+      document.querySelectorAll('.market-panel').forEach(x => x.classList.remove('active'));
+      btn.classList.add('active'); btn.setAttribute('aria-selected', 'true'); document.getElementById('route-market-' + id).classList.add('active');
+    }
+    function toggleAccordion(btn) {
+      const card = btn.closest('.detail-route'); const opening = !card.classList.contains('open');
+      card.classList.toggle('open', opening); btn.setAttribute('aria-expanded', opening ? 'true' : 'false');
+    }
+    function moveTopic(delta) {
+      const active = topicButtons.findIndex(x => x.classList.contains('active'));
+      const next = active + delta;
+      if (next < 0) { showTopicChooser(); return; }
+      if (next >= topicButtons.length) { window.location.href = 'investor-access-navigator.html#assessment'; return; }
+      topicButtons[next].click();
+    }
+    function openGift(e) { e.preventDefault(); const btn = topicButtons.find(x => x.getAttribute('onclick')?.includes("'routes'")); learnTab('routes', btn); setTimeout(() => { const gift = [...document.querySelectorAll('.market-btn')].find(x => x.textContent.includes('GIFT City')); marketTab('gift', gift) }, 350) }
+
+    function openTopicFromHash() {
+      const raw = (window.location.hash || '').replace('#', '').toLowerCase();
+      const valid = ['types', 'routes', 'giftcity', 'products', 'services', 'ecosystem', 'pis', 'pan', 'tax', 'compliance', 'protection'];
+      if (!valid.includes(raw)) return;
+      selectTopic(raw);
+      if (raw === 'giftcity') return;
+      if (raw === 'routes' && new URLSearchParams(window.location.search).get('market') === 'gift') {
+        setTimeout(() => { const gift = [...document.querySelectorAll('.market-btn')].find(x => x.textContent.includes('GIFT City')); if (gift) marketTab('gift', gift) }, 250);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', openTopicFromHash);
+    window.addEventListener('hashchange', openTopicFromHash);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>

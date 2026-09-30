@@ -1,0 +1,2657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Facilon helps investors use the Investor Access Navigator to understand their investment access route and helps Service Providers educate, engage, onboard and service investors through structured, consent-led digital journeys." />
+  <title>Facilon Access Navigator | Investor Access Navigator and Service Provider Facilitation</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="fs-style.css">
+  <style>
+    :root {
+      --ink: #0f1923;
+      --ink2: #4a5568;
+      --faint: #8b98a7;
+      --paper: #f7f5f0;
+      --white: #fff;
+      --blue: #1a4d6e;
+      --blue2: #2d7da8;
+      --bluebg: #e8f3fa;
+      --gold: #c5922a;
+      --goldbg: #fdf6e3;
+      --green: #2a7a5b;
+      --greenbg: #e6f5ef;
+      --orange: #b45309;
+      --orangebg: #fff7ed;
+      --red: #b42318;
+      --border: #dce3ea;
+      --shadow: 0 4px 20px rgba(15, 25, 35, .08);
+      --r: 12px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    .hidden {
+      display: none !important
+    }
+
+    .brand {
+      font-size: 21px;
+      white-space: nowrap
+    }
+
+    .brand span {
+      color: var(--gold)
+    }
+
+    .phase {
+      font-size: 12px;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-weight: 700
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 7px;
+      flex: 1
+    }
+
+    .step {
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 12px;
+      color: var(--ink2);
+      text-align: center
+    }
+
+    .step.active {
+      background: var(--bluebg);
+      border-color: var(--blue);
+      color: var(--blue);
+      font-weight: 700
+    }
+
+    .step.done {
+      background: var(--greenbg);
+      border-color: #9fd3be;
+      color: var(--green)
+    }
+
+    .shell {
+      margin: auto;
+      padding: 0 0;
+    }
+
+    .screen {
+      display: none
+    }
+
+    .screen.active {
+      display: block
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--blue2);
+      font-weight: 700;
+      margin-bottom: 10px
+    }
+
+    .title {
+      font-family: 'Playfair Display', Georgia, serif;
+    font-size: 36px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    margin-top: 0;
+    font-weight: 700;
+    color: var(--blue-dark);
+    }
+
+    .sub {
+      color: var(--ink2);
+      margin-bottom: 20px
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow)
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px
+    }
+
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px
+    }
+
+    .choice {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+      cursor: pointer;
+      transition: .15s;
+      text-align: left
+    }
+
+    .choice:hover {
+      border-color: var(--blue2);
+      transform: translateY(-1px)
+    }
+
+    .choice.selected {
+      border-color: var(--blue);
+      background: var(--bluebg)
+    }
+
+    .choice-title {
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+
+    .choice-desc {
+      font-size: 14px;
+      color: var(--ink2);
+      line-height: 1.5
+    }
+
+    .icon {
+      font-size: 23px;
+      margin-bottom: 8px
+    }
+
+    .learn-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px
+    }
+
+    .tab {
+      border: 1px solid var(--border);
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink2)
+    }
+
+    .tab.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue)
+    }
+
+    .learn-panel {
+      display: none
+    }
+
+    .learn-panel.active {
+      display: block
+    }
+
+    .route {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 17px;
+      background: #fff
+    }
+
+    .route h3 {
+      font-size: 14px;
+      margin: 0 0 6px
+    }
+
+    .route p {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.6;
+      margin: 0
+    }
+
+    .tagrow {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 10px
+    }
+
+    .tag {
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 5px;
+      padding: 4px 8px;
+      background: var(--paper);
+      color: var(--ink2)
+    }
+
+    .qtitle {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px
+    }
+
+    .opt {
+      border: 1.5px solid var(--border);
+      background: var(--paper);
+      border-radius: 7px;
+      padding: 10px 20px;
+      font-size: 12px;
+      cursor: pointer
+    }
+
+    .opt.selected {
+      background: var(--bluebg);
+      border-color: var(--blue);
+      color: var(--blue);
+      font-weight: 700
+    }
+
+    .select,
+    .input {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      background: #fff;
+      font-size: 14px;
+      color: var(--ink)
+    }
+
+    .field {
+      margin-bottom: 17px
+    }
+
+    .label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      font-weight: 700;
+      color: var(--faint);
+      margin-bottom: 7px
+    }
+
+    .help {
+      font-size: 12px;
+      color: var(--faint);
+      margin-top: 6px;
+      line-height: 1.5
+    }
+
+    .assess-progress {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 22px
+    }
+
+    .ap {
+      height: 5px;
+      background: var(--border);
+      border-radius: 4px;
+      flex: 1
+    }
+
+    .ap.on {
+      background: var(--blue)
+    }
+
+    .result-banner {
+      background: linear-gradient(135deg, var(--blue), #286f98);
+      color: #fff;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 20px
+    }
+
+    .result-label {
+      font-size: 12px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .result-type {
+      font-size: 22px;
+      margin: 6px 0
+    }
+
+    .result-note {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .impact-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--faint);
+      font-weight: 700;
+      margin-bottom: 12px
+    }
+
+    .impact-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px
+    }
+
+    .impact {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px
+    }
+
+    .impact strong {
+      font-size: 12px;
+      display: block;
+      margin-bottom: 6px
+    }
+
+    .impact span {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.55;
+      display: block
+    }
+
+    .status {
+      border-radius: 10px;
+      padding: 10px 20px;
+      border-left: 4px solid var(--gold);
+      background: var(--goldbg);
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--ink2);
+      margin-bottom: 20px;
+    }
+
+    .status strong {
+      color: var(--ink)
+    }
+
+    .checklist {
+      padding-left: 19px;
+      margin: 0;
+      color: var(--ink2);
+      font-size: 12px;
+      line-height: 1.8
+    }
+
+    .consent {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 14px;
+      margin-bottom: 10px;
+      background: var(--paper)
+    }
+    
+    .consent:last-child {
+        margin-bottom: 0;
+    }
+
+    .consent input {
+      margin-top: 3px
+    }
+
+    .consent div {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.6
+    }
+
+    .required {
+      color: var(--red)
+    }
+
+    .verify-box {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto
+    }
+
+    .mailicon {
+      font-size: 50px
+    }
+
+    .code {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 20px 0
+    }
+
+    .code input {
+      width: 46px;
+      height: 50px;
+      text-align: center;
+      font-size: 20px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px
+    }
+
+    .success {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--greenbg);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      margin: 0 auto 18px
+    }
+
+    .profile-summary {
+      background: var(--paper);
+      border-radius: 10px;
+      padding: 17px;
+      text-align: left;
+      margin: 20px 0
+    }
+
+    .sumrow {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      font-size: 12px;
+      gap: 10px;
+    }
+
+    .sumrow:last-child {
+      border-bottom: 0
+    }
+
+    .sumrow span {
+      color: var(--ink2)
+    }
+
+    .phase2 {
+      margin-top: 28px;
+      background: #f2f5f7;
+      border: 1px dashed #aeb9c4;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.6
+    }
+
+    .disclaimer {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-top: 18px
+    }
+
+    .privacy-notice {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fbfdff;
+      padding: 10px 20px;
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.65;
+      margin-bottom: 14px
+    }
+
+    .privacy-notice strong {
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .privacy-notice a {
+      color: var(--blue);
+      font-weight: 700
+    }
+
+    .legal-banner {
+      border-left: 4px solid var(--blue);
+      background: var(--bluebg);
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--ink2);
+      margin: 0 0 20px
+    }
+
+    .legal-banner strong {
+      color: var(--ink)
+    }
+
+    .readiness-wrap {
+      margin-top: 18px;
+      border-top: 1px solid var(--border);
+      padding-top: 18px
+    }
+
+    .readiness-intro {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.65;
+      margin-bottom: 14px
+    }
+
+    .pan-highlight {
+      border-left: 4px solid var(--gold);
+      background: var(--goldbg);
+      padding: 14px 16px;
+      border-radius: 9px;
+      margin: 12px 0 14px;
+      display: grid;
+      gap: 5px
+    }
+
+    .pan-highlight strong {
+      font-size: 14px;
+      color: var(--ink)
+    }
+
+    .pan-highlight span {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.6
+    }
+
+    .docs-common {
+      background: var(--bluebg);
+      border: 1px solid #c7dfed;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 14px
+    }
+
+    .docs-common h4,
+    .docs-provider h4 {
+      margin: 0 0 8px;
+      font-size: 14px
+    }
+
+    .docs-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink2);
+      font-size: 12px;
+      line-height: 1.75
+    }
+
+    .docs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    .docs-provider {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 15px;
+      background: #fff
+    }
+
+    .docs-provider .route-badge {
+      margin-bottom: 8px
+    }
+
+    .docs-note {
+      margin-top: 10px;
+      padding: 9px 11px;
+      border-radius: 7px;
+      background: var(--paper);
+      font-size: 12px;
+      color: var(--faint);
+      line-height: 1.55
+    }
+
+    .nothing-left {
+      padding: 15px;
+      border-radius: 9px;
+      background: var(--greenbg);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    .provider-doc-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start
+    }
+
+    .provider-doc-head span {
+      font-size: 12px;
+      color: var(--faint)
+    }
+
+    @media(max-width:800px) {
+      .docs-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:800px) {
+      .steps {
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        order: 3
+      }
+
+      .topinner {
+        flex-wrap: wrap
+      }
+
+      .grid2,
+      .grid3,
+      .impact-list {
+        grid-template-columns: 1fr
+      }
+
+      .title {
+        font-size: 29px
+      }
+
+      .shell {
+        padding-top: 26px
+      }
+    }
+
+    .detail-route {
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .detail-route p {
+      margin: 0
+    }
+
+    .route-badge {
+      align-self: flex-start;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      color: var(--blue);
+      background: var(--bluebg);
+      padding: 4px 8px;
+      border-radius: 999px
+    }
+
+    .route-list {
+      margin: 2px 0 0;
+      padding-left: 18px;
+      color: var(--ink2);
+      font-size: 12px;
+      line-height: 1.65
+    }
+
+    .route-fit {
+      margin-top: auto;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--paper);
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.5
+    }
+
+    .detail-route h3 {
+      margin: 0
+    }
+
+    .detail-route .route-fit strong {
+      color: var(--ink)
+    }
+
+    .route-select-card {
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      margin-bottom: 12px;
+      overflow: hidden
+    }
+
+    .route-select-head {
+      width: 100%;
+      border: 0;
+      background: #fff;
+      padding: 17px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start
+    }
+
+    .route-select-head:hover {
+      background: #fbfdff
+    }
+
+    .route-select-card.selected {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 1px var(--bluebg)
+    }
+
+    .route-check {
+      width: 21px;
+      height: 21px;
+      border: 1.5px solid var(--border);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      font-size: 14px;
+      color: #fff;
+      margin-top: 1px
+    }
+
+    .route-select-card.selected .route-check {
+      background: var(--blue);
+      border-color: var(--blue)
+    }
+
+    .route-select-copy {
+      flex: 1
+    }
+
+    .route-select-title {
+      font-weight: 700;
+      margin-bottom: 5px
+    }
+
+    .route-select-desc {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.5
+    }
+
+    .route-services {
+      border-top: 1px solid var(--border);
+      background: var(--paper);
+      padding: 16px
+    }
+
+    .route-services-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px
+    }
+
+    .route-services .options {
+      gap: 8px
+    }
+
+    .route-services .opt {
+      background: #fff
+    }
+
+    .route-services-empty {
+      font-size: 12px;
+      color: var(--faint)
+    }
+
+    .access-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px
+    }
+
+    .access-table th,
+    .access-table td {
+      border: 1px solid var(--border);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    .access-table th {
+      background: var(--paper)
+    }
+
+    .guide-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      padding: 19px;
+      margin-bottom: 14px
+    }
+
+    .guide-card h3 {
+      margin: 0 0 8px;
+      font-size: 15px
+    }
+
+    .guide-card p {
+      margin: 0 0 10px;
+      color: var(--ink2);
+      font-size: 12px;
+      line-height: 1.65
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    .guide-box {
+      border: 1px solid var(--border);
+      background: var(--paper);
+      border-radius: 9px;
+      padding: 14px
+    }
+
+    .guide-box strong {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 6px
+    }
+
+    .guide-box span,
+    .guide-box li {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.6
+    }
+
+    .guide-box ul,
+    .numbered {
+      margin: 6px 0 0;
+      padding-left: 18px
+    }
+
+    .callout-blue {
+      border-left: 4px solid var(--blue);
+      background: var(--bluebg);
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--ink2);
+      margin-top: 12px
+    }
+
+    .callout-red {
+      border-left: 4px solid var(--red);
+      background: #fff1f0;
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--ink2);
+      margin-top: 12px
+    }
+
+    .readiness-panel {
+      margin-top: 12px
+    }
+
+    .readiness-panel .guide-card {
+      box-shadow: none;
+      margin-bottom: 0
+    }
+
+    .link-btn {
+      display: inline-block;
+      margin-top: 8px;
+      border: 1px solid var(--blue);
+      color: var(--blue);
+      background: #fff;
+      border-radius: 7px;
+      padding: 8px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none
+    }
+
+    .mini-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      font-weight: 800;
+      color: var(--blue2);
+      margin-bottom: 7px
+    }
+
+    @media(max-width:800px) {
+      .guide-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* Pre-assessment homepage */
+    .hp {
+      background: #fff;
+      color: var(--ink);
+      min-height: 100vh
+    }
+
+    .hp * {
+      box-sizing: border-box
+    }
+
+    .hp-header {
+      position: sticky;
+      top: 0;
+      z-index: 70;
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border)
+    }
+
+    .hp-nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px
+    }
+
+    .hp-brand {
+      font-size: 23px;
+      white-space: nowrap
+    }
+
+    .hp-brand span {
+      color: var(--gold)
+    }
+
+    .hp-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink2)
+    }
+
+    .hp-links a:hover {
+      color: var(--blue)
+    }
+
+    .hp-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center
+    }
+
+    .hp-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 9px;
+      padding: 12px 18px;
+      border: 1.5px solid transparent;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: none
+    }
+
+    .hp-primary {
+      background: var(--blue);
+      color: #fff
+    }
+
+    .hp-primary:hover {
+      background: #123d58
+    }
+
+    .hp-secondary {
+      background: #fff;
+      border-color: var(--border);
+      color: var(--ink2)
+    }
+
+    .hp-secondary:hover {
+      border-color: var(--blue);
+      color: var(--blue)
+    }
+
+    .hp-hero {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      padding: 70px 0;
+      background: radial-gradient(circle at 88% 15%, rgba(197, 146, 42, .15), transparent 30%), radial-gradient(circle at 8% 12%, rgba(45, 125, 168, .15), transparent 34%), linear-gradient(180deg, #fff, #f6fafc)
+    }
+
+    .hp-hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 54px;
+      align-items: center
+    }
+
+    .hp-eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--blue2);
+      background: var(--bluebg);
+      border-radius: 999px;
+      padding: 5px 10px;
+      margin-bottom: 20px
+    }
+
+    .hp h1,
+    .hp h2 {
+      color: var(--ink);
+      margin-top: 0
+    }
+
+    .hp h1 {
+      font-size: 50px;
+      line-height: 1.08;
+      margin-bottom: 20px;
+    }
+
+    .hp h2 {
+      font-size: 38px;
+      line-height: 1.12;
+      margin-bottom: 12px
+    }
+
+    .hp-lead {
+      font-size: 16px;
+      color: var(--ink2);
+      max-width: 700px;
+      margin: 0 0 30px
+    }
+
+    .hp-hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 11px;
+      flex-wrap: wrap
+    }
+
+    .hp-micro {
+      font-size: 12px;
+      color: var(--faint);
+      line-height: 1.6;
+      margin-top: 14px
+    }
+
+    .hp-path-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 16px 45px rgba(15, 25, 35, .11)
+    }
+
+    .hp-path-card p {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.65
+    }
+
+    .hp-flow {
+      display: grid;
+      gap: 10px;
+      margin-top: 17px
+    }
+
+    .hp-flow-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 12px;
+      align-items: start;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px
+    }
+
+    .hp-flow-num {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--bluebg);
+      color: var(--blue);
+      font-weight: 800
+    }
+
+    .hp-flow-item strong {
+      font-size: 12px
+    }
+
+    .hp-flow-item span {
+      display: block;
+      font-size: 12px;
+      color: var(--faint);
+      line-height: 1.5;
+      margin-top: 3px
+    }
+
+    .hp-section {
+      padding: 72px 0
+    }
+
+    .hp-alt {
+      background: var(--paper)
+    }
+
+    .hp-heading {
+      max-width: 760px;
+      margin-bottom: 30px
+    }
+
+    .hp-heading p {
+      color: var(--ink2);
+      font-size: 14px;
+      line-height: 1.7;
+      margin: 0
+    }
+
+    .hp-grid6,
+    .hp-grid3,
+    .hp-grid4 {
+      display: grid;
+      gap: 15px
+    }
+
+    .hp-grid6 {
+      grid-template-columns: repeat(6, 1fr)
+    }
+
+    .hp-grid3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .hp-grid4 {
+      grid-template-columns: repeat(4, 1fr)
+    }
+
+    .hp-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 20px;
+      transition: .15s
+    }
+
+    .hp-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: #b7ccda
+    }
+
+    .hp-icon {
+      font-size: 22px;
+      margin-bottom: 10px
+    }
+
+    .hp-card p {
+      font-size: 12px;
+      color: var(--ink2);
+      line-height: 1.6;
+      margin: 0
+    }
+
+    .hp-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px
+    }
+
+    .hp-step {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px
+    }
+
+    .hp-step-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      margin-bottom: 16px
+    }
+
+    .hp-trust {
+      background: var(--greenbg);
+      border-color: #b8ddcd
+    }
+
+    .hp-example {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 22px
+    }
+
+    .hp-profile,
+    .hp-route {
+      border-radius: 16px;
+      padding: 25px
+    }
+
+    .hp-profile {
+      background: linear-gradient(145deg, var(--blue), #11364d);
+      color: #fff
+    }
+
+    .hp-profile h3 {
+      color: #fff
+    }
+
+    .hp-profile p {
+      font-size: 12px;
+      line-height: 1.65;
+      color: #dcecf5
+    }
+
+    .hp-profile-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 15px
+    }
+
+    .hp-profile-list div {
+      background: rgba(255, 255, 255, .09);
+      border: 1px solid rgba(255, 255, 255, .14);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 12px
+    }
+
+    .hp-route {
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow)
+    }
+
+    .hp-check {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0;
+      display: grid;
+      gap: 9px
+    }
+
+    .hp-check li {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--ink2)
+    }
+
+    .hp-check li:before {
+      content: '✓';
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--greenbg);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800
+    }
+
+    .hp-final {
+      padding: 62px 0;
+      background: linear-gradient(135deg, var(--blue), #12384f);
+      color: #fff
+    }
+
+    .hp-final-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px
+    }
+
+    .hp-final h2 {
+      color: #fff
+    }
+
+    .hp-final p {
+      color: #dbeaf2;
+      max-width: 700px;
+      font-size: 14px;
+      line-height: 1.7
+    }
+
+    .app-home-link {
+      display: inline-flex;
+      margin-top: 14px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      background: none;
+      border: 0;
+      padding: 0
+    }
+
+    @media(max-width:980px) {
+      .hp-links {
+        display: none
+      }
+
+      .hp-grid6 {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .hp-grid4 {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:800px) {
+
+      .hp-hero-grid,
+      .hp-example {
+        grid-template-columns: 1fr
+      }
+
+      .hp-grid3,
+      .hp-steps {
+        grid-template-columns: 1fr
+      }
+
+      .hp h1 {
+        font-size: 43px
+      }
+
+      .hp-final-inner {
+        align-items: flex-start;
+        flex-direction: column
+      }
+    }
+
+    @media(max-width:560px) {
+      .hp-nav {
+        min-height: 65px
+      }
+
+      .hp-actions .hp-secondary {
+        display: none
+      }
+
+      .hp-hero {
+        padding: 56px 0
+      }
+
+      .hp h1 {
+        font-size: 38px
+      }
+
+      .hp h2 {
+        font-size: 31px
+      }
+
+      .hp-grid6,
+      .hp-grid4 {
+        grid-template-columns: 1fr
+      }
+
+      .hp-hero-actions {
+        flex-direction: column
+      }
+
+      .hp-btn {
+        width: 100%
+      }
+    }
+
+
+    .steps {
+      grid-template-columns: repeat(5, 1fr)
+    }
+
+    .market-result {
+      margin-bottom: 24px
+    }
+
+    .market-result:last-child {
+      margin-bottom: 0
+    }
+
+    .market-result-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 15px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      background: var(--paper);
+      border: 1px solid var(--border)
+    }
+
+    .market-result-head h3 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--ink)
+    }
+
+    .market-result-head span {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--blue)
+    }
+
+    .service-block {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      overflow: hidden;
+      margin-bottom: 12px
+    }
+
+    .service-block:last-child {
+      margin-bottom: 0
+    }
+
+    .service-head {
+      padding: 15px 17px;
+      background: #fbfdff;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .service-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--blue2);
+      margin-bottom: 5px
+    }
+
+    .service-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink)
+    }
+
+    .product-row {
+      display: grid;
+      grid-template-columns: minmax(190px, .8fr) 1.2fr;
+      gap: 18px;
+      padding: 16px 17px
+    }
+
+    .product-cell strong,
+    .provider-cell strong {
+      display: block;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      color: var(--faint);
+      margin-bottom: 6px
+    }
+
+    .product-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.45
+    }
+
+    .provider-list {
+      display: grid;
+      gap: 8px
+    }
+
+    .provider-check {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      padding: 10px 11px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink2);
+      font-weight: 700;
+      font-size: 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: .15s
+    }
+
+    .provider-check:hover {
+      border-color: var(--blue2);
+      background: #fbfdff
+    }
+
+    .provider-check.selected {
+      border-color: var(--green);
+      background: var(--greenbg);
+      color: var(--green)
+    }
+
+    .provider-check .provider-state {
+      font-size: 12px;
+      white-space: nowrap;
+      color: var(--faint)
+    }
+
+    .provider-check.selected .provider-state {
+      color: var(--green)
+    }
+
+    .fac-nav-investor-form-sec {
+      display: flex;
+      justify-content: space-between;
+      background: none;
+      border-bottom: none;
+      z-index: 999;
+    }
+
+    .market-result-empty {
+      font-size: 12px;
+      color: var(--faint);
+      padding: 12px 0
+    }
+
+    @media(max-width:800px) {
+      .product-row {
+        grid-template-columns: 1fr;
+        gap: 13px
+      }
+    }
+
+    .banking-guide {
+      border: 1px solid var(--border);
+      background: #fbfdff;
+      border-radius: 12px;
+      padding: 18px;
+      margin: 0 0 16px
+    }
+
+    .banking-guide h4 {
+      margin: 0 0 10px;
+      font-size: 14px
+    }
+
+    .banking-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px
+    }
+
+    .bank-account {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 15px;
+      background: #fff
+    }
+
+    .bank-account strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 5px
+    }
+
+    .bank-account span {
+      display: block;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink2)
+    }
+
+    .banking-tip {
+      margin-top: 12px;
+      border-left: 4px solid var(--gold);
+      background: var(--goldbg);
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--ink2)
+    }
+
+    @media(max-width:800px) {
+      .banking-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .context-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none
+    }
+
+    .context-link:last-child {
+      margin-bottom: 0;
+    }
+
+    .context-link:hover {
+      text-decoration: underline
+    }
+
+    .context-link-inline {
+      color: var(--blue);
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap
+    }
+
+    .context-link-inline:hover {
+      text-decoration: underline
+    }
+  </style>
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="container topbar-inner d-flex justify-content-between align-items-center flex-wrap gap-3 py-1">
+            <div>Facilon Services Private Limited</div>
+            <div class="topbar-links d-flex flex-wrap gap-3">
+                <a href="contact.html">Contact</a>
+                <a href="#privacy">Privacy</a>
+            </div>
+        </div>
+    </div>
+    <header class="nav navbar">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/logo.webp" alt="Facilon">
+            </a>
+            <div class="nav-actions d-flex align-items-center gap-2">
+              <!--<div class="dropdown d-none d-sm-inline-flex">-->
+              <!--  <button class="btn btn-outline dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+              <!--    Sign In-->
+              <!--  </button>-->
+              <!--  <ul class="dropdown-menu dropdown-menu-end">-->
+              <!--    <li>-->
+              <!--      <a class="dropdown-item" href="investor-sign-in.html">Investor Sign In</a>-->
+              <!--    </li>-->
+              <!--    <li>-->
+              <!--      <a class="dropdown-item" href="service-provider-sign-in.html">Service Provider Sign In</a>-->
+              <!--    </li>-->
+              <!--  </ul>-->
+              <!--</div>-->
+              <a class="btn btn-primary d-none d-sm-inline-flex" href="investor-access-navigator.html">
+                Investor Access Navigator
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarNav"
+                aria-controls="sidebarNav" aria-label="Open menu">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+        </div>
+    </header>
+    <!-- Sidebar navigation: same offcanvas menu on desktop and mobile -->
+    <div class="offcanvas offcanvas-end sidebar-nav" tabindex="-1" id="sidebarNav" aria-labelledby="sidebarNavLabel">
+        <div class="offcanvas-header">
+          <a class="navbar-brand" href="index.html"><img src="images/logo.webp" alt="Facilon"></a>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+          <ul class="navbar-nav flex-grow-1" aria-label="Main navigation">
+              <li class="nav-item"><a class="nav-link" href="./"><img src="images/icon/sb-img-0.webp" alt=""> Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="investor-access-navigator.html"><img src="images/icon/sb-img-1.webp" alt=""> Investor Access Navigator</a></li>
+            <li class="nav-item"><a class="nav-link" href="for-service-providers.html"><img src="images/icon/sb-img-2.webp" alt=""> For Service Providers</a></li>
+            <li class="nav-item"><a class="nav-link" href="how-facilon-works.html"><img src="images/icon/sb-img-3.webp" alt=""> How Facilon Works</a></li>
+            <li class="nav-item"><a class="nav-link" href="learning-centre.html"><img src="images/icon/sb-img-4.webp" alt=""> Learning Centre</a></li>
+            <li class="nav-item"><a class="nav-link" href="about-facilon.html"><img src="images/icon/sb-img-5.webp" alt=""> About Facilon</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html"><img src="images/icon/sb-img-6.webp" alt=""> Contact</a></li>
+          </ul>
+        </div>
+    </div>
+
+  <div class="hp" id="homepage">
+
+    <section class="hp-hero">
+      <div class="container">
+        <div class="mx-auto text-center" style="max-width:830px">
+          <span class="hp-eyebrow">Facilon Access Navigator</span>
+
+          <h1>Understand Your Investment Access Route Before Your Begin</h1>
+
+          <div class="d-inline-flex align-items-center gap-2 px-3 py-2 mb-3 border rounded-pill bg-white fw-bold"
+            style="font-size:12px;color:var(--blue)">
+            Markets covered: India <span style="color:var(--faint)">|</span> GIFT City / IFSC
+          </div>
+
+          <p class="hp-lead mx-auto">
+            The Facilon Access Navigator currently helps investors understand investment access to
+            <strong>India</strong> and through <strong>GIFT City / IFSC</strong>, including relevant services,
+            products, Service Providers and readiness requirements. Additional markets may be added over time.
+          </p>
+
+          <div class="hp-hero-actions d-flex justify-content-center gap-2">
+            <button class="btn btn-primary" onclick="enterAccessNavigator('assess')">
+              Begin My Access Navigator
+            </button>
+
+            <a class="btn btn-outline" href="learning-centre.html">
+              Visit the Learning Centre
+            </a>
+          </div>
+
+          <div class="hp-micro">
+            General and indicative guidance only. No investment recommendation and no obligation to engage a Service
+            Provider.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" id="contact">
+      <div class="container">
+        <div class="row g-4 mb-4">
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-brand-sec navbar-brand">
+              <img src="images/logo.webp" alt="Facilon">
+            </div>
+            <p>
+              A neutral digital facilitation and workflow platform supporting structured,
+              consent-led engagement between investors, authorised participants and Service Providers.
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <h3>Investors</h3>
+            <div class="footer-links">
+              <a href="investor-access-navigator.html">Investor Access Navigator</a>
+              <a href="learning-centre.html">Learning Centre</a>
+              <a href="#faq">Investor FAQs</a>
+              <a href="#support">Investor Support</a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <h3>Service Providers</h3>
+            <div class="footer-links">
+              <a href="for-service-providers.html">For Service Providers</a>
+              <a href="#modules">Facilon Modules</a>
+              <a href="#discussion">Request a Discussion</a>
+              <a href="#signin">Service Provider Sign In</a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <h3>Trust &amp; Legal</h3>
+            <div class="footer-links">
+              <a href="#privacy">Privacy Notice</a>
+              <a href="#cookies">Cookie Policy</a>
+              <a href="#terms">Terms of Use</a>
+              <a href="#disclaimer">Platform Disclaimer</a>
+              <a href="#rights">Investor Rights</a>
+              <a href="#security">Security at Facilon</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom d-flex justify-content-between flex-wrap gap-3">
+          <div>© <span id="year"></span> Facilon Services Private Limited. All rights reserved.</div>
+          <div>Final investor acceptance and regulated decisions remain with the relevant Service Provider.</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+
+  <div class="topbar hidden" id="appTopbar">
+    <div class="container px-3 px-lg-4">
+      <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3 py-3">
+        <div>
+          <div class="brand">Facilon <span>Access Navigator</span></div>
+          <div class="phase">Assess · Review · Save &amp; Notify</div>
+        </div>
+
+        <div class="steps d-flex flex-wrap align-items-center justify-content-lg-end gap-2">
+          <div class="step" data-s="assess">1. Questions</div>
+          <div class="step" data-s="result">2. Providers</div>
+          <div class="step" data-s="register">3. Save &amp; Notify</div>
+          <div class="step" data-s="verify">4. Verify</div>
+          <div class="step" data-s="active">5. Alert Active</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="shell hidden" id="appShell">
+  </div>
+  <div class="learn-panel" id="lp-tax">
+    <div class="container">
+      <div class="guide-card">
+        <h3>Tax awareness before selecting an investment route</h3>
+        <p>Tax can affect documentation, withholding, return filing, remittance and the net amount received by an
+          investor. This guide identifies questions to discuss with a qualified tax adviser; it does not calculate tax
+          or
+          determine treaty eligibility.</p>
+        <div class="callout-blue"><strong>Tax residence is separate from FEMA status.</strong> An investor's banking or
+          investment classification does not by itself determine Indian tax residence. Tax residence must be assessed
+          separately for each tax year, including any resident, non-resident, deemed-resident or not-ordinarily-resident
+          conditions that may apply.</div>
+      </div>
+      <div class="guide-grid">
+        <div class="guide-box"><strong>Types of investment income</strong>
+          <ul>
+            <li>Interest and dividends.</li>
+            <li>Short-term or long-term capital gains.</li>
+            <li>PMS portfolio income and realised gains.</li>
+            <li>AIF or fund distributions.</li>
+            <li>Income or gains from unlisted and strategic investments.</li>
+          </ul><span>The character and treatment of income depend on the product, transaction and applicable law.</span>
+        </div>
+        <div class="guide-box"><strong>Withholding and return filing</strong>
+          <ul>
+            <li>Tax may be deducted before interest, distributions or sale proceeds are paid.</li>
+            <li>Tax deducted at source may not equal the investor's final liability.</li>
+            <li>An Indian tax return may be required to report gains, claim credit or seek a refund.</li>
+            <li>PAN and matching tax records may affect withholding and reporting.</li>
+          </ul>
+        </div>
+        <div class="guide-box"><strong>Tax treaty documentation</strong>
+          <ul>
+            <li>A DTAA may affect the taxation of specified income.</li>
+            <li>Eligibility is not automatic and depends on the investor and transaction.</li>
+            <li>A Tax Residency Certificate and prescribed declarations or forms may be required.</li>
+            <li>The investor's home country may also require income or asset reporting.</li>
+          </ul>
+        </div>
+        <div class="guide-box"><strong>Repatriation is a separate process</strong>
+          <ul>
+            <li>Payment of Indian tax does not by itself make proceeds freely repatriable.</li>
+            <li>The bank may require tax-payment evidence and remittance documentation.</li>
+            <li>Form 15CA and, where applicable, a chartered accountant's Form 15CB may be relevant for a remittance.
+            </li>
+            <li>FEMA, banking and tax requirements should be checked together.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="guide-card">
+        <h3>Route-specific tax topics</h3>
+        <table class="access-table">
+          <thead>
+            <tr>
+              <th>Investment route</th>
+              <th>Topics to clarify</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>India direct investment</td>
+              <td>Capital gains, dividends, transaction records, withholding and return filing.</td>
+            </tr>
+            <tr>
+              <td>Portfolio Management Service</td>
+              <td>Investor-level taxation, realised gains, tax statements and treatment of fees and expenses.</td>
+            </tr>
+            <tr>
+              <td>Alternative Investment Fund</td>
+              <td>Fund category, pass-through or fund-level treatment, distribution statements and scheme-specific
+                consequences.</td>
+            </tr>
+            <tr>
+              <td>GIFT City / IFSC</td>
+              <td>Investor residence, product structure, applicable IFSC provisions, currency and home-country
+                reporting.
+              </td>
+            </tr>
+            <tr>
+              <td>FPI / institutional</td>
+              <td>Custodian-led tax onboarding, withholding, capital-gains computation, treaty documents and regulatory
+                reporting.</td>
+            </tr>
+            <tr>
+              <td>Foreign Direct Investment (FDI)</td>
+              <td>Entry and exit taxation, valuation, withholding, transaction structuring, sectoral conditions and
+                remittance documentation.</td>
+            </tr>
+            <tr>
+              <td>Foreign Venture Capital Investor (FVCI)</td>
+              <td>FVCI registration status, permitted investment structure, fund or undertaking taxation, withholding,
+                exit and remittance documentation.</td>
+            </tr>
+            <tr>
+              <td>NRI/OCI non-repatriation</td>
+              <td>Income character, withholding, NRO credit, return filing and conditions for any later remittance.</td>
+            </tr>
+            <tr>
+              <td>Foreign investment in Investment Vehicles</td>
+              <td>Vehicle category, pass-through or fund-level treatment, distributions, withholding, treaty documents
+                and
+                repatriation.</td>
+            </tr>
+            <tr>
+              <td>Foreign debt investment</td>
+              <td>Interest withholding, capital gains or discount treatment, treaty eligibility, maturity proceeds and
+                route-specific reporting.</td>
+            </tr>
+            <tr>
+              <td>Bank deposits</td>
+              <td>Interest taxation, withholding and the different treatment of NRE and NRO accounts.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="guide-card">
+        <h3>Useful official resources</h3>
+        <div class="guide-grid">
+          <div class="guide-box"><strong>Non-resident tax guidance</strong><span>Review the Income Tax Department's
+              guidance on tax residence and non-resident provisions.</span>
+            <p><a class="btn primary"
+                href="https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/non%20resident%20-faq"
+                rel="noopener noreferrer" target="_blank">Open non-resident tax FAQs ↗</a></p>
+          </div>
+          <div class="guide-box"><strong>Foreign remittance forms</strong><span>Review the official guidance on Form
+              15CA
+              and the circumstances in which Form 15CB may be required.</span>
+            <p><a class="btn ghost" href="https://www.incometax.gov.in/iec/foportal/help/form15ca"
+                rel="noopener noreferrer" target="_blank">Open Form 15CA guide ↗</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="callout-red"><strong>Educational information only.</strong> Tax residence, withholding, capital-gains
+        treatment, treaty relief, filing obligations and remittance documentation depend on the investor's facts, the
+        selected investment and the law applicable at the relevant time. Obtain advice from a qualified tax
+        professional.
+      </div>
+    </div>
+  </div>
+
+  <div class="learn-panel" id="lp-compliance">
+    <div class="container">
+      <div class="status" style="margin-bottom:16px"><strong>Why this matters:</strong> Compliance is not only about
+        opening the account. Investors may need to respond to KYC refreshes, FATCA/CRS confirmations, change reporting
+        requests and periodic statements throughout the relationship.</div>
+      <div class="grid2">
+        <div class="route detail-route">
+          <div class="route-badge">Getting started</div>
+          <h3>Initial compliance information</h3>
+          <p>Before a provider activates an account or accepts an investment, it may request enough information to
+            identify the investor, understand the route and perform its legal and regulatory checks.</p>
+          <ul class="route-list">
+            <li>Identity and address evidence, PAN and tax-residency information.</li>
+            <li>FATCA/CRS declarations, source-of-funds or source-of-wealth information and bank-account evidence.</li>
+            <li>For entities, constitutional documents, authority documents, beneficial owners and controlling persons.
+            </li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">Keep information current</div>
+          <h3>Ongoing KYC and change reporting</h3>
+          <p>Investors may need to keep information current after onboarding and report specified changes to the bank,
+            broker, fund manager, custodian or other provider.</p>
+          <ul class="route-list">
+            <li>Common updates include address, email, mobile number, tax residence, bank account or residency status.
+            </li>
+            <li>Legal entities may need to report changes in directors, partners, trustees, authorised signatories,
+              ownership or control.</li>
+            <li>Providers may also perform periodic KYC refreshes and ask for updated declarations or documents.</li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">What you may receive</div>
+          <h3>Reports and statements</h3>
+          <p>Different participants may send different reports. The investor should understand who issues each document
+            and review them promptly.</p>
+          <ul class="route-list">
+            <li>Examples include contract notes, account statements, demat or custody statements, portfolio reports, tax
+              statements and capital-call or distribution notices.</li>
+            <li>A broker, DP or custodian may report holdings and transactions, while a portfolio or fund manager may
+              send
+              valuation, strategy and investor reports.</li>
+            <li>Corporate-action notices and KYC refresh requests may also form part of the reporting cycle.</li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">Investor responsibilities</div>
+          <h3>What the investor is expected to do</h3>
+          <p>The investor typically remains responsible for providing accurate information and for responding promptly
+            when the provider requests confirmations or updates.</p>
+          <ul class="route-list">
+            <li>Review statements and confirmations and report discrepancies or unauthorised activity quickly.</li>
+            <li>Keep bank details, contact details and tax information current.</li>
+            <li>Retain transaction, remittance and tax records for future reporting, audits or remittance requirements.
+            </li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">Route-specific focus</div>
+          <h3>Compliance topics vary by investment route</h3>
+          <p>The route affects what must be monitored and reported over time.</p>
+          <ul class="route-list">
+            <li><strong>India direct / NRI:</strong> account status, permitted bank route, demat setup, repatriation
+              basis
+              and updated KYC.</li>
+            <li><strong>PMS / AIF:</strong> mandate or scheme documents, statements, drawdowns or distributions and
+              investor communications.</li>
+            <li><strong>FPI / FDI / FVCI / IFSC routes:</strong> ownership and control disclosures, route-specific
+              registration or approvals, transaction reporting and material-change reporting.</li>
+            <li><strong>NRI/OCI non-repatriation:</strong> continued status, NRO-linked payment records, instrument
+              eligibility and tax/remittance evidence.</li>
+            <li><strong>Investment Vehicles / foreign debt:</strong> investor-category confirmations,
+              beneficial-ownership
+              updates, limits, distributions or interest, maturity and route-specific reporting.</li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">Entities</div>
+          <h3>Additional requirements for legal entities</h3>
+          <p>Companies, LLPs, trusts, funds and family structures often have additional documentation and reporting
+            needs
+            beyond those of individual investors.</p>
+          <ul class="route-list">
+            <li>Authority evidence such as board, partner or trustee resolutions and authorised-signatory details.</li>
+            <li>Ownership and control charts, ultimate beneficial owners and controlling persons.</li>
+            <li>Entity documents may need periodic refresh and changes in ownership, signatories or regulatory status
+              may
+              need prompt reporting.</li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">Roles and accountability</div>
+          <h3>Provider obligations versus investor obligations</h3>
+          <p>The Service Provider may collect information from the investor and then complete its own reporting to SEBI,
+            RBI, IFSCA, depositories, exchanges, tax authorities or other bodies.</p>
+          <ul class="route-list">
+            <li>Facilon can help structure information, reminders, status tracking and evidence.</li>
+            <li>The regulated bank, broker, manager, custodian or other provider remains responsible for determining and
+              completing its regulatory filings.</li>
+            <li>The investor should still confirm what information must be provided, updated or reviewed on an ongoing
+              basis.</li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">Practical takeaway</div>
+          <h3>Questions to ask before you proceed</h3>
+          <p>Before choosing a provider or route, ask what will be required not only at onboarding but throughout the
+            relationship.</p>
+          <ul class="route-list">
+            <li>What changes must be reported and within what timeframe?</li>
+            <li>What statements or reports will be provided and by whom?</li>
+            <li>Will you need support tracking periodic compliance requests, reporting deadlines or document refresh
+              cycles?</li>
+          </ul>
+        </div>
+      </div>
+      <div class="disclaimer">Compliance and reporting content is educational only. It does not replace the specific
+        requirements, forms or timelines communicated by the relevant regulated Service Provider or professional
+        adviser.
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="learn-panel" id="lp-protection">
+    <div class="container">
+      <div class="status" style="margin-bottom:16px"><strong>Before choosing a provider:</strong> eligibility to open an
+        account does not mean that a product is suitable. Review the risk, cost, authority, liquidity and protections
+        that
+        apply to the relationship.</div>
+      <div class="grid2">
+        <div class="route detail-route">
+          <div class="route-badge">Risk &amp; liquidity</div>
+          <h3>Can you tolerate loss or delay?</h3>
+          <p>Different products carry different levels of market, currency, concentration, leverage and liquidity risk.
+          </p>
+          <ul class="route-list">
+            <li>Check lock-in periods, redemption windows, withdrawal conditions and exit charges.</li>
+            <li>Understand valuation frequency and whether the investment can be sold quickly.</li>
+            <li>Do not assume that past performance or a target return is guaranteed.</li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">Fees &amp; economics</div>
+          <h3>Understand the complete cost</h3>
+          <p>Several participants may charge separately, and fees can materially reduce net returns.</p>
+          <ul class="route-list">
+            <li>Review account, brokerage, custody, management, performance, administration and exit charges.</li>
+            <li>Ask whether a distributor, adviser or facilitator receives a commission or referral fee.</li>
+            <li>Request a clear illustration of upfront, recurring, performance-linked and exit costs.</li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">Provider verification</div>
+          <h3>Know who is doing what</h3>
+          <p>Confirm the provider's regulated role before relying on its advice, execution or custody services.</p>
+          <ul class="route-list">
+            <li>Check whether the participant is acting as adviser, distributor, broker, manager, custodian or
+              facilitator.</li>
+            <li>Verify registration details and the legal entity receiving funds or documents.</li>
+            <li>Understand related-party arrangements and possible conflicts of interest.</li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">Rights &amp; complaints</div>
+          <h3>Know how to escalate a problem</h3>
+          <p>Investors should understand how to raise complaints about delays, unauthorised transactions, reporting
+            errors
+            or fees.</p>
+          <ul class="route-list">
+            <li>Start with the Service Provider and its grievance or compliance officer.</li>
+            <li>Escalate through the applicable regulatory or market-infrastructure mechanism where necessary.</li>
+            <li>Retain account records, correspondence, statements and complaint references.</li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">Fraud &amp; digital safety</div>
+          <h3>Protect access and payments</h3>
+          <p>Investment journeys involve sensitive identity, bank and transaction information.</p>
+          <ul class="route-list">
+            <li>Never share passwords, PINs or OTPs.</li>
+            <li>Do not transfer money to personal or unverified accounts.</li>
+            <li>Be cautious of guaranteed returns, urgent pressure and unsolicited links or payment instructions.</li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">Instructions &amp; actions</div>
+          <h3>Understand who can act</h3>
+          <p>After onboarding, different arrangements determine who may place instructions and how corporate actions are
+            handled.</p>
+          <ul class="route-list">
+            <li>Review registered email and mobile requirements, mandates and powers of attorney.</li>
+            <li>Understand discretionary versus non-discretionary authority.</li>
+            <li>Know how dividends, rights issues, buybacks, voting, capital calls and other actions will be
+              communicated.
+            </li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">Nomination &amp; succession</div>
+          <h3>Plan for death or incapacity</h3>
+          <p>Nomination and succession arrangements may differ across bank, demat, PMS, fund and custody accounts.</p>
+          <ul class="route-list">
+            <li>Understand the distinction between a nominee and a legal heir.</li>
+            <li>Keep nominee, joint-holder and authorised-person details current.</li>
+            <li>For legal entities, maintain successor trustees, directors or authorised representatives where relevant.
+            </li>
+          </ul>
+        </div>
+        <div class="route detail-route">
+          <div class="route-badge">Privacy &amp; consent</div>
+          <h3>Know how documents are used</h3>
+          <p>Investors should understand why information is collected and which participants may receive it.</p>
+          <ul class="route-list">
+            <li>Check the purpose of collection, sharing, retention and correction.</li>
+            <li>Understand when consent may be withdrawn and when regulated retention may still apply.</li>
+            <li>Report suspected misuse or unauthorised access promptly.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="disclaimer">This guide is educational only and does not determine suitability, product risk, legal
+        rights or the outcome of any complaint. Review the relevant provider documents and obtain professional advice
+        where required.</div>
+    </div>
+  </div>
+
+  <!-- <div class="nav"><span></span><button class="btn primary" onclick="startAssess()">Assess My Access Navigator
+      →</button></div>
+  <div class="disclaimer">Educational information only. It does not determine eligibility or constitute investment,
+    legal, tax or regulatory advice. Final classification and acceptance are determined by the relevant regulated
+    Service Provider and professional advisers.</div> -->
+  <section class="screen" data-anchor="assessment" id="assess">
+    <div class="container">
+      <div class="eyebrow">Facilon Access Navigator</div><br>
+      <div
+        style="display:inline-flex;align-items:center;gap:7px;padding:6px 10px;margin:0 0 14px;border:1px solid var(--border);border-radius:999px;background:#fff;font-size:12px;font-weight:700;color:var(--blue)">
+        Current scope: India &amp; GIFT City / IFSC</div>
+      <div class="sub">Answer four simple questions. We will show the types of Service Providers and products that may
+        be
+        needed for your access route.</div>
+      <div class="legal-banner"><strong>Do not enter sensitive information:</strong> No PAN, Aadhaar, passport,
+        bank-account, login, OTP or document information is required.</div>
+
+      <div class="card">
+        <div class="qtitle">1. Who is investing?</div><a class="context-link" href="learning-centre.html#types">Learn
+          about investor types →</a>
+        <div class="options" data-key="personType"><button class="opt" data-v="Individual">Individual</button><button
+            class="opt" data-v="Legal Entity">Legal entity</button></div>
+      </div>
+
+      <div class="card">
+        <div class="qtitle">2. Investor type</div><a class="context-link" href="learning-centre.html#types">Which
+          investor
+          type applies? →</a>
+        <div class="grid2" data-key="investorClass" id="investorClassOptions"></div>
+        <div class="help" id="investorClassHelp">First select who is investing.</div>
+      </div>
+
+      <div class="card">
+        <div class="qtitle">3. Investment currency</div><a class="context-link"
+          href="learning-centre.html#routes">Understand India and GIFT City access →</a>
+        <div class="options" data-key="currency"><button class="opt" data-v="Indian Rupees (INR)">Indian Rupees
+            (INR)</button><button class="opt" data-v="US Dollars (USD)">US Dollars (USD)</button><button class="opt"
+            data-v="INR and USD">Both INR and USD</button></div>
+        <div class="help">INR indicates India access, USD indicates GIFT City / IFSC access, and selecting both covers
+          both markets.</div>
+      </div>
+
+      <div class="card">
+        <div class="qtitle">4. What do you want to do?</div><a class="context-link"
+          href="learning-centre.html#products">Explore products and services →</a>
+        <div class="help" style="margin-bottom:12px">Select one or more.</div>
+        <div class="grid2" data-key="intents" data-multiple="true">
+          <button class="choice" data-v="Direct investing">
+            <div class="choice-title">Invest directly</div>
+            <div class="choice-desc">Buy and sell listed investments.</div>
+          </button>
+          <button class="choice" data-v="Managed portfolio">
+            <div class="choice-title">Use a portfolio manager</div>
+            <div class="choice-desc">Have a professional manage a separate portfolio.</div>
+          </button>
+          <button class="choice" data-v="Fund investment">
+            <div class="choice-title">Invest in a fund</div>
+            <div class="choice-desc">Explore an AIF, private fund or GIFT City fund.</div>
+          </button>
+          <button class="choice" data-v="Private business investment">
+            <div class="choice-title">Invest in a business</div>
+            <div class="choice-desc">Invest in a private company or business.</div>
+          </button>
+          <button class="choice" data-v="Appoint an Adviser / Wealth Manager">
+            <div class="choice-title">Appoint an Adviser / Wealth Manager</div>
+            <div class="choice-desc">Get professional advice or have an adviser, wealth manager or External Asset
+              Manager
+              coordinate your investment journey.</div><a class="context-link" href="learning-centre.html#services"
+              onclick="event.stopPropagation()">Learn about adviser and wealth-manager roles →</a>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav fac-nav-investor-form-sec">
+        <button class="btn btn-outline" onclick="returnHome()">Back</button>
+        <button class="btn btn-primary" onclick="buildResult()">Show Service Providers</button>
+      </div>
+
+      <div class="hidden" id="inlineResult" style="margin-top:70px">
+        <div class="eyebrow">Your access requirements</div>
+        <div class="title">Service Providers you may need</div>
+        <div class="sub">The list below is based on your investor type, currency and selected activities.</div>
+        <div class="result-banner">
+          <div class="result-label">Access Market</div>
+          <div class="result-type" id="rMarket"></div>
+          <div class="result-note" id="rDesc"></div>
+        </div>
+        <div class="card">
+          <div class="impact-title">Services, products and Service Providers</div>
+          <div id="providerProductMap"></div>
+        </div>
+        <div class="card">
+          <div class="qtitle">Which Service Providers are already in place?</div>
+          <div class="help" style="margin-bottom:16px">Select each provider you already have. Providers not selected
+            will
+            be treated as still required.</div>
+          <div id="providerSelectionSummary" class="status"><strong>None selected yet.</strong> Mark the providers
+            already
+            available to you in the lists above.</div>
+          <div class="qtitle" style="margin-top:20px">Do you need help finding the remaining Service Providers?</div>
+          <div class="options" data-key="findingHelp"><button class="opt" data-v="Yes">Yes</button><button class="opt"
+              data-v="No">No</button></div>
+          <div id="readinessChecklist" class="readiness-wrap hidden"></div>
+        </div>
+        <div class="status"><strong>You remain in control:</strong> Your answers are not shared with a Service Provider.
+          A
+          later introduction requires your specific instruction and consent.</div>
+        <div class="nav fac-nav-investor-form-sec">
+          <button class="btn btn-outline" onclick="editAnswers()">Edit answers</button>
+          <button class="btn btn-primary" onclick="continueFromResult()">Save Requirements</button>
+        </div>
+        <div class="disclaimer">Indicative educational guidance only. Facilon does not recommend a product or provider
+          or
+          confirm eligibility.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="register">
+    <div class="container">
+      <div class="eyebrow">Save your access route</div>
+      <div class="title">Save now. Add more information only when useful.</div>
+      <div class="sub">Enter your email to save the result and optionally request an alert when a potentially relevant
+        participating Service Provider becomes available.</div>
+      <div class="grid2">
+        <div>
+          <div class="card">
+            <div class="field"><label class="label">Email address <span class="required">*</span></label><input
+                class="input" id="email" placeholder="you@example.com" type="email" /></div>
+            <div class="field"><label class="label">Name <span
+                  style="text-transform:none;font-weight:400">(optional)</span></label><input class="input" id="name"
+                placeholder="Your name" type="text" /></div>
+          </div>
+          <div class="privacy-notice"><strong>Privacy notice summary</strong><br>Facilon will use your email address,
+            Access Navigator answers, derived services/products, required-provider profile, provider-readiness
+            selections,
+            indicative document/KYC checklist and consent records to save and verify your Access Navigator and operate
+            any
+            requested provider-availability alert. Nothing is disclosed to a Service Provider at this stage. A later
+            introduction requires a separate affirmative instruction and provider-specific consent. Review the <a
+              href="/privacy-notice" rel="noopener noreferrer" target="_blank">Privacy Notice</a> or contact <a
+              href="mailto:privacy@facilonservices.com">privacy@facilonservices.com</a>.</br></div>
+          <div class="card">
+            <div class="consent"><input id="c1" type="checkbox" />
+              <div><strong>Save and alert consent <span class="required">*</span></strong><br />I consent to Facilon
+                saving my access route and using my email to operate the provider-availability alert I have requested. I
+                can stop the alert and withdraw consent at any time.</div>
+            </div>
+            <div class="consent"><input id="c2" type="checkbox" />
+              <div><strong>Educational email updates (optional)</strong><br />I separately consent to educational
+                updates
+                about India, GIFT City and cross-border access routes.</div>
+            </div>
+            <div class="consent"><input id="c3" type="checkbox" />
+              <div><strong>Indicative-result acknowledgement <span class="required">*</span></strong><br />I understand
+                that this access route is informational only and is not investment advice, a recommendation, suitability
+                determination or confirmation of eligibility.</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="impact-title">Access Navigator being saved</div>
+            <div class="sumrow"><span>Navigator Scope</span><strong id="sScope">India &amp; GIFT City / IFSC</strong>
+            </div>
+            <div class="sumrow"><span>Investor Type</span><strong id="sType"></strong></div>
+            <div class="sumrow"><span>Investment currency</span><strong id="sCurrency"></strong></div>
+            <div class="sumrow"><span>Market</span><strong id="sMarket"></strong></div>
+            <div class="sumrow"><span>Investment intention</span><strong id="sIntent"></strong></div>
+            <div class="sumrow"><span>Services &amp; products</span><strong id="sServicesProducts"></strong></div>
+            <div class="sumrow"><span>Service Providers required</span><strong id="sProvidersRequired"></strong></div>
+            <div class="sumrow"><span>Providers already in place</span><strong id="sProvidersInPlace"></strong></div>
+            <div class="sumrow"><span>Providers still required</span><strong id="sProvidersRemaining"></strong></div>
+            <div class="sumrow"><span>Indicative KYC &amp; documents</span><strong id="sDocuments"></strong></div>
+            <div class="sumrow hidden" id="sBankingRow"><span>NRI/OCI banking guidance</span><strong
+                id="sBanking"></strong></div>
+            <div class="sumrow"><span>Help requested</span><strong id="sHelp"></strong></div>
+          </div>
+          <div class="status"><strong>No identity or access route information will be shared with a future provider at
+              this stage.</strong> Facilon will seek a separate provider-specific instruction and fresh consent before
+            any
+            introduction.</div>
+        </div>
+      </div>
+      <div class="nav fac-nav-investor-form-sec">
+        <button class="btn btn-outline" onclick="go('result')">My Access Route</button>
+        <button class="btn btn-primary" onclick="submitRegistration()">Save and Verify Email</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="verify">
+    <div class="container">
+      <div class="verify-box">
+        <div class="mailicon">✉️</div>
+        <div class="eyebrow" style="margin-top:14px">Verify your email</div>
+        <div class="title">Enter the verification code</div>
+        <div class="sub" style="margin-left:auto;margin-right:auto">A six-digit verification code has been sent to
+          <strong id="verifyEmail"></strong>. Verification confirms control of the email address and activates your
+          provider-availability alert.
+        </div>
+        <div class="legal-banner" style="text-align:left"><strong>Security reminder:</strong> Facilon will not ask you
+          to
+          disclose this code to a person over a call, message or email. The code is used only to verify this request.
+        </div>
+        <div class="code"><input maxlength="1" /><input maxlength="1" /><input maxlength="1" /><input
+            maxlength="1" /><input maxlength="1" /><input maxlength="1" /></div><button class="btn btn-primary"
+          onclick="activateAlert()">Verify and Activate Alert</button>
+        <div class="help" style="margin-top:14px">Prototype: any six digits may be entered.</div>
+        <div class="nav fac-nav-investor-form-sec">
+          <button class="btn btn-outline" onclick="go('register')">Change Email</button>
+          <button class="btn btn-primary">Resend Code</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="active">
+    <div class="container">
+      <div class="success"><button class="app-home-link" onclick="returnHome()">← Return to homepage</button>
+        <div class="success-icon">✓</div>
+        <div class="eyebrow">Provider alert activated</div>
+        <div class="title">Your Facilon Access Navigator has been saved</div>
+        <div class="sub" style="margin-left:auto;margin-right:auto">We will notify you if a participating Service
+          Provider
+          is registered whose declared capabilities broadly align with your saved requirement profile.</div>
+        <div class="profile-summary">
+          <div class="sumrow"><span>Alert reference</span><strong>FIP-2026-00482</strong></div>
+          <div class="sumrow"><span>Email</span><strong id="finalEmail"></strong></div>
+          <div class="sumrow"><span>Investor Type</span><strong id="fType"></strong></div>
+          <div class="sumrow"><span>Market</span><strong id="fMarket"></strong></div>
+          <div class="sumrow"><span>Requirement</span><strong id="fRequirement"></strong></div>
+          <div class="sumrow"><span>Status</span><strong style="color:var(--green)">Active</strong></div>
+        </div>
+        <div class="grid2"><button class="btn ghost">Email My Access Route Summary</button><button
+            class="btn primary">Update My Assessment</button></div>
+        <div class="phase2"><strong>When Facilon Appoint launches:</strong> an availability alert can invite you to
+          review
+          the relevant provider profile. Your identity will be shared only after you take a provider-specific action and
+          provide fresh consent.</div>
+        <div class="disclaimer">You can pause alerts, change communication preferences, unsubscribe from optional
+          educational updates, withdraw consent or request correction or deletion of the saved profile through the link
+          provided in each communication or by contacting privacy@facilonservices.com. Withdrawal will not affect
+          processing already lawfully completed, and limited evidence may be retained where required by law, security or
+          dispute-management needs.</div>
+      </div>
+    </div>
+  </section>
+  <script>
+    const state = {};
+    function returnHome() { document.getElementById('homepage').classList.remove('hidden'); document.getElementById('appTopbar').classList.add('hidden'); document.getElementById('appShell').classList.add('hidden'); window.scrollTo({ top: 0, behavior: 'smooth' }) }
+    function enterAccessNavigator(start) { document.getElementById('homepage').classList.add('hidden'); document.getElementById('appTopbar').classList.remove('hidden'); document.getElementById('appShell').classList.remove('hidden'); go('assess') }
+    function startAssess() { go('assess') }
+    function markStep(id) { const order = ['learn', 'assess', 'result', 'register', 'verify', 'active']; const idx = order.indexOf(id); document.querySelectorAll('.step').forEach((x, i) => { x.classList.toggle('active', i === idx); x.classList.toggle('done', i < idx) }) }
+    function go(id) { document.querySelectorAll('.screen').forEach(x => x.classList.remove('active')); document.getElementById(id).classList.add('active'); markStep(id); window.scrollTo({ top: 0, behavior: 'smooth' }); if (id === 'register') fillSaved() }
+    function learnTab(id, btn) { document.querySelectorAll('.tab').forEach(x => x.classList.remove('active')); document.querySelectorAll('.learn-panel').forEach(x => x.classList.remove('active')); btn.classList.add('active'); document.getElementById('lp-' + id).classList.add('active') }
+    function bindChoiceGroup(group) { group.querySelectorAll('[data-v]').forEach(btn => btn.addEventListener('click', () => { const multiple = group.dataset.multiple === 'true'; if (multiple) { btn.classList.toggle('selected'); state[group.dataset.key] = [...group.querySelectorAll('[data-v].selected')].map(x => x.dataset.v) } else { group.querySelectorAll('[data-v]').forEach(x => x.classList.remove('selected')); btn.classList.add('selected'); state[group.dataset.key] = btn.dataset.v } if (group.dataset.key === 'personType') renderInvestorClassOptions(); if (group.dataset.key === 'findingHelp') renderReadinessChecklist(); })) }
+    document.querySelectorAll('[data-key]').forEach(bindChoiceGroup);
+    const investorClassChoices = {
+      'Individual': [
+        { v: 'NRI', t: 'NRI', d: 'An Indian citizen residing outside India.' },
+        { v: 'OCI', t: 'OCI', d: 'An Overseas Citizen of India residing outside India.' },
+        { v: 'Foreign Individual', t: 'Foreign individual', d: 'A foreign citizen without NRI or OCI status.' }],
+      'Legal Entity': [
+        { v: 'Indian Legal Entity', t: 'Indian legal entity', d: 'An Indian company, LLP, trust, fund or family structure.' },
+        { v: 'Foreign Legal Entity', t: 'Foreign legal entity', d: 'An overseas company, fund, trust, partnership or family structure.' }]
+    };
+    function renderInvestorClassOptions() { const box = document.getElementById('investorClassOptions'), help = document.getElementById('investorClassHelp'), choices = investorClassChoices[state.personType] || []; box.innerHTML = choices.map(x => `<button class="choice" data-v="${x.v}"><div class="choice-title">${x.t}</div><div class="choice-desc">${x.d}</div></button>`).join(''); delete state.investorClass; bindChoiceGroup(box); help.textContent = choices.length ? 'Only relevant classifications are shown.' : 'Choose who is investing first.' }
+
+    function investorType() { return state.investorClass || 'Investor Type requiring clarification' }
+    function derive() {
+      const t = investorType(), c = state.currency, intents = state.intents || [];
+      const market = c === 'Indian Rupees (INR)' ? 'India' : c === 'US Dollars (USD)' ? 'GIFT City / IFSC' : 'India and GIFT City / IFSC';
+      const items = [];
+      const hasIndia = market.includes('India');
+      const hasGift = market.includes('GIFT City');
+      function add(marketName, service, product, providers) { items.push({ market: marketName, service, product, providers: Array.isArray(providers) ? providers : [providers] }) }
+      if (intents.includes('Direct investing')) {
+        if (hasIndia) add('India', 'Direct market access', 'Trading and demat access for eligible India-listed investments; NRO or NRE/NRE (PIS) banking depends on repatriation choice and transaction type', ['Bank', 'Broker', 'Depository Participant']);
+        if (hasGift) add('GIFT City', 'Direct market access', 'Eligible securities and exchange-traded products available through GIFT IFSC', ['IFSC Bank', 'IFSC Broker / Exchange Member', 'IFSC Custodian, where applicable']);
+      }
+      if (intents.includes('Managed portfolio')) {
+        if (hasIndia) add('India', 'Portfolio management', 'India Portfolio Management Service strategy', ['SEBI-registered Portfolio Manager', 'Bank', 'Broker', 'Depository Participant or Custodian']);
+        if (hasGift) add('GIFT City', 'Portfolio management', 'GIFT IFSC managed-account or portfolio-management offering', ['IFSCA-registered Fund Manager / Portfolio Manager', 'IFSC Bank', 'IFSC Broker', 'IFSC Custodian']);
+      }
+      if (intents.includes('Fund investment')) {
+        if (hasIndia) add('India', 'Fund investment', 'AIF, private fund, REIT, InvIT or another eligible India investment vehicle', ['AIF Manager / Fund Manager', 'Trustee, where applicable', 'Registrar / Administrator', 'Custodian, where applicable']);
+        if (hasGift) add('GIFT City', 'Fund investment', 'GIFT City fund or scheme offered in a permitted foreign currency', ['IFSCA-registered Fund Manager', 'IFSC Trustee, where applicable', 'IFSC Administrator / Registrar', 'IFSC Custodian']);
+      }
+      if (intents.includes('Private business investment')) {
+        if (hasIndia) add('India', 'Private business investment', 'Private-company shares, convertible instruments or another permitted India business investment', ['Investee Company / Issuer', 'Authorised Dealer Bank', 'Legal Adviser', 'Tax Adviser', 'Company Secretary / Valuation Professional, where applicable']);
+        if (hasGift) add('GIFT City', 'Private-market investment', 'Eligible private-market, venture, fund or structured investment offered through GIFT IFSC', ['IFSCA-regulated Fund Manager, Platform or Issuer', 'IFSC Bank', 'IFSC Custodian', 'Legal Adviser', 'Tax Adviser']);
+      }
+      if (intents.includes('Appoint an Adviser / Wealth Manager')) {
+        if (hasIndia) add('India', 'Investment guidance and coordination', 'Professional advice, product-selection support or coordination across India products and Service Providers', ['SEBI-registered Investment Adviser / Wealth Manager / External Asset Manager, as applicable']);
+        if (hasGift) add('GIFT City', 'Investment guidance and coordination', 'Professional advice, product-selection support or coordination across GIFT City products and Service Providers', ['IFSCA-authorised Adviser / Wealth Manager / External Asset Manager, as applicable']);
+      }
+      if (t.includes('Foreign')) {
+        if (hasIndia) add('India', 'Cross-border support', 'Tax-residency, FEMA, India regulatory and home-jurisdiction guidance, where required', ['Cross-border Tax Adviser', 'Legal Adviser']);
+        if (hasGift) add('GIFT City', 'Cross-border support', 'IFSC product, tax-residency and home-jurisdiction guidance, where required', ['Cross-border Tax Adviser', 'Legal Adviser']);
+      }
+      const seen = new Set();
+      return { market, items: items.filter(x => { const k = x.market + '|' + x.service + '|' + x.product + '|' + x.providers.join(','); if (seen.has(k)) return false; seen.add(k); return true }) }
+    }
+    function buildResult() {
+      if (!state.currency || !state.intents || !state.intents.length) { alert('Please select an investment currency and at least one objective.'); return }
+      const x = derive(); state.type = investorType(); state.market = x.market; state.intent = state.intents.join(', '); state.providerItems = x.items; state.route = x.items.map(x => x.service).join(', '); state.inPlaceProviders = []; state.providerReadiness = 'None are in place'; delete state.findingHelp; const helpGroup = document.querySelector('[data-key="findingHelp"]'); if (helpGroup) helpGroup.querySelectorAll('[data-v]').forEach(b => b.classList.remove('selected')); const readinessBox = document.getElementById('readinessChecklist'); if (readinessBox) { readinessBox.classList.add('hidden'); readinessBox.innerHTML = ''; }
+      document.getElementById('rMarket').textContent = state.market;
+      document.getElementById('rDesc').textContent = 'Your currency selection determines the market. Your objectives determine the services, products and Service Providers shown below.';
+      const groups = ['India', 'GIFT City'].filter(m => x.items.some(i => i.market === m));
+      document.getElementById('providerProductMap').innerHTML = groups.map(m => {
+        const label = m === 'India' ? 'India access' : 'GIFT City / IFSC access';
+        const blocks = x.items.filter(i => i.market === m).map(i => `<div class="service-block"><div class="service-head"><div class="service-label">Service</div><div class="service-name">${i.service}</div><a class="context-link" href="learning-centre.html#${i.market === 'GIFT City' ? 'giftcity' : 'routes'}">Learn about this access route →</a></div><div class="product-row"><div class="product-cell"><strong>Product / access requirement</strong><div class="product-name">${i.product}</div><a class="context-link" href="learning-centre.html#products">Learn about products →</a></div><div class="provider-cell"><strong>Service Providers needed</strong><a class="context-link" href="learning-centre.html#services">What do these providers do? →</a><div class="provider-list">${i.providers.map(p => { const key = [i.market, i.service, p].join('||'); return `<button type="button" class="provider-check" data-provider-key="${key}" data-provider-name="${p}"><span>${p}</span><span class="provider-state">Mark as in place</span></button>` }).join('')}</div></div></div></div>`).join('');
+        return `<section class="market-result pt-0"><div class="market-result-head"><h3>${m}</h3><span>${label}</span></div>${m === 'India' ? nriIndiaBankingGuide() : ''}${blocks}</section>`;
+      }).join('');
+      updateProviderSelectionSummary();
+      const result = document.getElementById('inlineResult'); result.classList.remove('hidden'); markStep('result'); result.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+    function editAnswers() { document.getElementById('inlineResult').classList.add('hidden'); markStep('assess'); document.getElementById('assess').scrollIntoView({ behavior: 'smooth', block: 'start' }) }
+    function providerUniverse() { const map = new Map(); (state.providerItems || []).forEach(i => i.providers.forEach(p => { const key = [i.market, i.service, p].join('||'); map.set(key, { key, name: p, market: i.market, service: i.service }) })); return [...map.values()] }
+    function updateProviderSelectionSummary() { const all = providerUniverse(), selected = new Set(state.inPlaceProviders || []), count = all.filter(x => selected.has(x.key)).length; state.providerReadiness = count === 0 ? 'None are in place' : count === all.length ? 'All are in place' : count + ' of ' + all.length + ' are in place'; const box = document.getElementById('providerSelectionSummary'); if (box) box.innerHTML = count ? `<strong>${count} of ${all.length} selected.</strong> ${all.length - count} Service Provider${all.length - count === 1 ? ' remains' : 's remain'} to be arranged.` : `<strong>None selected yet.</strong> Mark the providers already available to you in the lists above.` }
+    document.addEventListener('click', e => { const btn = e.target.closest('.provider-check'); if (!btn) return; const key = btn.dataset.providerKey; const selected = new Set(state.inPlaceProviders || []); if (selected.has(key)) { selected.delete(key); btn.classList.remove('selected'); btn.querySelector('.provider-state').textContent = 'Mark as in place' } else { selected.add(key); btn.classList.add('selected'); btn.querySelector('.provider-state').textContent = 'Already in place' } state.inPlaceProviders = [...selected]; updateProviderSelectionSummary(); if (state.findingHelp === 'Yes') renderReadinessChecklist() });
+    function commonKycRequirements() {
+      const t = investorType();
+      if (state.personType === 'Legal Entity') {
+        const base = ['Certificate of incorporation / registration or equivalent constitutional evidence', 'Constitutional documents (for example memorandum/articles, partnership deed, trust deed or equivalent)', 'Registered-office and principal-business address evidence', 'Authorised-signatory list and authority / board resolution', 'Ownership and control chart, including ultimate beneficial owners', 'Identity and address evidence for authorised signatories and beneficial owners', 'Tax identification, FATCA / CRS self-certification and GIIN where applicable', 'Bank-account evidence and source-of-funds / source-of-wealth information where required'];
+        if (t === 'Indian Legal Entity') base.unshift('PAN — basic India securities-market identifier', 'India KYC / CKYC information, where applicable');
+        else base.unshift('Foreign tax / registration number and India PAN where the selected India route requires it');
+        return base;
+      }
+      const base = ['Passport or other provider-accepted identity document', 'Current residential-address evidence', 'Tax-residency and tax-identification information, including FATCA / CRS self-certification', 'Bank-account evidence for the account from which the investment will be funded', 'Recent photograph and signature specimen / digital signature evidence, where requested', 'Source-of-funds / source-of-wealth information where required by the provider'];
+      if (t === 'NRI') base.unshift('PAN — basic India securities-market identifier', 'Non-resident KYC information', 'Passport plus NRI / overseas-residence evidence, as required');
+      if (t === 'OCI') base.unshift('PAN — basic India securities-market identifier', 'Non-resident KYC information', 'Passport and OCI card');
+      if (t === 'Foreign Individual') base.unshift('Foreign tax-identification information and India PAN where the selected India route requires it');
+      return base;
+    }
+    function nriIndiaBankingNote() {
+      const t = investorType();
+      const isNriOci = (t === 'NRI' || t === 'OCI');
+      const hasIndia = (state.market || '').includes('India');
+      if (!isNriOci || !hasIndia) return '';
+      return 'An existing NRO account may already support eligible India investments on a non-repatriation basis. An NRE account is relevant where repatriability is required. For eligible listed-equity transactions on a repatriation basis, one NRE account is designated as the NRE (PIS) account for routing those transactions; an investor who already has an NRE account should first ask the bank whether that account can be designated rather than assuming a second regular NRE account is needed. RBI materials describe a single designated PIS account / designated bank relationship for routing PIS transactions. The selected bank or broker should confirm the current operating setup before onboarding.';
+    }
+    function nriIndiaBankingGuide() {
+      const t = investorType();
+      const isNriOci = (t === 'NRI' || t === 'OCI');
+      const hasIndia = (state.market || '').includes('India');
+      if (!isNriOci || !hasIndia) return '';
+      return `<div class="banking-guide"><h4>NRI / OCI banking route — what you may already have</h4><div class="banking-grid"><div class="bank-account"><strong>NRO account</strong><span>Many NRIs/OCIs already have an NRO account. It can support eligible investments on a non-repatriation basis and Indian-source funds, subject to the product and provider rules.</span></div><div class="bank-account"><strong>NRE account</strong><span>A repatriable rupee account funded from abroad / permitted NRE or FCNR(B) sources. You do not need to open one merely because you have an NRO account; it becomes relevant where the chosen route requires repatriable funding.</span></div><div class="bank-account"><strong>NRE (PIS) account</strong><span>For eligible listed Indian equity transactions on a repatriation basis, an NRE account is designated for PIS transactions. If you already have an NRE account, first ask the bank whether it can be designated for PIS.</span></div></div><a class="context-link" href="learning-centre.html#pis">Learn about NRO, NRE and PIS →</a><div class="banking-tip"><strong>Important:</strong> PIS is not an additional investment product and should not be treated as a second ordinary NRE account. RBI guidance describes a <strong>single designated PIS account / bank relationship</strong> for routing PIS transactions. Confirm the exact setup with the authorised dealer bank and broker before opening or designating accounts. <a href="https://www.rbi.org.in/scripts/FS_Notification.aspx?Id=11723&Mode=0&fn=5" target="_blank" rel="noopener noreferrer">RBI framework ↗</a></div></div>`;
+    }
+
+    function providerDocRequirements(p) {
+      const n = p.name.toLowerCase(), market = p.market;
+      const india = market === 'India';
+      let docs = [], note = 'Final requirements are determined by the selected provider, product, investor category and applicable regulation.';
+      if (n.includes('broker') || n.includes('exchange member')) docs = ['Trading-account application and provider KYC forms', 'Bank-account / funding-account proof', 'Tax-residency and FATCA / CRS declarations', 'Trading-segment declarations and financial information where required for the selected segment', 'Authorisations, mandates or disclosures required for the chosen product'];
+      else if (n.includes('depository participant')) docs = ['Demat-account opening form', 'PAN / tax identification and KYC evidence appropriate to the investor category', 'Linked bank-account proof', 'Nominee / joint-holder details where applicable', 'FATCA / CRS and beneficial-owner declarations where applicable'];
+      else if (n.includes('portfolio manager')) docs = ['PMS / managed-account application and agreement', 'Investor KYC and tax-residency pack', 'Funding bank-account details', 'Demat, brokerage or custody details required by the manager', 'Investment objective, mandate and risk-profile information', 'Source-of-funds / wealth evidence where requested'];
+      else if (n.includes('fund manager') || n.includes('aif manager')) docs = ['Fund / scheme application or subscription agreement', 'Acknowledgement of offering / private-placement documents and risk disclosures', 'Investor KYC, FATCA / CRS and tax-residency declarations', 'Bank / remittance evidence for subscription monies', 'Beneficial-ownership and source-of-funds / wealth information where applicable', 'Accredited-investor or other eligibility evidence where the specific product requires it'];
+      else if (n.includes('bank')) docs = ['Account-opening / remittance forms', 'Identity, address, tax-residency and KYC documents', 'Source and purpose of funds / remittance information', 'Bank statements or existing-account evidence where requested', 'FEMA / repatriation declarations for India cross-border flows, where applicable', 'Foreign-currency account and remittance information for IFSC access, where applicable'];
+      else if (n.includes('custodian')) docs = ['Custody / securities-account opening forms', 'KYC and tax documentation', 'Settlement and bank-account instructions', 'Authorised-person / signatory documentation', 'Beneficial-ownership information for entities', 'Power of attorney / operating mandate where required'];
+      else if (n.includes('administrator') || n.includes('registrar')) docs = ['Investor / unit-holder registration information', 'KYC and tax declarations supplied for the relevant product', 'Subscription / transaction instructions', 'Bank details for calls, distributions and redemptions', 'Authorised signatory / contact details for entities'];
+      else if (n.includes('trustee')) { docs = ['Usually no separate investor appointment is required', 'The trustee is generally appointed within the product structure; the investor should review its identity and role in the offering documents']; note = 'Facilon would normally help identify the fund or product provider rather than ask the investor to appoint the trustee separately.'; }
+      else if (n.includes('investment adviser') || n.includes('wealth manager') || n.includes('external asset manager') || n.includes('adviser / wealth')) docs = ['Client KYC / onboarding information', 'Investment objectives, experience and risk-profile information', 'Financial position / investible-assets information relevant to the engagement', 'Tax residency and investment restrictions', 'Advisory agreement, fee disclosure and conflict / compensation acknowledgements'];
+      else if (n.includes('tax adviser')) docs = ['Tax-residency details and tax identification numbers', 'Recent tax returns or tax information relevant to the proposed transaction', 'Investment / remittance structure and expected cash flows', 'Existing India / IFSC account and investment details', 'Supporting documents needed to assess withholding, reporting and repatriation'];
+      else if (n.includes('legal adviser')) docs = ['Identity / entity and authority documents', 'Proposed transaction or product details', 'Ownership / beneficial-ownership structure for entities', 'Existing agreements, term sheets or offering documents relevant to the matter', 'Jurisdictions involved and intended funding / ownership structure'];
+      else if (n.includes('issuer') || n.includes('investee company') || n.includes('platform')) docs = ['Investor KYC and beneficial-ownership information', 'Subscription / investment application and transaction documents', 'Bank / remittance evidence', 'Investor authority documents for entities', 'Source-of-funds information and regulatory declarations where applicable'];
+      else if (n.includes('company secretary') || n.includes('valuation')) docs = ['Entity / investor identification and authority information', 'Transaction terms and proposed instrument details', 'Corporate approvals and cap-table / ownership information', 'Valuation or supporting financial information required for the transaction'];
+      else docs = ['Provider onboarding / application form', 'Investor KYC and tax-residency information', 'Bank / payment details', 'Authority and beneficial-ownership information where applicable', 'Product-specific declarations or supporting documents'];
+      return { docs, note };
+    }
+    function remainingProviderUniverse() { const selected = new Set(state.inPlaceProviders || []); return providerUniverse().filter(x => !selected.has(x.key)) }
+    function renderReadinessChecklist() {
+      const box = document.getElementById('readinessChecklist'); if (!box) return;
+      if (state.findingHelp !== 'Yes') { box.classList.add('hidden'); box.innerHTML = ''; return }
+      const remaining = remainingProviderUniverse(); box.classList.remove('hidden');
+      if (!remaining.length) { box.innerHTML = '<div class="nothing-left">All identified Service Providers are already in place. No additional provider-readiness checklist is required.</div>'; return }
+      const common = commonKycRequirements();
+      const groups = ['India', 'GIFT City'].filter(m => remaining.some(p => p.market === m));
+      box.innerHTML = `<div class="qtitle">What should you have ready?</div><div class="readiness-intro">Facilon can use this as a preparation checklist before introducing you to the remaining Service Providers. These are indicative requirements only; each provider will confirm its final KYC and documentation list.</div><div class="pan-highlight"><strong>PAN is the basic starting document for India securities-market access.</strong><span>For most India securities-market journeys, PAN is the primary identification number used by SEBI-regulated intermediaries and should be obtained / validated before provider onboarding, subject to limited regulatory exemptions.</span><a class="context-link" href="learning-centre.html#pan">PAN guide →</a></div><div class="docs-common"><h4>Prepare once — core investor KYC</h4><a class="context-link" href="learning-centre.html#compliance">Learn about KYC, FATCA &amp; CRS →</a><ul class="docs-list">${common.map(d => `<li>${d}</li>`).join('')}</ul></div>${groups.map(m => `<div class="mini-label" style="margin-top:16px">${m === 'GIFT City' ? 'GIFT City / IFSC' : m} — additional provider requirements</div>${m === 'India' && nriIndiaBankingNote() ? `<div class="status" style="margin-bottom:12px"><strong>NRI/OCI India banking route:</strong> ${nriIndiaBankingNote()}</div>` : ''}<div class="docs-grid">${remaining.filter(p => p.market === m).map(p => { const r = providerDocRequirements(p); return `<div class="docs-provider"><div class="provider-doc-head"><h4>${p.name}</h4><span>${p.service}</span></div><ul class="docs-list">${r.docs.map(d => `<li>${d}</li>`).join('')}</ul><div class="docs-note">${r.note}</div></div>` }).join('')}</div>`).join('')}<div class="docs-note" style="margin-top:14px"><strong>Do not upload documents at this stage.</strong> This screen is only a readiness guide. Documents should be collected later for a defined provider onboarding purpose and with the appropriate privacy notice / consent or other lawful basis.</div>`;
+    }
+
+    function continueFromResult() { if (!state.findingHelp) { alert('Please indicate whether you need help finding the remaining Service Providers.'); return } go('register') }
+    function buildSavedProfile() {
+      const all = providerUniverse(), selectedKeys = new Set(state.inPlaceProviders || []), inPlace = all.filter(x => selectedKeys.has(x.key)), remaining = all.filter(x => !selectedKeys.has(x.key));
+      const common = commonKycRequirements();
+      const providerDocs = remaining.map(p => { const r = providerDocRequirements(p); return { market: p.market, service: p.service, provider: p.name, documents: r.docs, note: r.note } });
+      const servicesProducts = (state.providerItems || []).map(i => ({ market: i.market, service: i.service, product: i.product }));
+      return { navigatorScope: 'India & GIFT City / IFSC', investorType: state.type, currency: state.currency, market: state.market, intention: state.intent, servicesProducts, providersRequired: all, providersInPlace: inPlace, providersRemaining: remaining, helpRequested: state.findingHelp, coreKycDocuments: common, providerSpecificDocuments: providerDocs, nriOciBankingGuidance: nriIndiaBankingNote() };
+    }
+    function fillSaved() {
+      state.savedProfile = buildSavedProfile(); const p = state.savedProfile;
+      document.getElementById('sType').textContent = p.investorType; document.getElementById('sCurrency').textContent = p.currency; document.getElementById('sMarket').textContent = p.market; document.getElementById('sIntent').textContent = p.intention;
+      document.getElementById('sServicesProducts').textContent = p.servicesProducts.map(x => `${x.market}: ${x.service} — ${x.product}`).join(' | ');
+      document.getElementById('sProvidersRequired').textContent = p.providersRequired.map(x => `${x.market}: ${x.name}`).join(', ');
+      document.getElementById('sProvidersInPlace').textContent = p.providersInPlace.length ? p.providersInPlace.map(x => `${x.market}: ${x.name}`).join(', ') : 'None';
+      document.getElementById('sProvidersRemaining').textContent = p.providersRemaining.length ? p.providersRemaining.map(x => `${x.market}: ${x.name}`).join(', ') : 'None';
+      const docCount = p.coreKycDocuments.length + p.providerSpecificDocuments.reduce((n, x) => n + x.documents.length, 0); document.getElementById('sDocuments').textContent = `${p.coreKycDocuments.length} core KYC items + ${docCount - p.coreKycDocuments.length} provider-specific document items saved`;
+      const bankingRow = document.getElementById('sBankingRow'); if (p.nriOciBankingGuidance) { bankingRow.classList.remove('hidden'); document.getElementById('sBanking').textContent = p.nriOciBankingGuidance } else { bankingRow.classList.add('hidden'); document.getElementById('sBanking').textContent = '' }; document.getElementById('sHelp').textContent = p.helpRequested || 'No response';
+    }
+    function submitRegistration() { const email = document.getElementById('email').value.trim(); if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !document.getElementById('c1').checked || !document.getElementById('c3').checked) { alert('Please enter a valid email address and accept the required confirmations.'); return } state.email = email; state.educationalUpdates = document.getElementById('c2').checked; state.savedProfile = buildSavedProfile(); document.getElementById('verifyEmail').textContent = email; go('verify') }
+    function activateAlert() { const p = state.savedProfile || buildSavedProfile(); document.getElementById('finalEmail').textContent = state.email; document.getElementById('fType').textContent = p.investorType; document.getElementById('fMarket').textContent = p.market; document.getElementById('fRequirement').textContent = p.servicesProducts.map(x => x.service).join(', ') + ' | Remaining providers: ' + p.providersRemaining.length + ' | Help: ' + p.helpRequested; go('active') }
+
+    window.addEventListener('DOMContentLoaded', () => { if (location.hash === '#assessment') enterAccessNavigator('assess') });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>
