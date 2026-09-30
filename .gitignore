@@ -6,3 +6,5 @@ api/config.local.php
 
 # Generated email logo cache
 api/logo-email.png
+
+api/config.php

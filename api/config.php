@@ -19,10 +19,10 @@ if (!defined('FACILON_APP')) {
  */
 $config = [
     'db' => [
-        'host'    => '127.0.0.1',
-        'name'    => 'facilon_investor_forms',
-        'user'    => 'root',
-        'pass'    => '',            // default XAMPP MySQL password is empty
+        'host'    => 'localhost',
+        'name'    => 'mbihosting_facilon_forms',
+        'user'    => 'mbihosting_facilon_user',
+        'pass'    => 'bf!DYP~#%tjEh4@6',
         'charset' => 'utf8mb4',
     ],
 
@@ -36,7 +36,7 @@ $config = [
     ],
 
     // Recipient of the internal notification on every submission.
-    'admin_email' => 'riddhi@matrixbricks.com',
+    'admin_email' => ['riddhi@matrixbricks.com', 'shubham@matrixbricks.com','shweta@matrixbricks.com'],
 
     // Public-facing brand name used in emails.
     'brand' => 'Facilon Services Private Limited',
