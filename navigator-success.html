@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Access Navigator Saved | Facilon Services</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="fs-style.css">
+  <link rel="stylesheet" href="assets/forms.css">
+  <link rel="stylesheet" href="assets/navigator.css">
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner d-flex justify-content-between align-items-center flex-wrap gap-3 py-1">
+      <div>Facilon Services Private Limited</div>
+      <div class="topbar-links d-flex flex-wrap gap-3">
+        <a href="contact.html">Contact</a>
+        <a href="#privacy">Privacy</a>
+      </div>
+    </div>
+  </div>
+  <header class="nav navbar">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a class="navbar-brand" href="index.html"><img src="images/logo.webp" alt="Facilon"></a>
+      <div class="nav-actions d-flex align-items-center gap-2">
+        <a class="btn btn-primary d-none d-sm-inline-flex" href="investor-access-navigator.html">Investor Access Navigator</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarNav"
+          aria-controls="sidebarNav" aria-label="Open menu"><span class="navbar-toggler-icon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="offcanvas offcanvas-end sidebar-nav" tabindex="-1" id="sidebarNav" aria-labelledby="sidebarNavLabel">
+    <div class="offcanvas-header">
+      <a class="navbar-brand" href="index.html"><img src="images/logo.webp" alt="Facilon"></a>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <ul class="navbar-nav flex-grow-1" aria-label="Main navigation">
+        <li class="nav-item"><a class="nav-link" href="./"><img src="images/icon/sb-img-0.webp" alt=""> Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="investor-access-navigator.html"><img src="images/icon/sb-img-1.webp" alt=""> Investor Access Navigator</a></li>
+        <li class="nav-item"><a class="nav-link" href="for-service-providers.html"><img src="images/icon/sb-img-2.webp" alt=""> For Service Providers</a></li>
+        <li class="nav-item"><a class="nav-link" href="how-facilon-works.html"><img src="images/icon/sb-img-3.webp" alt=""> How Facilon Works</a></li>
+        <li class="nav-item"><a class="nav-link" href="learning-centre.html"><img src="images/icon/sb-img-4.webp" alt=""> Learning Centre</a></li>
+        <li class="nav-item"><a class="nav-link" href="about-facilon.html"><img src="images/icon/sb-img-5.webp" alt=""> About Facilon</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><img src="images/icon/sb-img-6.webp" alt=""> Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="nav-flow">
+    <div class="container">
+      <div class="success">
+        <div class="success-icon">✓</div>
+        <div class="eyebrow">Provider alert activated</div>
+        <div class="title">Your Facilon Access Navigator has been saved</div>
+        <div class="sub" style="margin-left:auto;margin-right:auto">We will notify you if a participating Service Provider
+          is registered whose declared capabilities broadly align with your saved requirement profile.</div>
+        <div class="profile-summary">
+          <div class="sumrow"><span>Alert reference</span><strong id="fRef">—</strong></div>
+          <div class="sumrow"><span>Email</span><strong id="finalEmail"></strong></div>
+          <div class="sumrow"><span>Investor Type</span><strong id="fType"></strong></div>
+          <div class="sumrow"><span>Market</span><strong id="fMarket"></strong></div>
+          <div class="sumrow"><span>Requirement</span><strong id="fRequirement"></strong></div>
+          <div class="sumrow"><span>Status</span><strong style="color:var(--green)">Active</strong></div>
+        </div>
+        <div class="fac-nav-investor-form-sec" style="justify-content:center">
+          <a class="btn btn-outline" href="index.html">Return to Home</a>
+          <a class="btn btn-primary" href="learning-centre.html">Visit the Learning Centre</a>
+        </div>
+        <div class="phase2"><strong>When Facilon Appoint launches:</strong> an availability alert can invite you to review
+          the relevant provider profile. Your identity will be shared only after you take a provider-specific action and
+          provide fresh consent.</div>
+        <div class="disclaimer">You can pause alerts, change communication preferences, unsubscribe from optional
+          educational updates, withdraw consent or request correction or deletion of the saved profile through the link
+          provided in each communication or by contacting privacy@facilonservices.com. Withdrawal will not affect
+          processing already lawfully completed, and limited evidence may be retained where required by law, security or
+          dispute-management needs.</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom d-flex justify-content-between flex-wrap gap-3" style="border-top:0">
+        <div>© <span id="year"></span> Facilon Services Private Limited. All rights reserved.</div>
+        <div>Final investor acceptance and regulated decisions remain with the relevant Service Provider.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/forms.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Require a completed submission result; otherwise send back to the start.
+    var done = FacilonForms.load("facilon_done");
+    if (!done || !done.reference) {
+      location.replace("investor-access-navigator.html#assessment");
+    } else {
+      document.getElementById("fRef").textContent = done.reference;
+      document.getElementById("finalEmail").textContent = done.email || "";
+      document.getElementById("fType").textContent = done.investorType || "";
+      document.getElementById("fMarket").textContent = done.market || "";
+      document.getElementById("fRequirement").textContent = done.requirement || "";
+    }
+  </script>
+</body>
+
+</html>

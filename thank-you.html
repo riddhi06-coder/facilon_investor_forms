@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <meta name="description" content="Thank you for contacting Facilon Services. Your enquiry has been received." />
+  <title>Thank You | Facilon Services</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="fs-style.css">
+  <style>
+    .thankyou-section {
+      background:
+        radial-gradient(circle at 88% 18%, rgba(28, 166, 217, .10), transparent 32%),
+        linear-gradient(180deg, #ffffff, var(--paper));
+    }
+
+    .thankyou-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 20px 0 10px;
+    }
+
+    .thankyou-icon {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: var(--green-soft);
+      color: var(--green);
+      display: grid;
+      place-items: center;
+      font-size: 42px;
+      font-weight: 700;
+      margin: 0 auto 22px;
+      border: 1px solid #cdeadd;
+    }
+
+    .thankyou-wrap h1 {
+      color: var(--blue-dark);
+      font-size: 40px;
+      line-height: 1.12;
+      margin-bottom: 16px;
+      max-width: none;
+    }
+
+    .thankyou-lead {
+      font-size: 16px;
+      color: var(--ink);
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+
+    .thankyou-ref {
+      display: inline-block;
+      background: var(--sky);
+      border: 1px solid #c7dfed;
+      color: var(--blue-dark);
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .thankyou-ref strong {
+      letter-spacing: .5px;
+    }
+
+    .thankyou-note {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 26px;
+    }
+
+    .thankyou-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 560px) {
+      .thankyou-wrap h1 { font-size: 31px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner d-flex justify-content-between align-items-center flex-wrap gap-3 py-1">
+      <div>Facilon Services Private Limited</div>
+      <div class="topbar-links d-flex flex-wrap gap-3">
+        <a href="contact.html">Contact</a>
+        <a href="#privacy">Privacy</a>
+      </div>
+    </div>
+  </div>
+  <header class="nav navbar">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.webp" alt="Facilon">
+      </a>
+      <div class="nav-actions d-flex align-items-center gap-2">
+        <a class="btn btn-primary d-none d-sm-inline-flex" href="investor-access-navigator.html">
+          Investor Access Navigator
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarNav"
+          aria-controls="sidebarNav" aria-label="Open menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- Sidebar navigation: same offcanvas menu on desktop and mobile -->
+  <div class="offcanvas offcanvas-end sidebar-nav" tabindex="-1" id="sidebarNav" aria-labelledby="sidebarNavLabel">
+    <div class="offcanvas-header">
+      <a class="navbar-brand" href="index.html"><img src="images/logo.webp" alt="Facilon"></a>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <ul class="navbar-nav flex-grow-1" aria-label="Main navigation">
+        <li class="nav-item"><a class="nav-link" href="./"><img src="images/icon/sb-img-0.webp" alt=""> Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="investor-access-navigator.html"><img src="images/icon/sb-img-1.webp" alt=""> Investor Access Navigator</a></li>
+        <li class="nav-item"><a class="nav-link" href="for-service-providers.html"><img src="images/icon/sb-img-2.webp" alt=""> For Service Providers</a></li>
+        <li class="nav-item"><a class="nav-link" href="how-facilon-works.html"><img src="images/icon/sb-img-3.webp" alt=""> How Facilon Works</a></li>
+        <li class="nav-item"><a class="nav-link" href="learning-centre.html"><img src="images/icon/sb-img-4.webp" alt=""> Learning Centre</a></li>
+        <li class="nav-item"><a class="nav-link" href="about-facilon.html"><img src="images/icon/sb-img-5.webp" alt=""> About Facilon</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><img src="images/icon/sb-img-6.webp" alt=""> Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="thankyou-section">
+      <div class="container">
+        <div class="thankyou-wrap">
+          <div class="thankyou-icon">✓</div>
+          <div class="eyebrow" style="color:var(--blue);">Enquiry received</div>
+          <h1>Thank you for contacting Facilon</h1>
+          <p class="thankyou-lead">
+            Your enquiry has been submitted successfully. Our team will review it and respond
+            to you by email as soon as possible.
+          </p>
+          <div class="thankyou-ref" id="refBox" style="display:none;">
+            Your reference number: <strong id="refVal"></strong>
+          </div>
+          <p class="thankyou-note">
+            A confirmation email has been sent to the address you provided. If you do not see it
+            shortly, please check your spam or junk folder.
+          </p>
+          <div class="thankyou-actions">
+            <a class="btn btn-primary" href="index.html">Return to Home</a>
+            <a class="btn btn-outline" href="contact.html">Submit Another Enquiry</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand-sec navbar-brand">
+            <img src="images/logo.webp" alt="Facilon">
+          </div>
+          <p>
+            A neutral digital facilitation and workflow platform supporting structured,
+            consent-led engagement between investors, authorised participants and Service Providers.
+          </p>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <h3>Investors</h3>
+          <div class="footer-links">
+            <a href="investor-access-navigator.html">Investor Access Navigator</a>
+            <a href="learning-centre.html">Learning Centre</a>
+            <a href="#faq">Investor FAQs</a>
+            <a href="#support">Investor Support</a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <h3>Service Providers</h3>
+          <div class="footer-links">
+            <a href="for-service-providers.html">For Service Providers</a>
+            <a href="#modules">Facilon Modules</a>
+            <a href="#discussion">Request a Discussion</a>
+            <a href="#signin">Service Provider Sign In</a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <h3>Trust &amp; Legal</h3>
+          <div class="footer-links">
+            <a href="#privacy">Privacy Notice</a>
+            <a href="#cookies">Cookie Policy</a>
+            <a href="#terms">Terms of Use</a>
+            <a href="#disclaimer">Platform Disclaimer</a>
+            <a href="#rights">Investor Rights</a>
+            <a href="#security">Security at Facilon</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex justify-content-between flex-wrap gap-3">
+        <div>© <span id="year"></span> Facilon Services Private Limited. All rights reserved.</div>
+        <div>Final investor acceptance and regulated decisions remain with the relevant Service Provider.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    var ref = new URLSearchParams(location.search).get("ref");
+    if (ref) {
+      document.getElementById("refVal").textContent = ref;
+      document.getElementById("refBox").style.display = "inline-block";
+    }
+  </script>
+</body>
+
+</html>

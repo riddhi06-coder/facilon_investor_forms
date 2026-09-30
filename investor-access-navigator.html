@@ -10,6 +10,7 @@
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="fs-style.css">
+  <link rel="stylesheet" href="assets/forms.css">
   <style>
     :root {
       --ink: #0f1923;
@@ -2261,35 +2262,38 @@
         bank-account, login, OTP or document information is required.</div>
 
       <div class="card">
-        <div class="qtitle">1. Who is investing?</div><a class="context-link" href="learning-centre.html#types">Learn
+        <div class="qtitle">1. Who is investing? <span class="required">*</span></div><a class="context-link" href="learning-centre.html#types">Learn
           about investor types →</a>
-        <div class="options" data-key="personType"><button class="opt" data-v="Individual">Individual</button><button
+        <div class="options" data-key="personType" data-field="personType"><button class="opt" data-v="Individual">Individual</button><button
             class="opt" data-v="Legal Entity">Legal entity</button></div>
+        <div class="field-error" data-error="personType"></div>
       </div>
 
       <div class="card">
-        <div class="qtitle">2. Investor type</div><a class="context-link" href="learning-centre.html#types">Which
+        <div class="qtitle">2. Investor type <span class="required">*</span></div><a class="context-link" href="learning-centre.html#types">Which
           investor
           type applies? →</a>
-        <div class="grid2" data-key="investorClass" id="investorClassOptions"></div>
+        <div class="grid2" data-key="investorClass" data-field="investorClass" id="investorClassOptions"></div>
         <div class="help" id="investorClassHelp">First select who is investing.</div>
+        <div class="field-error" data-error="investorClass"></div>
       </div>
 
       <div class="card">
-        <div class="qtitle">3. Investment currency</div><a class="context-link"
+        <div class="qtitle">3. Investment currency <span class="required">*</span></div><a class="context-link"
           href="learning-centre.html#routes">Understand India and GIFT City access →</a>
-        <div class="options" data-key="currency"><button class="opt" data-v="Indian Rupees (INR)">Indian Rupees
+        <div class="options" data-key="currency" data-field="currency"><button class="opt" data-v="Indian Rupees (INR)">Indian Rupees
             (INR)</button><button class="opt" data-v="US Dollars (USD)">US Dollars (USD)</button><button class="opt"
             data-v="INR and USD">Both INR and USD</button></div>
         <div class="help">INR indicates India access, USD indicates GIFT City / IFSC access, and selecting both covers
           both markets.</div>
+        <div class="field-error" data-error="currency"></div>
       </div>
 
       <div class="card">
-        <div class="qtitle">4. What do you want to do?</div><a class="context-link"
+        <div class="qtitle">4. What do you want to do? <span class="required">*</span></div><a class="context-link"
           href="learning-centre.html#products">Explore products and services →</a>
         <div class="help" style="margin-bottom:12px">Select one or more.</div>
-        <div class="grid2" data-key="intents" data-multiple="true">
+        <div class="grid2" data-key="intents" data-field="intents" data-multiple="true">
           <button class="choice" data-v="Direct investing">
             <div class="choice-title">Invest directly</div>
             <div class="choice-desc">Buy and sell listed investments.</div>
@@ -2314,6 +2318,7 @@
               onclick="event.stopPropagation()">Learn about adviser and wealth-manager roles →</a>
           </button>
         </div>
+        <div class="field-error" data-error="intents"></div>
       </div>
 
       <div class="nav fac-nav-investor-form-sec">
@@ -2342,9 +2347,10 @@
           <div id="providerSelectionSummary" class="status"><strong>None selected yet.</strong> Mark the providers
             already
             available to you in the lists above.</div>
-          <div class="qtitle" style="margin-top:20px">Do you need help finding the remaining Service Providers?</div>
-          <div class="options" data-key="findingHelp"><button class="opt" data-v="Yes">Yes</button><button class="opt"
+          <div class="qtitle" style="margin-top:20px">Do you need help finding the remaining Service Providers? <span class="required">*</span></div>
+          <div class="options" data-key="findingHelp" data-field="findingHelp"><button class="opt" data-v="Yes">Yes</button><button class="opt"
               data-v="No">No</button></div>
+          <div class="field-error" data-error="findingHelp"></div>
           <div id="readinessChecklist" class="readiness-wrap hidden"></div>
         </div>
         <div class="status"><strong>You remain in control:</strong> Your answers are not shared with a Service Provider.
@@ -2361,145 +2367,16 @@
     </div>
   </section>
 
-  <section class="screen" id="register">
-    <div class="container">
-      <div class="eyebrow">Save your access route</div>
-      <div class="title">Save now. Add more information only when useful.</div>
-      <div class="sub">Enter your email to save the result and optionally request an alert when a potentially relevant
-        participating Service Provider becomes available.</div>
-      <div class="grid2">
-        <div>
-          <div class="card">
-            <div class="field"><label class="label">Email address <span class="required">*</span></label><input
-                class="input" id="email" placeholder="you@example.com" type="email" /></div>
-            <div class="field"><label class="label">Name <span
-                  style="text-transform:none;font-weight:400">(optional)</span></label><input class="input" id="name"
-                placeholder="Your name" type="text" /></div>
-          </div>
-          <div class="privacy-notice"><strong>Privacy notice summary</strong><br>Facilon will use your email address,
-            Access Navigator answers, derived services/products, required-provider profile, provider-readiness
-            selections,
-            indicative document/KYC checklist and consent records to save and verify your Access Navigator and operate
-            any
-            requested provider-availability alert. Nothing is disclosed to a Service Provider at this stage. A later
-            introduction requires a separate affirmative instruction and provider-specific consent. Review the <a
-              href="/privacy-notice" rel="noopener noreferrer" target="_blank">Privacy Notice</a> or contact <a
-              href="mailto:privacy@facilonservices.com">privacy@facilonservices.com</a>.</br></div>
-          <div class="card">
-            <div class="consent"><input id="c1" type="checkbox" />
-              <div><strong>Save and alert consent <span class="required">*</span></strong><br />I consent to Facilon
-                saving my access route and using my email to operate the provider-availability alert I have requested. I
-                can stop the alert and withdraw consent at any time.</div>
-            </div>
-            <div class="consent"><input id="c2" type="checkbox" />
-              <div><strong>Educational email updates (optional)</strong><br />I separately consent to educational
-                updates
-                about India, GIFT City and cross-border access routes.</div>
-            </div>
-            <div class="consent"><input id="c3" type="checkbox" />
-              <div><strong>Indicative-result acknowledgement <span class="required">*</span></strong><br />I understand
-                that this access route is informational only and is not investment advice, a recommendation, suitability
-                determination or confirmation of eligibility.</div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="card">
-            <div class="impact-title">Access Navigator being saved</div>
-            <div class="sumrow"><span>Navigator Scope</span><strong id="sScope">India &amp; GIFT City / IFSC</strong>
-            </div>
-            <div class="sumrow"><span>Investor Type</span><strong id="sType"></strong></div>
-            <div class="sumrow"><span>Investment currency</span><strong id="sCurrency"></strong></div>
-            <div class="sumrow"><span>Market</span><strong id="sMarket"></strong></div>
-            <div class="sumrow"><span>Investment intention</span><strong id="sIntent"></strong></div>
-            <div class="sumrow"><span>Services &amp; products</span><strong id="sServicesProducts"></strong></div>
-            <div class="sumrow"><span>Service Providers required</span><strong id="sProvidersRequired"></strong></div>
-            <div class="sumrow"><span>Providers already in place</span><strong id="sProvidersInPlace"></strong></div>
-            <div class="sumrow"><span>Providers still required</span><strong id="sProvidersRemaining"></strong></div>
-            <div class="sumrow"><span>Indicative KYC &amp; documents</span><strong id="sDocuments"></strong></div>
-            <div class="sumrow hidden" id="sBankingRow"><span>NRI/OCI banking guidance</span><strong
-                id="sBanking"></strong></div>
-            <div class="sumrow"><span>Help requested</span><strong id="sHelp"></strong></div>
-          </div>
-          <div class="status"><strong>No identity or access route information will be shared with a future provider at
-              this stage.</strong> Facilon will seek a separate provider-specific instruction and fresh consent before
-            any
-            introduction.</div>
-        </div>
-      </div>
-      <div class="nav fac-nav-investor-form-sec">
-        <button class="btn btn-outline" onclick="go('result')">My Access Route</button>
-        <button class="btn btn-primary" onclick="submitRegistration()">Save and Verify Email</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="screen" id="verify">
-    <div class="container">
-      <div class="verify-box">
-        <div class="mailicon">✉️</div>
-        <div class="eyebrow" style="margin-top:14px">Verify your email</div>
-        <div class="title">Enter the verification code</div>
-        <div class="sub" style="margin-left:auto;margin-right:auto">A six-digit verification code has been sent to
-          <strong id="verifyEmail"></strong>. Verification confirms control of the email address and activates your
-          provider-availability alert.
-        </div>
-        <div class="legal-banner" style="text-align:left"><strong>Security reminder:</strong> Facilon will not ask you
-          to
-          disclose this code to a person over a call, message or email. The code is used only to verify this request.
-        </div>
-        <div class="code"><input maxlength="1" /><input maxlength="1" /><input maxlength="1" /><input
-            maxlength="1" /><input maxlength="1" /><input maxlength="1" /></div><button class="btn btn-primary"
-          onclick="activateAlert()">Verify and Activate Alert</button>
-        <div class="help" style="margin-top:14px">Prototype: any six digits may be entered.</div>
-        <div class="nav fac-nav-investor-form-sec">
-          <button class="btn btn-outline" onclick="go('register')">Change Email</button>
-          <button class="btn btn-primary">Resend Code</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="screen" id="active">
-    <div class="container">
-      <div class="success"><button class="app-home-link" onclick="returnHome()">← Return to homepage</button>
-        <div class="success-icon">✓</div>
-        <div class="eyebrow">Provider alert activated</div>
-        <div class="title">Your Facilon Access Navigator has been saved</div>
-        <div class="sub" style="margin-left:auto;margin-right:auto">We will notify you if a participating Service
-          Provider
-          is registered whose declared capabilities broadly align with your saved requirement profile.</div>
-        <div class="profile-summary">
-          <div class="sumrow"><span>Alert reference</span><strong>FIP-2026-00482</strong></div>
-          <div class="sumrow"><span>Email</span><strong id="finalEmail"></strong></div>
-          <div class="sumrow"><span>Investor Type</span><strong id="fType"></strong></div>
-          <div class="sumrow"><span>Market</span><strong id="fMarket"></strong></div>
-          <div class="sumrow"><span>Requirement</span><strong id="fRequirement"></strong></div>
-          <div class="sumrow"><span>Status</span><strong style="color:var(--green)">Active</strong></div>
-        </div>
-        <div class="grid2"><button class="btn ghost">Email My Access Route Summary</button><button
-            class="btn primary">Update My Assessment</button></div>
-        <div class="phase2"><strong>When Facilon Appoint launches:</strong> an availability alert can invite you to
-          review
-          the relevant provider profile. Your identity will be shared only after you take a provider-specific action and
-          provide fresh consent.</div>
-        <div class="disclaimer">You can pause alerts, change communication preferences, unsubscribe from optional
-          educational updates, withdraw consent or request correction or deletion of the saved profile through the link
-          provided in each communication or by contacting privacy@facilonservices.com. Withdrawal will not affect
-          processing already lawfully completed, and limited evidence may be retained where required by law, security or
-          dispute-management needs.</div>
-      </div>
-    </div>
-  </section>
+  <script src="assets/forms.js"></script>
   <script>
     const state = {};
     function returnHome() { document.getElementById('homepage').classList.remove('hidden'); document.getElementById('appTopbar').classList.add('hidden'); document.getElementById('appShell').classList.add('hidden'); window.scrollTo({ top: 0, behavior: 'smooth' }) }
     function enterAccessNavigator(start) { document.getElementById('homepage').classList.add('hidden'); document.getElementById('appTopbar').classList.remove('hidden'); document.getElementById('appShell').classList.remove('hidden'); go('assess') }
     function startAssess() { go('assess') }
-    function markStep(id) { const order = ['learn', 'assess', 'result', 'register', 'verify', 'active']; const idx = order.indexOf(id); document.querySelectorAll('.step').forEach((x, i) => { x.classList.toggle('active', i === idx); x.classList.toggle('done', i < idx) }) }
-    function go(id) { document.querySelectorAll('.screen').forEach(x => x.classList.remove('active')); document.getElementById(id).classList.add('active'); markStep(id); window.scrollTo({ top: 0, behavior: 'smooth' }); if (id === 'register') fillSaved() }
+    function markStep(id) { const order = ['assess', 'result', 'register', 'verify', 'active']; const idx = order.indexOf(id); document.querySelectorAll('.step').forEach((x, i) => { x.classList.toggle('active', i === idx); x.classList.toggle('done', i < idx) }) }
+    function go(id) { document.querySelectorAll('.screen').forEach(x => x.classList.remove('active')); document.getElementById(id).classList.add('active'); markStep(id); window.scrollTo({ top: 0, behavior: 'smooth' }); }
     function learnTab(id, btn) { document.querySelectorAll('.tab').forEach(x => x.classList.remove('active')); document.querySelectorAll('.learn-panel').forEach(x => x.classList.remove('active')); btn.classList.add('active'); document.getElementById('lp-' + id).classList.add('active') }
-    function bindChoiceGroup(group) { group.querySelectorAll('[data-v]').forEach(btn => btn.addEventListener('click', () => { const multiple = group.dataset.multiple === 'true'; if (multiple) { btn.classList.toggle('selected'); state[group.dataset.key] = [...group.querySelectorAll('[data-v].selected')].map(x => x.dataset.v) } else { group.querySelectorAll('[data-v]').forEach(x => x.classList.remove('selected')); btn.classList.add('selected'); state[group.dataset.key] = btn.dataset.v } if (group.dataset.key === 'personType') renderInvestorClassOptions(); if (group.dataset.key === 'findingHelp') renderReadinessChecklist(); })) }
+    function bindChoiceGroup(group) { group.querySelectorAll('[data-v]').forEach(btn => btn.addEventListener('click', () => { const multiple = group.dataset.multiple === 'true'; if (multiple) { btn.classList.toggle('selected'); state[group.dataset.key] = [...group.querySelectorAll('[data-v].selected')].map(x => x.dataset.v) } else { group.querySelectorAll('[data-v]').forEach(x => x.classList.remove('selected')); btn.classList.add('selected'); state[group.dataset.key] = btn.dataset.v } if (window.FacilonForms) { FacilonForms.clearError(group.dataset.key); if (group.dataset.key === 'personType') FacilonForms.clearError('investorClass'); } if (group.dataset.key === 'personType') renderInvestorClassOptions(); if (group.dataset.key === 'findingHelp') renderReadinessChecklist(); })) }
     document.querySelectorAll('[data-key]').forEach(bindChoiceGroup);
     const investorClassChoices = {
       'Individual': [
@@ -2548,7 +2425,17 @@
       return { market, items: items.filter(x => { const k = x.market + '|' + x.service + '|' + x.product + '|' + x.providers.join(','); if (seen.has(k)) return false; seen.add(k); return true }) }
     }
     function buildResult() {
-      if (!state.currency || !state.intents || !state.intents.length) { alert('Please select an investment currency and at least one objective.'); return }
+      FacilonForms.clearAll(document.getElementById('assess'));
+      const errs = {};
+      if (!state.personType) errs.personType = 'Please select who is investing.';
+      if (!state.investorClass) errs.investorClass = state.personType ? 'Please select your investor type.' : 'Select who is investing first.';
+      if (!state.currency) errs.currency = 'Please select an investment currency.';
+      if (!state.intents || !state.intents.length) errs.intents = 'Please select at least one objective.';
+      if (Object.keys(errs).length) {
+        FacilonForms.showErrors(errs, document.getElementById('assess'));
+        FacilonForms.toast('Please answer all four questions to continue.');
+        return;
+      }
       const x = derive(); state.type = investorType(); state.market = x.market; state.intent = state.intents.join(', '); state.providerItems = x.items; state.route = x.items.map(x => x.service).join(', '); state.inPlaceProviders = []; state.providerReadiness = 'None are in place'; delete state.findingHelp; const helpGroup = document.querySelector('[data-key="findingHelp"]'); if (helpGroup) helpGroup.querySelectorAll('[data-v]').forEach(b => b.classList.remove('selected')); const readinessBox = document.getElementById('readinessChecklist'); if (readinessBox) { readinessBox.classList.add('hidden'); readinessBox.innerHTML = ''; }
       document.getElementById('rMarket').textContent = state.market;
       document.getElementById('rDesc').textContent = 'Your currency selection determines the market. Your objectives determine the services, products and Service Providers shown below.';
@@ -2625,7 +2512,19 @@
       box.innerHTML = `<div class="qtitle">What should you have ready?</div><div class="readiness-intro">Facilon can use this as a preparation checklist before introducing you to the remaining Service Providers. These are indicative requirements only; each provider will confirm its final KYC and documentation list.</div><div class="pan-highlight"><strong>PAN is the basic starting document for India securities-market access.</strong><span>For most India securities-market journeys, PAN is the primary identification number used by SEBI-regulated intermediaries and should be obtained / validated before provider onboarding, subject to limited regulatory exemptions.</span><a class="context-link" href="learning-centre.html#pan">PAN guide →</a></div><div class="docs-common"><h4>Prepare once — core investor KYC</h4><a class="context-link" href="learning-centre.html#compliance">Learn about KYC, FATCA &amp; CRS →</a><ul class="docs-list">${common.map(d => `<li>${d}</li>`).join('')}</ul></div>${groups.map(m => `<div class="mini-label" style="margin-top:16px">${m === 'GIFT City' ? 'GIFT City / IFSC' : m} — additional provider requirements</div>${m === 'India' && nriIndiaBankingNote() ? `<div class="status" style="margin-bottom:12px"><strong>NRI/OCI India banking route:</strong> ${nriIndiaBankingNote()}</div>` : ''}<div class="docs-grid">${remaining.filter(p => p.market === m).map(p => { const r = providerDocRequirements(p); return `<div class="docs-provider"><div class="provider-doc-head"><h4>${p.name}</h4><span>${p.service}</span></div><ul class="docs-list">${r.docs.map(d => `<li>${d}</li>`).join('')}</ul><div class="docs-note">${r.note}</div></div>` }).join('')}</div>`).join('')}<div class="docs-note" style="margin-top:14px"><strong>Do not upload documents at this stage.</strong> This screen is only a readiness guide. Documents should be collected later for a defined provider onboarding purpose and with the appropriate privacy notice / consent or other lawful basis.</div>`;
     }
 
-    function continueFromResult() { if (!state.findingHelp) { alert('Please indicate whether you need help finding the remaining Service Providers.'); return } go('register') }
+    function continueFromResult() {
+      FacilonForms.clearError('findingHelp');
+      if (!state.findingHelp) {
+        FacilonForms.showError('findingHelp', 'Please indicate whether you need help finding the remaining Service Providers.');
+        FacilonForms.toast('Please answer whether you need help finding the remaining Service Providers.');
+        return;
+      }
+      // Persist the completed profile and continue on a dedicated page so a
+      // reload no longer restarts the questionnaire.
+      state.savedProfile = buildSavedProfile();
+      FacilonForms.save('facilon_nav', { profile: state.savedProfile, personType: state.personType });
+      window.location.href = 'navigator-save.html';
+    }
     function buildSavedProfile() {
       const all = providerUniverse(), selectedKeys = new Set(state.inPlaceProviders || []), inPlace = all.filter(x => selectedKeys.has(x.key)), remaining = all.filter(x => !selectedKeys.has(x.key));
       const common = commonKycRequirements();
@@ -2633,19 +2532,6 @@
       const servicesProducts = (state.providerItems || []).map(i => ({ market: i.market, service: i.service, product: i.product }));
       return { navigatorScope: 'India & GIFT City / IFSC', investorType: state.type, currency: state.currency, market: state.market, intention: state.intent, servicesProducts, providersRequired: all, providersInPlace: inPlace, providersRemaining: remaining, helpRequested: state.findingHelp, coreKycDocuments: common, providerSpecificDocuments: providerDocs, nriOciBankingGuidance: nriIndiaBankingNote() };
     }
-    function fillSaved() {
-      state.savedProfile = buildSavedProfile(); const p = state.savedProfile;
-      document.getElementById('sType').textContent = p.investorType; document.getElementById('sCurrency').textContent = p.currency; document.getElementById('sMarket').textContent = p.market; document.getElementById('sIntent').textContent = p.intention;
-      document.getElementById('sServicesProducts').textContent = p.servicesProducts.map(x => `${x.market}: ${x.service} — ${x.product}`).join(' | ');
-      document.getElementById('sProvidersRequired').textContent = p.providersRequired.map(x => `${x.market}: ${x.name}`).join(', ');
-      document.getElementById('sProvidersInPlace').textContent = p.providersInPlace.length ? p.providersInPlace.map(x => `${x.market}: ${x.name}`).join(', ') : 'None';
-      document.getElementById('sProvidersRemaining').textContent = p.providersRemaining.length ? p.providersRemaining.map(x => `${x.market}: ${x.name}`).join(', ') : 'None';
-      const docCount = p.coreKycDocuments.length + p.providerSpecificDocuments.reduce((n, x) => n + x.documents.length, 0); document.getElementById('sDocuments').textContent = `${p.coreKycDocuments.length} core KYC items + ${docCount - p.coreKycDocuments.length} provider-specific document items saved`;
-      const bankingRow = document.getElementById('sBankingRow'); if (p.nriOciBankingGuidance) { bankingRow.classList.remove('hidden'); document.getElementById('sBanking').textContent = p.nriOciBankingGuidance } else { bankingRow.classList.add('hidden'); document.getElementById('sBanking').textContent = '' }; document.getElementById('sHelp').textContent = p.helpRequested || 'No response';
-    }
-    function submitRegistration() { const email = document.getElementById('email').value.trim(); if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !document.getElementById('c1').checked || !document.getElementById('c3').checked) { alert('Please enter a valid email address and accept the required confirmations.'); return } state.email = email; state.educationalUpdates = document.getElementById('c2').checked; state.savedProfile = buildSavedProfile(); document.getElementById('verifyEmail').textContent = email; go('verify') }
-    function activateAlert() { const p = state.savedProfile || buildSavedProfile(); document.getElementById('finalEmail').textContent = state.email; document.getElementById('fType').textContent = p.investorType; document.getElementById('fMarket').textContent = p.market; document.getElementById('fRequirement').textContent = p.servicesProducts.map(x => x.service).join(', ') + ' | Remaining providers: ' + p.providersRemaining.length + ' | Help: ' + p.helpRequested; go('active') }
-
     window.addEventListener('DOMContentLoaded', () => { if (location.hash === '#assessment') enterAccessNavigator('assess') });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

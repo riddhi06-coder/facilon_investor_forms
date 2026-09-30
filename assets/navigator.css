@@ -1,0 +1,313 @@
+/* Component styles + tokens for the standalone navigator flow pages
+   (save / verify / success). Mirrors the look of the in-app screens.
+   Load order: bootstrap → fs-style.css → forms.css → navigator.css */
+
+:root {
+  --ink: #0f1923;
+  --ink2: #4a5568;
+  --faint: #8b98a7;
+  --paper: #f7f5f0;
+  --blue: #1a4d6e;
+  --blue2: #2d7da8;
+  --bluebg: #e8f3fa;
+  --gold: #c5922a;
+  --goldbg: #fdf6e3;
+  --green: #2a7a5b;
+  --greenbg: #e6f5ef;
+  --red: #b42318;
+  --border: #dce3ea;
+  --shadow: 0 4px 20px rgba(15, 25, 35, .08);
+  --r: 12px;
+}
+
+.nav-flow {
+  padding: 40px 0 60px;
+}
+
+/* Progress steps */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+  margin-bottom: 26px;
+}
+
+.step {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 12px;
+  color: var(--ink2);
+  text-align: center;
+}
+
+.step.active {
+  background: var(--bluebg);
+  border-color: var(--blue);
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.step.done {
+  background: var(--greenbg);
+  border-color: #9fd3be;
+  color: var(--green);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  color: var(--blue2);
+  font-weight: 700;
+  margin-bottom: 10px;
+  border-bottom: 0;
+}
+
+.title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 36px;
+  line-height: 1.2;
+  margin: 0 0 10px;
+  font-weight: 700;
+  color: var(--blue-dark);
+}
+
+.sub {
+  color: var(--ink2);
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field {
+  margin-bottom: 17px;
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  font-weight: 700;
+  color: var(--faint);
+  margin-bottom: 7px;
+}
+
+.help {
+  font-size: 12px;
+  color: var(--faint);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.select,
+.input {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  background: #fff;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.consent {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 14px;
+  margin-bottom: 10px;
+  background: var(--paper);
+}
+
+.consent:last-child {
+  margin-bottom: 0;
+}
+
+.consent input {
+  margin-top: 3px;
+}
+
+.consent div {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.6;
+}
+
+.privacy-notice {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fbfdff;
+  padding: 10px 20px;
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+
+.privacy-notice strong {
+  color: var(--ink);
+  font-size: 16px;
+}
+
+.privacy-notice a {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.legal-banner {
+  border-left: 4px solid var(--blue);
+  background: var(--bluebg);
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--ink2);
+  margin: 0 0 20px;
+}
+
+.legal-banner strong {
+  color: var(--ink);
+}
+
+.impact-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--faint);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.status {
+  border-radius: 10px;
+  padding: 10px 20px;
+  border-left: 4px solid var(--gold);
+  background: var(--goldbg);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink2);
+  margin-bottom: 20px;
+}
+
+.status strong {
+  color: var(--ink);
+}
+
+.profile-summary {
+  background: var(--paper);
+  border-radius: 10px;
+  padding: 17px;
+  text-align: left;
+  margin: 20px 0;
+}
+
+.sumrow {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding: 10px 0;
+  font-size: 12px;
+  gap: 10px;
+}
+
+.sumrow:last-child {
+  border-bottom: 0;
+}
+
+.sumrow span {
+  color: var(--ink2);
+}
+
+.verify-box {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.mailicon {
+  font-size: 50px;
+}
+
+.code {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.code input {
+  width: 46px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+}
+
+.success {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--greenbg);
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  margin: 0 auto 18px;
+}
+
+.phase2 {
+  margin-top: 28px;
+  background: #f2f5f7;
+  border: 1px dashed #aeb9c4;
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.6;
+}
+
+.disclaimer {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 18px;
+  color: var(--ink2);
+}
+
+.fac-nav-investor-form-sec {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+@media (max-width: 800px) {
+  .grid2 { grid-template-columns: 1fr; }
+  .title { font-size: 29px; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+}

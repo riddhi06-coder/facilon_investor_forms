@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Save Your Access Route | Facilon Services</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="fs-style.css">
+  <link rel="stylesheet" href="assets/forms.css">
+  <link rel="stylesheet" href="assets/navigator.css">
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner d-flex justify-content-between align-items-center flex-wrap gap-3 py-1">
+      <div>Facilon Services Private Limited</div>
+      <div class="topbar-links d-flex flex-wrap gap-3">
+        <a href="contact.html">Contact</a>
+        <a href="#privacy">Privacy</a>
+      </div>
+    </div>
+  </div>
+  <header class="nav navbar">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a class="navbar-brand" href="index.html"><img src="images/logo.webp" alt="Facilon"></a>
+      <div class="nav-actions d-flex align-items-center gap-2">
+        <a class="btn btn-primary d-none d-sm-inline-flex" href="investor-access-navigator.html">Investor Access Navigator</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarNav"
+          aria-controls="sidebarNav" aria-label="Open menu"><span class="navbar-toggler-icon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="offcanvas offcanvas-end sidebar-nav" tabindex="-1" id="sidebarNav" aria-labelledby="sidebarNavLabel">
+    <div class="offcanvas-header">
+      <a class="navbar-brand" href="index.html"><img src="images/logo.webp" alt="Facilon"></a>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <ul class="navbar-nav flex-grow-1" aria-label="Main navigation">
+        <li class="nav-item"><a class="nav-link" href="./"><img src="images/icon/sb-img-0.webp" alt=""> Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="investor-access-navigator.html"><img src="images/icon/sb-img-1.webp" alt=""> Investor Access Navigator</a></li>
+        <li class="nav-item"><a class="nav-link" href="for-service-providers.html"><img src="images/icon/sb-img-2.webp" alt=""> For Service Providers</a></li>
+        <li class="nav-item"><a class="nav-link" href="how-facilon-works.html"><img src="images/icon/sb-img-3.webp" alt=""> How Facilon Works</a></li>
+        <li class="nav-item"><a class="nav-link" href="learning-centre.html"><img src="images/icon/sb-img-4.webp" alt=""> Learning Centre</a></li>
+        <li class="nav-item"><a class="nav-link" href="about-facilon.html"><img src="images/icon/sb-img-5.webp" alt=""> About Facilon</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><img src="images/icon/sb-img-6.webp" alt=""> Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="nav-flow">
+    <div class="container">
+      <div class="steps">
+        <div class="step done">1. Questions</div>
+        <div class="step done">2. Providers</div>
+        <div class="step active">3. Save &amp; Notify</div>
+        <div class="step">4. Verify</div>
+      </div>
+
+      <div class="eyebrow">Save your access route</div>
+      <div class="title">Save now. Add more information only when useful.</div>
+      <div class="sub">Enter your details to save the result and optionally request an alert when a potentially relevant
+        participating Service Provider becomes available.</div>
+
+      <div class="grid2">
+        <div>
+          <div class="card">
+            <div class="field" data-field="name"><label class="label">Name <span class="required">*</span></label>
+              <input class="input" id="name" placeholder="Your name" type="text" />
+              <div class="field-error" data-error="name"></div>
+            </div>
+            <div class="field" data-field="email"><label class="label">Email address <span class="required">*</span></label>
+              <input class="input" id="email" placeholder="you@example.com" type="email" />
+              <div class="field-error" data-error="email"></div>
+            </div>
+          </div>
+          <div class="privacy-notice"><strong>Privacy notice summary</strong><br>Facilon will use your email address,
+            Access Navigator answers, derived services/products, required-provider profile, provider-readiness
+            selections, indicative document/KYC checklist and consent records to save and verify your Access Navigator
+            and operate any requested provider-availability alert. Nothing is disclosed to a Service Provider at this
+            stage. A later introduction requires a separate affirmative instruction and provider-specific consent.
+            Review the <a href="/privacy-notice" rel="noopener noreferrer" target="_blank">Privacy Notice</a> or contact
+            <a href="mailto:privacy@facilonservices.com">privacy@facilonservices.com</a>.</div>
+          <div class="card">
+            <div class="consent"><input id="c1" type="checkbox" />
+              <div><strong>Save and alert consent <span class="required">*</span></strong><br />I consent to Facilon
+                saving my access route and using my email to operate the provider-availability alert I have requested. I
+                can stop the alert and withdraw consent at any time.</div>
+            </div>
+            <div class="consent"><input id="c2" type="checkbox" />
+              <div><strong>Educational email updates (optional)</strong><br />I separately consent to educational updates
+                about India, GIFT City and cross-border access routes.</div>
+            </div>
+            <div class="consent"><input id="c3" type="checkbox" />
+              <div><strong>Indicative-result acknowledgement <span class="required">*</span></strong><br />I understand
+                that this access route is informational only and is not investment advice, a recommendation, suitability
+                determination or confirmation of eligibility.</div>
+            </div>
+            <div class="field-error" data-error="consent"></div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="impact-title">Access Navigator being saved</div>
+            <div class="sumrow"><span>Navigator Scope</span><strong id="sScope">India &amp; GIFT City / IFSC</strong></div>
+            <div class="sumrow"><span>Investor Type</span><strong id="sType"></strong></div>
+            <div class="sumrow"><span>Investment currency</span><strong id="sCurrency"></strong></div>
+            <div class="sumrow"><span>Market</span><strong id="sMarket"></strong></div>
+            <div class="sumrow"><span>Investment intention</span><strong id="sIntent"></strong></div>
+            <div class="sumrow"><span>Providers already in place</span><strong id="sProvidersInPlace"></strong></div>
+            <div class="sumrow"><span>Providers still required</span><strong id="sProvidersRemaining"></strong></div>
+            <div class="sumrow"><span>Indicative KYC &amp; documents</span><strong id="sDocuments"></strong></div>
+            <div class="sumrow hidden" id="sBankingRow"><span>NRI/OCI banking guidance</span><strong id="sBanking"></strong></div>
+            <div class="sumrow"><span>Help requested</span><strong id="sHelp"></strong></div>
+          </div>
+          <div class="status"><strong>No identity or access route information will be shared with a future provider at
+              this stage.</strong> Facilon will seek a separate provider-specific instruction and fresh consent before
+            any introduction.</div>
+        </div>
+      </div>
+
+      <div class="fac-nav-investor-form-sec">
+        <a class="btn btn-outline" href="investor-access-navigator.html#assessment">My Access Route</a>
+        <button class="btn btn-primary" id="saveVerifyBtn" onclick="submitRegistration()">Save and Verify Email</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom d-flex justify-content-between flex-wrap gap-3" style="border-top:0">
+        <div>© <span id="year"></span> Facilon Services Private Limited. All rights reserved.</div>
+        <div>Final investor acceptance and regulated decisions remain with the relevant Service Provider.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/forms.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Require a completed profile; otherwise send the user back to the start.
+    var nav = FacilonForms.load("facilon_nav");
+    if (!nav || !nav.profile) {
+      location.replace("investor-access-navigator.html#assessment");
+    } else {
+      renderSummary(nav.profile);
+    }
+
+    function renderSummary(p) {
+      var $ = function (id) { return document.getElementById(id); };
+      $("sType").textContent = p.investorType || "";
+      $("sCurrency").textContent = p.currency || "";
+      $("sMarket").textContent = p.market || "";
+      $("sIntent").textContent = p.intention || "";
+      $("sProvidersInPlace").textContent = (p.providersInPlace || []).length ? p.providersInPlace.map(function (x) { return x.market + ": " + x.name; }).join(", ") : "None";
+      $("sProvidersRemaining").textContent = (p.providersRemaining || []).length ? p.providersRemaining.map(function (x) { return x.market + ": " + x.name; }).join(", ") : "None";
+      var docCount = (p.coreKycDocuments || []).length + (p.providerSpecificDocuments || []).reduce(function (n, x) { return n + (x.documents || []).length; }, 0);
+      $("sDocuments").textContent = (p.coreKycDocuments || []).length + " core KYC items + " + (docCount - (p.coreKycDocuments || []).length) + " provider-specific document items saved";
+      if (p.nriOciBankingGuidance) { $("sBankingRow").classList.remove("hidden"); $("sBanking").textContent = p.nriOciBankingGuidance; }
+      $("sHelp").textContent = p.helpRequested || "No response";
+    }
+
+    async function submitRegistration() {
+      FacilonForms.clearAll(document);
+      var name = document.getElementById("name").value.trim();
+      var email = document.getElementById("email").value.trim();
+      var c1 = document.getElementById("c1").checked;
+      var c2 = document.getElementById("c2").checked;
+      var c3 = document.getElementById("c3").checked;
+
+      var errs = {};
+      if (!name) errs.name = "Please enter your name.";
+      else if (!FacilonForms.isName(name)) errs.name = "Name cannot contain numbers or special characters.";
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = "Please enter a valid email address.";
+      if (!c1 || !c3) errs.consent = "Please accept the required confirmations (marked *) to continue.";
+      if (Object.keys(errs).length) { FacilonForms.showErrors(errs, document); FacilonForms.toast("Please complete the required fields to continue."); return; }
+
+      var btn = document.getElementById("saveVerifyBtn");
+      var label = btn.textContent;
+      btn.disabled = true; btn.textContent = "Sending code…";
+
+      var res = await FacilonForms.post("api/send-otp.php", { email: email, name: name, consentSave: c1, consentAck: c3 });
+
+      btn.disabled = false; btn.textContent = label;
+      if (!res.ok) {
+        if (res.data && res.data.errors) FacilonForms.showErrors(res.data.errors, document);
+        FacilonForms.toast((res.data && res.data.message) || "We could not send the verification code. Please try again.");
+        return;
+      }
+
+      FacilonForms.save("facilon_reg", { email: email, name: name, consentEducational: c2, token: res.data.token || "" });
+      location.href = "navigator-verify.html";
+    }
+  </script>
+</body>
+
+</html>

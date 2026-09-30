@@ -11,6 +11,7 @@
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="fs-style.css">
+    <link rel="stylesheet" href="assets/forms.css">
     <style>
       :root {
         --blue: #07579b;
@@ -448,25 +449,28 @@
           </div>
           <div class="form-card">
             <h2 style="font-size: 28px">Send an Enquiry</h2>
-            <form id="contactForm" action="#" method="post">
+            <form id="contactForm" action="#" method="post" novalidate>
               <div class="form-grid">
-                <div class="field">
-                  <label class="label" for="name">Name</label><input class="input" id="name" name="name" required />
+                <div class="field" data-field="name">
+                  <label class="label" for="name">Name <span class="required">*</span></label><input class="input" id="name" name="name" required />
+                  <div class="field-error" data-error="name"></div>
                 </div>
-                <div class="field">
-                  <label class="label" for="email">Email</label
+                <div class="field" data-field="email">
+                  <label class="label" for="email">Email <span class="required">*</span></label
                   ><input class="input" id="email" name="email" type="email" required />
+                  <div class="field-error" data-error="email"></div>
+                </div>
+                <div class="field" data-field="phone">
+                  <label class="label" for="phone">Phone / Mobile <span class="required">*</span></label
+                  ><input class="input" id="phone" name="phone" type="tel" required />
+                  <div class="field-error" data-error="phone"></div>
                 </div>
                 <div class="field">
-                  <label class="label" for="phone">Phone / Mobile (optional)</label
-                  ><input class="input" id="phone" name="phone" type="tel" />
-                </div>
-                <div class="field">
-                  <label class="label" for="org">Organisation (optional)</label
+                  <label class="label" for="org">Organisation</label
                   ><input class="input" id="org" name="organisation" />
                 </div>
-                <div class="field full">
-                  <label class="label" for="type">Enquiry type</label
+                <div class="field full" data-field="enquiry_type">
+                  <label class="label" for="type">Enquiry type <span class="required">*</span></label
                   ><select class="select" id="type" name="enquiry_type" required>
                     <option value="">Select</option>
                     <option>Investor Support</option>
@@ -476,28 +480,32 @@
                     <option>Technical Support</option>
                     <option>General Enquiry</option>
                   </select>
+                  <div class="field-error" data-error="enquiry_type"></div>
                 </div>
-                <div class="field full">
-                  <label class="label" for="subject">Subject</label
+                <div class="field full" data-field="subject">
+                  <label class="label" for="subject">Subject <span class="required">*</span></label
                   ><input class="input" id="subject" name="subject" required />
+                  <div class="field-error" data-error="subject"></div>
                 </div>
-                <div class="field full">
-                  <label class="label" for="message">How can we help?</label
+                <div class="field full" data-field="message">
+                  <label class="label" for="message">How can we help? <span class="required">*</span></label
                   ><textarea class="textarea" id="message" name="message" required></textarea>
                   <div class="help">
                     Please do not include passwords, OTPs, full account credentials or sensitive identity documents.
                   </div>
+                  <div class="field-error" data-error="message"></div>
                 </div>
                 <div class="field full">
                   <label class="consent"
-                    ><input type="checkbox" required /><span
-                      >I understand that Facilon will use the information submitted to respond to and manage this
+                    ><input type="checkbox" id="contactConsent" required /><span
+                      ><span class="required">*</span> I understand that Facilon will use the information submitted to respond to and manage this
                       enquiry in accordance with its Privacy Notice.</span
                     ></label
                   >
+                  <div class="field-error" data-error="consent"></div>
                 </div>
                 <div class="field full">
-                  <button class="btn btn-primary" type="submit">Submit Enquiry</button>
+                  <button class="btn btn-primary" type="submit" id="contactSubmitBtn">Submit Enquiry</button>
                 </div>
               </div>
             </form>
@@ -595,6 +603,7 @@
       </div>
     </div>
   </footer>
+    <script src="assets/forms.js"></script>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
       const select = document.getElementById("type");
@@ -603,15 +612,72 @@
           document.querySelectorAll(".topic").forEach((x) => x.classList.remove("active"));
           t.classList.add("active");
           select.value = t.dataset.type;
+          FacilonForms.clearError("enquiry_type");
           select.scrollIntoView({ behavior: "smooth", block: "center" });
         })
       );
       const q = new URLSearchParams(location.search).get("type");
       if (q === "service-provider") select.value = "Service Provider Discussion";
       if (q === "investor") select.value = "Investor Support";
-      document.getElementById("contactForm").addEventListener("submit", (e) => {
+
+      const form = document.getElementById("contactForm");
+      // Clear a field's inline error as the user corrects it.
+      form.addEventListener("input", (e) => {
+        const holder = e.target.closest("[data-field]");
+        if (holder) FacilonForms.clearError(holder.getAttribute("data-field"), form);
+        if (e.target.id === "contactConsent") FacilonForms.clearError("consent", form);
+      });
+
+      form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        alert("Demo form only. Connect this form to the production Facilon enquiry workflow before publishing.");
+        FacilonForms.clearAll(form);
+
+        const data = {
+          name: document.getElementById("name").value.trim(),
+          email: document.getElementById("email").value.trim(),
+          phone: document.getElementById("phone").value.trim(),
+          organisation: document.getElementById("org").value.trim(),
+          enquiry_type: select.value,
+          subject: document.getElementById("subject").value.trim(),
+          message: document.getElementById("message").value.trim(),
+          consent: document.getElementById("contactConsent").checked,
+        };
+
+        const errs = {};
+        if (!data.name) errs.name = "Please enter your name.";
+        else if (!FacilonForms.isName(data.name)) errs.name = "Name cannot contain numbers or special characters.";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errs.email = "Please enter a valid email address.";
+        if (!data.phone) errs.phone = "Please enter your phone / mobile number.";
+        else if (!FacilonForms.isMobile(data.phone)) errs.phone = "Please enter a valid mobile number (10 to 15 digits, no letters).";
+        if (!data.enquiry_type) errs.enquiry_type = "Please select an enquiry type.";
+        if (!data.subject) errs.subject = "Please enter a subject.";
+        if (!data.message) errs.message = "Please tell us how we can help.";
+        if (!data.consent) errs.consent = "Please accept the privacy confirmation to continue.";
+        if (Object.keys(errs).length) {
+          FacilonForms.showErrors(errs, form);
+          FacilonForms.toast("Please correct the highlighted fields.");
+          return;
+        }
+
+        const btn = document.getElementById("contactSubmitBtn");
+        const label = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = "Submitting…";
+
+        const res = await FacilonForms.post("api/submit-contact.php", data);
+
+        btn.disabled = false;
+        btn.textContent = label;
+
+        if (!res.ok) {
+          if (res.data && res.data.errors) FacilonForms.showErrors(res.data.errors, form);
+          FacilonForms.toast((res.data && res.data.message) || "We could not submit your enquiry. Please try again.");
+          return;
+        }
+
+        form.reset();
+        document.querySelectorAll(".topic").forEach((x) => x.classList.remove("active"));
+        window.location.href = "thank-you.html?ref=" + encodeURIComponent(res.data.reference || "");
       });
     </script>
     

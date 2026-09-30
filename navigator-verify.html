@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Verify Your Email | Facilon Services</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="fs-style.css">
+  <link rel="stylesheet" href="assets/forms.css">
+  <link rel="stylesheet" href="assets/navigator.css">
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner d-flex justify-content-between align-items-center flex-wrap gap-3 py-1">
+      <div>Facilon Services Private Limited</div>
+      <div class="topbar-links d-flex flex-wrap gap-3">
+        <a href="contact.html">Contact</a>
+        <a href="#privacy">Privacy</a>
+      </div>
+    </div>
+  </div>
+  <header class="nav navbar">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a class="navbar-brand" href="index.html"><img src="images/logo.webp" alt="Facilon"></a>
+      <div class="nav-actions d-flex align-items-center gap-2">
+        <a class="btn btn-primary d-none d-sm-inline-flex" href="investor-access-navigator.html">Investor Access Navigator</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarNav"
+          aria-controls="sidebarNav" aria-label="Open menu"><span class="navbar-toggler-icon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="offcanvas offcanvas-end sidebar-nav" tabindex="-1" id="sidebarNav" aria-labelledby="sidebarNavLabel">
+    <div class="offcanvas-header">
+      <a class="navbar-brand" href="index.html"><img src="images/logo.webp" alt="Facilon"></a>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <ul class="navbar-nav flex-grow-1" aria-label="Main navigation">
+        <li class="nav-item"><a class="nav-link" href="./"><img src="images/icon/sb-img-0.webp" alt=""> Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="investor-access-navigator.html"><img src="images/icon/sb-img-1.webp" alt=""> Investor Access Navigator</a></li>
+        <li class="nav-item"><a class="nav-link" href="for-service-providers.html"><img src="images/icon/sb-img-2.webp" alt=""> For Service Providers</a></li>
+        <li class="nav-item"><a class="nav-link" href="how-facilon-works.html"><img src="images/icon/sb-img-3.webp" alt=""> How Facilon Works</a></li>
+        <li class="nav-item"><a class="nav-link" href="learning-centre.html"><img src="images/icon/sb-img-4.webp" alt=""> Learning Centre</a></li>
+        <li class="nav-item"><a class="nav-link" href="about-facilon.html"><img src="images/icon/sb-img-5.webp" alt=""> About Facilon</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><img src="images/icon/sb-img-6.webp" alt=""> Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="nav-flow">
+    <div class="container">
+      <div class="steps">
+        <div class="step done">1. Questions</div>
+        <div class="step done">2. Providers</div>
+        <div class="step done">3. Save &amp; Notify</div>
+        <div class="step active">4. Verify</div>
+      </div>
+
+      <div class="verify-box">
+        <div class="mailicon">✉️</div>
+        <div class="eyebrow" style="margin-top:14px">Verify your email</div>
+        <div class="title">Enter the verification code</div>
+        <div class="sub" style="margin-left:auto;margin-right:auto">A six-digit verification code has been sent to
+          <strong id="verifyEmail"></strong>. Verification confirms control of the email address and activates your
+          provider-availability alert.</div>
+        <div class="legal-banner" style="text-align:left"><strong>Security reminder:</strong> Facilon will not ask you
+          to disclose this code to a person over a call, message or email. The code is used only to verify this request.</div>
+        <div class="code" id="otpInputs">
+          <input maxlength="1" inputmode="numeric" autocomplete="one-time-code" />
+          <input maxlength="1" inputmode="numeric" />
+          <input maxlength="1" inputmode="numeric" />
+          <input maxlength="1" inputmode="numeric" />
+          <input maxlength="1" inputmode="numeric" />
+          <input maxlength="1" inputmode="numeric" />
+        </div>
+        <div class="field-error" data-error="otp" style="text-align:center"></div>
+        <button class="btn btn-primary" id="verifyBtn" onclick="verifyOtp()">Verify and Activate Alert</button>
+        <div class="help" style="margin-top:14px">Enter the 6-digit code we emailed you. It expires in 10 minutes.</div>
+        <div class="fac-nav-investor-form-sec" style="margin-top:16px">
+          <a class="btn btn-outline" href="navigator-save.html">Change Email</a>
+          <button class="btn btn-primary" id="resendBtn" onclick="resendOtp()">Resend Code</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom d-flex justify-content-between flex-wrap gap-3" style="border-top:0">
+        <div>© <span id="year"></span> Facilon Services Private Limited. All rights reserved.</div>
+        <div>Final investor acceptance and regulated decisions remain with the relevant Service Provider.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/forms.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Require both the profile and a pending registration (with a token).
+    var nav = FacilonForms.load("facilon_nav");
+    var reg = FacilonForms.load("facilon_reg");
+    if (!nav || !nav.profile) {
+      location.replace("investor-access-navigator.html#assessment");
+    } else if (!reg || !reg.token) {
+      location.replace("navigator-save.html");
+    } else {
+      document.getElementById("verifyEmail").textContent = reg.email || "";
+    }
+
+    function otpFields() { return Array.prototype.slice.call(document.querySelectorAll("#otpInputs input")); }
+    function otpValue() { return otpFields().map(function (i) { return i.value.trim(); }).join(""); }
+    function clearOtpInputs() { otpFields().forEach(function (i) { i.value = ""; }); var f = otpFields()[0]; if (f) f.focus(); }
+
+    async function verifyOtp() {
+      FacilonForms.clearError("otp");
+      var code = otpValue();
+      if (!/^\d{6}$/.test(code)) { FacilonForms.showError("otp", "Please enter the 6-digit verification code."); FacilonForms.toast("Please enter the 6-digit verification code."); return; }
+
+      var btn = document.getElementById("verifyBtn");
+      var label = btn.textContent;
+      btn.disabled = true; btn.textContent = "Verifying…";
+
+      var payload = Object.assign({}, nav.profile, {
+        email: reg.email, name: reg.name, personType: nav.personType,
+        consentSave: true, consentEducational: !!reg.consentEducational, consentAck: true,
+        fullProfile: nav.profile, token: reg.token, code: code
+      });
+
+      var res = await FacilonForms.post("api/submit-navigator.php", payload);
+      btn.disabled = false; btn.textContent = label;
+
+      if (!res.ok) {
+        if (res.data && res.data.errors) FacilonForms.showErrors(res.data.errors, document);
+        FacilonForms.toast((res.data && res.data.message) || "Verification failed. Please try again.");
+        return;
+      }
+
+      var p = nav.profile;
+      FacilonForms.save("facilon_done", {
+        reference: res.data.reference || "",
+        email: reg.email,
+        investorType: p.investorType,
+        market: p.market,
+        requirement: (p.servicesProducts || []).map(function (x) { return x.service; }).join(", ") +
+          " | Remaining providers: " + (p.providersRemaining || []).length + " | Help: " + p.helpRequested
+      });
+      FacilonForms.drop("facilon_nav");
+      FacilonForms.drop("facilon_reg");
+      location.href = "navigator-success.html";
+    }
+
+    async function resendOtp() {
+      var btn = document.getElementById("resendBtn");
+      var label = btn.textContent;
+      btn.disabled = true; btn.textContent = "Sending…";
+      var res = await FacilonForms.post("api/send-otp.php", { email: reg.email, name: reg.name, consentSave: true, consentAck: true });
+      btn.disabled = false; btn.textContent = label;
+      if (!res.ok) { FacilonForms.toast((res.data && res.data.message) || "Could not resend the code. Please try again."); return; }
+      reg.token = res.data.token || "";
+      FacilonForms.save("facilon_reg", reg);
+      clearOtpInputs();
+      FacilonForms.toast("A new verification code has been sent to " + reg.email + ".", "success");
+    }
+
+    // OTP input UX: digits only, auto-advance, backspace, paste.
+    otpFields().forEach(function (inp, idx, arr) {
+      inp.addEventListener("input", function () {
+        inp.value = inp.value.replace(/\D/g, "").slice(0, 1);
+        if (inp.value && idx < arr.length - 1) arr[idx + 1].focus();
+        FacilonForms.clearError("otp");
+      });
+      inp.addEventListener("keydown", function (e) {
+        if (e.key === "Backspace" && !inp.value && idx > 0) arr[idx - 1].focus();
+      });
+      inp.addEventListener("paste", function (e) {
+        e.preventDefault();
+        var d = ((e.clipboardData || window.clipboardData).getData("text") || "").replace(/\D/g, "").slice(0, 6);
+        if (!d) return;
+        arr.forEach(function (x, i) { x.value = d[i] || ""; });
+        (arr[Math.min(d.length, arr.length) - 1] || arr[0]).focus();
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,2 +1,8 @@
 images.zip
 learning-centre.zip
+
+# Local secrets — never commit
+api/config.local.php
+
+# Generated email logo cache
+api/logo-email.png

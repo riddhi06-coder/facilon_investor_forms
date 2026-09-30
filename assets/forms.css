@@ -1,0 +1,105 @@
+/* Facilon form feedback: inline field errors + toast notifications.
+   Additive only — no existing layout is affected when there are no errors.
+   Uses existing brand tokens (--red, --green, --border) with safe fallbacks. */
+
+/* Red asterisk for mandatory-field markers (both forms) */
+.required {
+  color: var(--red, #b42318);
+  font-weight: 700;
+}
+
+.field-error {
+  display: none;
+  color: var(--red, #b42318);
+  font-size: 12px;
+  line-height: 1.45;
+  margin-top: 6px;
+  font-weight: 600;
+}
+.field-error.show { display: block; }
+
+/* Highlight invalid inputs/selects/textareas */
+.has-error .input,
+.has-error .select,
+.has-error .textarea,
+.input.has-error,
+.select.has-error,
+.textarea.has-error {
+  border-color: var(--red, #b42318) !important;
+}
+
+/* Subtle emphasis for invalid option groups (which have no bordered input) */
+.options.has-error,
+.grid2.has-error,
+.grid3.has-error {
+  outline: 1px dashed var(--red, #b42318);
+  outline-offset: 6px;
+  border-radius: 8px;
+}
+
+/* ---------------- Toast ---------------- */
+#ff-toast-host {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 360px;
+  pointer-events: none;
+}
+.ff-toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid var(--border, #dce3ea);
+  border-left: 4px solid var(--red, #b42318);
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 10px 30px rgba(15, 25, 35, .16);
+  font-size: 13px;
+  color: #1a2430;
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity .28s ease, transform .28s ease;
+}
+.ff-toast.show { opacity: 1; transform: none; }
+.ff-toast.success { border-left-color: var(--green, #2a7a5b); }
+.ff-toast-msg { flex: 1; line-height: 1.5; }
+.ff-toast-x {
+  border: 0;
+  background: none;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  color: #8b98a7;
+  padding: 0 2px;
+}
+.ff-toast-ic {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  margin-top: 1px;
+  background: var(--red, #b42318);
+  position: relative;
+}
+.ff-toast.success .ff-toast-ic { background: var(--green, #2a7a5b); }
+.ff-toast-ic::after {
+  content: '!';
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  position: absolute;
+  left: 0; right: 0;
+  text-align: center;
+  top: -1px;
+}
+.ff-toast.success .ff-toast-ic::after { content: '\2713'; font-size: 11px; }
+
+@media (max-width: 480px) {
+  #ff-toast-host { left: 12px; right: 12px; max-width: none; }
+}
