@@ -36,7 +36,7 @@ $config = [
     ],
 
     // Recipient of the internal notification on every submission.
-    'admin_email' => ['riddhi@matrixbricks.com', 'shubham@matrixbricks.com','shweta@matrixbricks.com'],
+    'admin_email' => ['riddhi@matrixbricks.com', 'reachus@facilonservices.com', 'suneet.luthra@facilonservices.com'],
 
     // Public-facing brand name used in emails.
     'brand' => 'Facilon Services Private Limited',

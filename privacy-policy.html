@@ -1,0 +1,1521 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Contact Facilon Services for investor support, Service Provider discussions, partnerships, privacy matters and general enquiries." />
+  <title>Privacy Policy | Facilon Services</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="fs-style.css">
+  <link rel="stylesheet" href="assets/forms.css">
+  <style>
+    :root {
+      --blue: #07579b;
+      --blue-dark: #073b69;
+      --blue-deep: #052f55;
+      --cyan: #1ca6d9;
+      --sky: #eaf5fc;
+      --gold: #d5a438;
+      --gold-soft: #fbf5e8;
+      --green: #2a7a5b;
+      --green-soft: #e9f6f1;
+      --ink: #202a34;
+      --muted: #687783;
+      --paper: #f7f9fb;
+      --border: #dce5ec;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Montserrat", Arial, sans-serif;
+      color: var(--ink);
+      line-height: 1.65;
+      background: #fff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.97);
+      border-bottom: 1px solid rgba(7, 87, 155, 0.12);
+      box-shadow: 0 3px 14px rgba(7, 59, 105, 0.06);
+    }
+
+    .nav:before {
+      content: "";
+      display: block;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue-dark), var(--cyan));
+    }
+
+    .nav-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: var(--blue-dark);
+      font-weight: 700;
+      font-size: 22px;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #44596a;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .hero {
+      background: radial-gradient(circle at 88% 18%, rgba(28, 166, 217, 0.3), transparent 30%),
+        linear-gradient(100deg, var(--blue-deep), var(--blue));
+      color: #fff;
+    }
+
+    .hero-inner {
+      padding: 78px 0 68px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: inherit;
+      margin-bottom: 10px;
+      padding-bottom: 0;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin-top: 0;
+      color: var(--blue-dark);
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      color: #fff;
+      font-size: 50px;
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 36px;
+      margin-bottom: 13px;
+    }
+
+    h3 {
+      font-size: 16px;
+    }
+
+    .hero p {
+      color: #e4f0f6;
+      max-width: 780px;
+      font-size: 15px;
+    }
+
+    .section-alt {
+      background: var(--paper);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .topic {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 20px;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .topic:hover,
+    .topic.active {
+      border-color: var(--blue);
+      box-shadow: 0 5px 18px rgba(7, 59, 105, 0.08);
+    }
+
+    .topic strong {
+      display: block;
+      color: var(--blue-dark);
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .topic span {
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .form-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 10px 28px rgba(7, 59, 105, 0.08);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      margin-bottom: 10px;
+    }
+
+    .field.full {
+      grid-column: 1/-1;
+    }
+
+    .label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.45px;
+      color: #5b6d7a;
+      margin-bottom: 10px;
+    }
+
+    .input,
+    .select,
+    .textarea {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 5px;
+      padding: 12px 13px;
+      font:
+        13px "Montserrat",
+        Arial;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .help {
+      font-size: 12px;
+      color: var(--ink);
+      margin-top: 5px;
+    }
+
+    .consent {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      padding: 13px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .notice {
+      background: var(--gold-soft);
+      border-left: 5px solid var(--gold);
+      padding: 20px;
+      border-radius: 5px;
+      font-size: 12px;
+      color: #665934;
+      margin-top: 20px;
+    }
+
+    .quick {
+      display: grid;
+      gap: 15px;
+      margin-top: 24px;
+    }
+
+    .quick-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 7px;
+    }
+
+    .quick-card h3 {
+      margin-bottom: 7px;
+    }
+
+    .quick-card p {
+      color: var(--ink);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .scope {
+      display: inline-flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .pill {
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--sky);
+      color: var(--blue-dark);
+      padding: 5px 10px;
+      border-radius: 999px;
+    }
+
+    @media (max-width: 1050px) {
+      .nav-links {
+        display: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+
+      .contact-layout,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .nav-actions .btn-outline {
+        display: none;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max));
+      }
+
+      .topbar {
+        display: none;
+      }
+
+      .nav-actions .btn-primary {
+        display: none;
+      }
+
+      .topic-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 54px 0;
+      }
+
+      .hero-inner {
+        padding: 58px 0;
+      }
+    }
+
+
+    .privacy-policy-page-main-sec p {
+      font-size: 14px;
+    }
+
+    .cookie-list {
+      padding-left: 30px;
+    }
+
+    .privacy-policy-page-main-sec li {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .privacy-policy-page-main-sec p a {
+      color: #07579b !important;
+      text-decoration: none !important;
+    }
+
+    .privacy-policy-page-main-sec h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .privacy-policy-page-main-sec h4 {
+      font-size: 18px;
+      color: var(--blue-dark);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .fac-table-sec {
+      border-left: 1px solid #07579b;
+      border-bottom: 1px solid #07579b;
+    }
+
+    .fac-table-sec tbody tr:first-child {
+      background-color: #07579b;
+    }
+
+    .fac-table-sec tbody tr:first-child td {
+      color: #fff;
+    }
+
+    .fac-table-sec tbody tr .td-bor-cus-sec {
+      border-right: 1px solid #fff;
+    }
+
+    .fac-table-sec td {
+      border-top: 1px solid #07579b;
+      padding: 10px;
+      border-right: 1px solid #07579b;
+      font-size: 14px;
+    }
+
+    .fac-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .fac-table-sec {
+      width: 100%;
+      min-width: 900px;
+      border-collapse: collapse;
+    }
+
+    .abc-para {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0;
+      text-transform: none;
+      color: #07579b;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner d-flex justify-content-between align-items-center flex-wrap gap-3 py-1">
+      <div>Facilon Services Private Limited</div>
+      <div class="topbar-links d-flex flex-wrap gap-3">
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
+      </div>
+    </div>
+  </div>
+  <header class="nav navbar">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.webp" alt="Facilon">
+      </a>
+      <div class="nav-actions d-flex align-items-center gap-2">
+        <!--<div class="dropdown d-none d-sm-inline-flex">-->
+        <!--  <button class="btn btn-outline dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+        <!--    Sign In-->
+        <!--  </button>-->
+        <!--  <ul class="dropdown-menu dropdown-menu-end">-->
+        <!--    <li>-->
+        <!--      <a class="dropdown-item" href="investor-sign-in.html">Investor Sign In</a>-->
+        <!--    </li>-->
+        <!--    <li>-->
+        <!--      <a class="dropdown-item" href="service-provider-sign-in.html">Service Provider Sign In</a>-->
+        <!--    </li>-->
+        <!--  </ul>-->
+        <!--</div>-->
+        <a class="btn btn-primary d-none d-sm-inline-flex" href="investor-access-navigator.html">
+          Investor Access Navigator
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarNav"
+          aria-controls="sidebarNav" aria-label="Open menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- Sidebar navigation: same offcanvas menu on desktop and mobile -->
+  <div class="offcanvas offcanvas-end sidebar-nav" tabindex="-1" id="sidebarNav" aria-labelledby="sidebarNavLabel">
+    <div class="offcanvas-header">
+      <a class="navbar-brand" href="index.html"><img src="images/logo.webp" alt="Facilon"></a>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <ul class="navbar-nav flex-grow-1" aria-label="Main navigation">
+        <li class="nav-item"><a class="nav-link" href="./"><img src="images/icon/sb-img-0.webp" alt=""> Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="investor-access-navigator.html"><img
+              src="images/icon/sb-img-1.webp" alt=""> Investor Access Navigator</a></li>
+        <li class="nav-item"><a class="nav-link" href="for-service-providers.html"><img src="images/icon/sb-img-2.webp"
+              alt=""> For Service Providers</a></li>
+        <li class="nav-item"><a class="nav-link" href="how-facilon-works.html"><img src="images/icon/sb-img-3.webp"
+              alt=""> How Facilon Works</a></li>
+        <li class="nav-item"><a class="nav-link" href="learning-centre.html"><img src="images/icon/sb-img-4.webp"
+              alt=""> Learning Centre</a></li>
+        <li class="nav-item"><a class="nav-link" href="about-facilon.html"><img src="images/icon/sb-img-5.webp" alt="">
+            About Facilon</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><img src="images/icon/sb-img-6.webp" alt="">
+            Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="eyebrow">Version 2 - 19 09 2026</div>
+        <h1>Facilon Privacy Policy</h1>
+        <div class="scope">
+          <span class="pill">Last updated: September 19, 2026</span>
+        </div>
+      </div>
+    </section>
+    <section class="privacy-policy-page-main-sec">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p>Facilon Services Private Limited (hereinafter referred to as <strong>"Facilon" ("we",
+                "us" or
+                "our"),</strong> is the owner and operator of the applications called
+              <strong>"Facilon Onboard"</strong> and
+              <strong>"Facilon Status"</strong> (the <strong>"Application"</strong> or
+              <strong>"App"</strong>) and the websites available at
+              <a href="https://www.facilonservices.com/">https://www.facilonservices.com</a> and <a
+                href="https://facilonservices.co.in/">https://facilonservices.co.in/</a> - their sub-domains
+              collectively referred to as <strong>"Platform"</strong> for the purposes of the Privacy
+              Policy. We place
+              paramount importance on safeguarding the privacy and security of your Personal Data and
+              consider trust as our top priority and take the protection of your Personal Data very
+              seriously.
+            </p>
+            <p>This Privacy Policy is made in compliance with Applicable Laws (as defined below), that
+              mandate the publication of a privacy policy that informs you of the way in which we
+              collect, use, process, transfer, and store Personal Data when you use our Platform, as
+              well as your rights in relation to this Personal Data.</p>
+            <p>Please note: all information in this Privacy Policy is applicable to you unless otherwise
+              indicated based on your residency status. For the additional terms which may be
+              applicable to you based on your residency status, please refer to your country-specific
+              Addendums at the end of this Privacy Policy. Kindly read this Privacy Policy carefully
+              prior to accessing our Platform or availing of our services.</p>
+            <h3>Definitions And Interpretation</H3>
+            <p>For the purposes of this Privacy Policy:</p>
+            <p><span class="abc-para">a)</span> <strong>"Applicable Laws"</strong> means all applicable
+              data protection and privacy laws, rules, and regulations in force in the relevant
+              jurisdiction governing the processing of Personal Data, including, where applicable, the
+              Information Technology (Reasonable Security Practices and Procedures and Sensitive
+              Personal Data or Information) Rules, 2011, and the Digital Personal Data Protection Act,
+              2023 of India along with the Digital Personal Data Protection Rules, 2025, as may be
+              amended from time to time.</p>
+            <p><span class="abc-para">b)</span> <strong>"Facilitator"</strong> means technology platform
+              that enables
+              data, information and document exchange between Users and Service Providers without
+              itself performing regulated financial services;</p>
+            <p><span class="abc-para">c)</span> <strong>"Personal Data"</strong> means any information
+              that relates to an identified or identifiable individual, who is identifiable by or in
+              relation to such data;</p>
+            <p><span class="abc-para">d)</span> <strong>"Processing"</strong> in relation to Personal
+              Data, means a wholly or partly automated operation or set of operations performed on
+              Personal Data, and includes operations such as but not limited to collection, storage,
+              use, disclosure, transfer, and deletion;</p>
+            <p><span class="abc-para">e)</span> <strong>"Third-Party"</strong> means any person or
+              entity other than Facilon and the User;</p>
+            <p><span class="abc-para">f)</span> <strong>"Services"</strong> means the services offered
+              by Facilon through the Platform; and</p>
+            <p><span class="abc-para">g)</span> <strong>"Service Providers"</strong> means entities who
+              are Securities and Exchange Board of India (SEBI) registered intermediaries,
+              International Financial Services Centres Authority (IFSCA) or Reserve Bank of India
+              (RBI) regulated banks and their personnel;</p>
+            <p><span class="abc-para">h)</span> <strong>"User"</strong>, <strong>"you"</strong> &
+              <strong>"your"</strong> means any natural or legal person who accesses or uses the
+              Platform.
+            </p>
+            <p>Facilon operates as a technology Facilitator and provides a secure digital platform that
+              enables the exchange of information between Users and regulated Service Providers.
+              Facilon does not act as a registered intermediary, broker, custodian, depository
+              participant, portfolio manager or regulated bank.</p>
+            <p>In the event that any information provided or uploaded by you violates the provisions of
+              this Privacy Policy or the <a href="https://facilonservices.co.in/terms-of-use" target="_blank">
+                Terms of Use
+              </a>, we reserve the right to remove such information
+              and restrict or revoke your access to the Platform without incurring any liability.</p>
+            <p>Capitalized terms used but not defined in this Privacy Policy shall have the meaning
+              ascribed to them in the Terms of Use and in case of any inconsistency found between the
+              Privacy Policy and Terms of Use, then they shall have the meaning ascribed to them under
+              the Applicable Laws of the jurisdiction that is directly applicable to the User. </p>
+            <p>Please read this Privacy Policy carefully before using the Platform or any of the
+              Services provided on the Platform. The provisions contained in this Privacy Policy
+              supersede all previous notices and statements regarding our privacy practices with
+              respect to the Platform and our Services. For any questions or concerns regarding this
+              Privacy Policy, you may contact us at the details provided in the "Customer Grievance"
+              section of this Privacy Policy.</p>
+            <h3>Collection, Purpose And Use Of Personal Data</H3>
+            <p>While using our Platform, We may ask you to provide us with certain Personal Data that
+              can be used to contact or identify you. Where possible, we indicate the mandatory and
+              the optional fields. you always have the option to not provide your Personal Data by
+              choosing not to use a particular Service or feature on the Platform. You can also
+              withdraw your consent once you have provided it. However, withdrawing consent may lead
+              to discontinuation of services. To provide our Services we collect and use the following
+              categories of Personal Data for the purpose outlined in Table 1 below:</p>
+            <p class="text-center"><strong>Table 1</strong></p>
+
+            <div class="fac-table-wrapper">
+              <table class="fac-table-sec">
+                <tbody>
+                  <tr>
+                    <td class="td-bor-cus-sec" width="8%"><strong>Sr. No.</strong></td>
+                    <td class="td-bor-cus-sec"><strong>Purpose Name</strong></td>
+                    <td class="td-bor-cus-sec"><strong>Personal Information Collected</strong>
+                    </td>
+                    <td><strong>Usage</strong></td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Service Provider Onboarding</td>
+                    <td>Authorized person: name/designation/email/mobile/phone number
+
+                      primary contact: name/designation/email/mobile/phone number
+
+                      escalation contact: name/designation/email/mobile/phone number</td>
+                    <td>Used by Facilon to register and verify Service Provider
+                      credentials, validate regulatory standing, establish contractual
+                      relationships, configure system access, and enable onboarding and
+                      operational workflows</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Service Provider User Onboarding, Identity and Role Management
+                    </td>
+                    <td>Name, email, phone number, role, employer, user ID, assigned
+                      roles, access rights, permissions, approval authority</td>
+                    <td>Used by Facilon to register users and establish user identity,
+                      assign access credentials, and associate users with the relevant Service
+                      Provider entity. To enforce least privilege access, manage approvals and
+                      manage actions based on role</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Investor Profile Creation &amp; Account Management</td>
+                    <td>First Name, Middle Name, Last Name, Email ID, mobile number,
+                      landline number, WhatsApp number, Username / Login ID, Nationality,
+                      Country
+                      of Residence, Gender, Date of Birth, Legal Name, type of entity,
+                      incorporation details, Registered address, tax identifiers, contact
+                      persons,
+                      Authorized Signatory / Representative name (for Legal Entities)</td>
+                    <td>Used by Facilon to register investors and establish investor
+                      accounts, manage access credentials, manage authentication, associate
+                      users
+                      with applicable entities and relevant services and enable interaction
+                      with
+                      Platform services</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Legal Entity Investor User Onboarding, Identity, Access &amp;
+                      Role Management</td>
+                    <td>Name, designation, email, phone number, employer entity, user
+                      ID, role type, access rights, approval authority</td>
+                    <td>Used by Facilon to create user accounts, associate users with
+                      the correct legal entity, manage access, manage approvals, restrict
+                      system
+                      actions based on role and enable secure access to Platform features</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>Platform Usage, Monitoring &amp; Audit Logs</td>
+                    <td>Login timestamps, IP/device identifiers, actions on investor
+                      records, status changes, document views/downloads/uploads, activity
+                      logs,
+                      access records, historical actions</td>
+                    <td>Used by Facilon to ensure platform security, detect anomalies,
+                      frauds, investigate incidents, regulatory reviews, maintain evidentiary
+                      audit trails, and support compliance /forensic analysis and dispute
+                      resolution</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>Support, Communications &amp; Operational Assistance</td>
+                    <td>Helpdesk tickets, chat transcripts, call logs and notes, email
+                      correspondence, messages, workflow actions</td>
+                    <td>Used by Facilon to provide timely support, manage service
+                      requests, improve operational effectiveness, traceability of actions,
+                      deliver support services and maintain records for audit and quality
+                      assurance purposes and legal and regulatory requirements.</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>KYC / CKYC Processing</td>
+                    <td>Citizenship, Country of Birth, Country/ies of Residence,
+                      Passport, Aadhaar, PAN, Election ID, Driving License, MGNREGA Card, Govt
+                      issued ID, RBI Approval Reference (if applicable), Certificate of
+                      Incorporation, constitutional documents, registration number, licenses
+                    </td>
+                    <td>Used by Service Providers to complete regulatory onboarding,
+                      verify identity, and facilitate compliant access to financial services
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>FATCA / CRS &amp; Tax Compliance</td>
+                    <td>Tax residence, Tax Identification Number, FATCA classification,
+                      CRS declarations</td>
+                    <td>Used by Service Providers for classification, reporting, and
+                      ongoing tax compliance monitoring</td>
+                  </tr>
+                  <tr>
+                    <td>9</td>
+                    <td>Beneficial Ownership &amp; Control</td>
+                    <td>Shareholding structure, Ultimate Beneficial Owners (UBO)
+                      details, control rights, ownership percentages</td>
+                    <td>Used to by Service Providers to assess ownership structures,
+                      identify control relationships, and support AML, risk, and compliance
+                      reviews</td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td>Financial suitability assessment and regulatory risk profiling
+                    </td>
+                    <td>Occupation, Line of Business, Annual Income Range, Net Worth,
+                      Educational Qualification</td>
+                    <td>Used by Service Providers under regulatory frameworks to assess
+                      financial suitability, risk profiling, and account categorization</td>
+                  </tr>
+                  <tr>
+                    <td>11</td>
+                    <td>Anti-Money Laundering (AML), Risk Monitoring &amp; Financial
+                      Crime Prevention</td>
+                    <td>Source of Funds, Source of Wealth, Politically Exposed Persons
+                      ("PEP") status and related information, Relationship to PEPs, High-value
+                      transaction disclosures, Nature and purpose of business relationship,
+                      Regulatory violations (if any)</td>
+                    <td>Used by Service Providers for AML screening, transaction
+                      monitoring, suspicious activity detection, and reporting obligations
+                      required under PMLA, SEBI and international AML guidelines</td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>Bank &amp; Payment Details Processing</td>
+                    <td>Bank account details, IFSC, payment references, cancelled cheque
+                    </td>
+                    <td>Used by Service Providers to support payment processing,
+                      reconciliation, and transaction-related communications</td>
+                  </tr>
+                  <tr>
+                    <td>13</td>
+                    <td>Cookies &amp; Preference Management</td>
+                    <td>Session identifiers, cookie IDs (Strictly Necessary Cookies;
+                      other categories including Functional, Analytics, and Marketing Cookies
+                      subject to consent as specified in our <a href="https://facilonservices.co.in/cookies-policy"
+                        target="_blank">
+                        Cookies Policy</a>), browser settings,
+                      and
+                      language preferences</td>
+                    <td>Used by Facilon to support authentication, navigation, user
+                      experience, and security; non-essential cookies are used only with
+                      consent
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>14</td>
+                    <td>Third-Party Disclosures &amp; Operational Enablement</td>
+                    <td>Data Collected for providing services as mentioned under rows 1
+                      to 13, 15, 16 &amp; 17</td>
+                    <td>Used by Facilon to ensure service continuity, security,
+                      compliance, and operational effectiveness</td>
+                  </tr>
+                  <tr>
+                    <td>15</td>
+                    <td>Marketing &amp; Promotional Communications</td>
+                    <td>Email address, communication preferences, campaign interactions
+                    </td>
+                    <td>Used by Facilon to inform users of updates, features, or
+                      services and to measure campaign effectiveness</td>
+                  </tr>
+                  <tr>
+                    <td>16</td>
+                    <td>Analytics &amp; Product Improvement</td>
+                    <td>Page views, navigation paths, feature usage, anonymized metrics
+                    </td>
+                    <td>Used by Facilon to evaluate system performance, enhance
+                      usability, and guide product improvements</td>
+                  </tr>
+                  <tr>
+                    <td>17</td>
+                    <td>Enquiries &amp; Contact Requests</td>
+                    <td>Name, email, message content</td>
+                    <td>Used by Facilon to respond to user queries and manage
+                      communications</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <br>
+            <p>We also collect the below-mentioned Personal Data at specific instances:</p>
+            <p>Other Personal Data: Cookies are small data files placed on your device that a website
+              stores on your computer while you are browsing a website. We may use cookies and other
+              technologies to store your preferences and settings, help you with signing in, provide
+              targeted ads and analyze Platform operations. You can refer to our <a
+                href="https://facilonservices.co.in/cookies-policy" target="_blank">
+                Cookies Policy </a> for
+              more details.</p>
+            <h3>Other Uses Of Personal Data:</H3>
+            <p>The Personal Data collected shall also be used for the following purposes, as permitted
+              under Applicable Law:</p>
+            <p><span class="abc-para">a)</span> To offer a personalized experience for the User;</p>
+            <p><span class="abc-para">b)</span> To conduct research and enhance marketing and
+              promotional efforts; This enables us to understand general customer trends and patterns
+              so we can develop and support existing and ongoing marketing strategies for our products
+              and Services and conduct other marketing and commercial activities;</p>
+            <p><span class="abc-para">c)</span> To improve the content, functionality, and layout of the
+              Platform;</p>
+            <p><span class="abc-para">d)</span> To gather statistical data, including User demographics,
+              trends, and usage metrics;</p>
+            <p><span class="abc-para">e)</span> For improvement of our Services and as otherwise
+              described to you at the time of collection. This information may also be used for staff
+              training, quality assurance, or to retain evidence of a specific transaction or
+              interaction;</p>
+            <p><span class="abc-para">f)</span> To detect, prevent, and address technical issues, fraud,
+              misuse, or violations of the Privacy Policy and Terms of Use;</p>
+            <p><span class="abc-para">g)</span> To comply with legal obligations, respond to lawful
+              requests, government or regulatory inquiries, or protect the rights, property, or safety
+              of the Platform, Users, or the public;</p>
+            <p><span class="abc-para">h)</span> To contact you by email, telephone calls, SMS, or other
+              equivalent forms of electronic communication, such as a mobile application's push
+              notifications regarding updates or informative communications related to the
+              functionalities, Platform or Services, including the security updates, when necessary or
+              reasonable for their implementation.</p>
+            <h3>User Account Control</h3>
+            <p>You have comprehensive control over your account and Personal Data through various
+              mechanisms available on our Platform. You may update your account/profile information by
+              logging into your account, though any changes must comply with our Terms of Use.
+              Additionally, you can control your communication preferences by unsubscribing from
+              promotional emails, though we may continue to send service-related communications such
+              as account notifications and security notices. Depending on your jurisdiction, you may
+              also opt out of targeted advertising, data sharing, or sales of your Personal Data by
+              contacting us as under the "Customer Grievance" section of this Privacy Policy.</p>
+            <p>We extend an option to you to delete account or use of Services with us by contacting us
+              using the details provided in the "Customer Grievance" section of this Privacy Policy.
+              Additionally, you can also request Personal Data to be removed from our servers based on
+              Applicable Law. Upon receiving such a request, all information corresponding to the
+              specific account, including but not limited to profile details, transactional data will
+              be eradicated within the statutory or sectoral retention periods depending upon your
+              jurisdiction. There might also be scenarios where we may not be able to execute account
+              deletion, such as if there exists an outstanding dispute, transactions suspected of
+              being fraudulent, and unresolved claims attached to your account. Upon resolution of the
+              obstruction preventing deletion, the relevant information is promptly deleted and cannot
+              be retrieved thereafter.</p>
+            <h3>Effects Of Not Providing Personal Data</h3>
+            <p>We collect Personal Data only to the extent required to provide you with our Services and
+              to fulfil our legal obligations (if any). Not sharing the mandatory Personal Data may
+              lead to certain features of the Platform or our Services being restricted, unavailable,
+              or unusable. For instance, withholding your email address will not allow us to share
+              relevant updates and required information about our Services.</p>
+            <p>While you maintain significant control over your Personal Data, including rights to
+              access, update, or request deletion, certain limitations apply. Some Personal Data may
+              be necessary for Platform functionality, and certain communications may be mandatory for
+              legal, security, or operational purposes. You may also manage cookies and tracking
+              technologies through your browser or Application settings, though disabling these
+              features may impact on the functionality of our Services.</p>
+            <h3>When And How Personal Data Is Collected</h3>
+            <p>The above-mentioned Personal Data and other information are collected in the following
+              ways:</p>
+            <p><span class="abc-para">a)</span> Directly from you, for example when You use our
+              Platform, our Services or when you contact us through phone, email or use our contact us
+              or chat with us or bot feature;</p>
+            <p><span class="abc-para">b)</span> When you make an account or register with us;</p>
+            <p><span class="abc-para">c)</span> When you are a recipient of services provided by us;</p>
+            <p><span class="abc-para">d)</span> When you provide us information to verify Your identity;
+            </p>
+            <p><span class="abc-para">e)</span> When you reach out to our customer support teams or when
+              a support ticket is created;</p>
+            <p><span class="abc-para">f)</span> When you provide us with feedback;</p>
+            <p><span class="abc-para">g)</span> When you visit our social media pages;</p>
+            <p><span class="abc-para">h)</span> When you fill in web forms and surveys for us;</p>
+            <p><span class="abc-para">i)</span> When you interact with off-site services and events that
+              relate to our Platform or Services;</p>
+            <p><span class="abc-para">j)</span> Any other form of interaction you have with us that
+              necessitates collection of Personal Data for providing Services to you.</p>
+            <h3>Information Collected From Third Parties</h3>
+            <p>If You send us personal correspondence, such as emails or letters, or if other
+              individuals or third parties send us correspondence about your activities regarding the
+              Platform or our Services, we collect such information into a file specific to you.</p>
+            <h3>Disclosure To Third Parties</h3>
+            <p>We do not disclose, transfer or share your Personal Data, to any Third Party except when
+              we are under duty to do so in order to comply with any legal obligation or an order from
+              the government and/or a statutory authority, or as described below, Personal Data may be
+              disclosed or shared only in the following circumstances:</p>
+            <p><span class="abc-para">a)</span> Cloud storage: We use cloud server to host Personal Data
+              and enable our Services and operation of the Platforms.</p>
+            <p><span class="abc-para">b)</span> Monitoring of Services: We use crash reporting to
+              monitor infrastructure and performance of the Service, identify and resolve errors and
+              crashes in our Service across different Platforms.</p>
+            <p><span class="abc-para">c)</span> For Providing Services: In order to enforce or apply our
+              Terms of Use or assign such Personal Data in the course of corporate divestitures or
+              mergers.</p>
+            <p><span class="abc-para">d)</span> Fraud Prevention Measures: We share your Personal Data
+              to protect the rights, property, or safety of us, our Users, or others. This includes
+              exchanging Personal Data with other companies and organizations for the purposes of
+              fraud protection and credit risk reduction.</p>
+            <p><span class="abc-para">e)</span> Business Transfers: We may share your Personal Data with
+              our affiliates, or another business entity should we (or our assets) merge with, or be
+              acquired by that business entity, or re-organization, amalgamation, restructuring of
+              business for continuity of business. Should such a transaction occur then any business
+              entity (or the new combined entity) receiving any such Personal Data from us shall be
+              bound by this Privacy Policy with respect to your information.</p>
+            <p><span class="abc-para">f)</span> Professional Advisors: With legal advisors, auditors, or
+              consultants engaged by us for professional or compliance-related purposes, subject to
+              strict confidentiality obligations.</p>
+            <p><span class="abc-para">g)</span> Legal and Regulatory Requirements: Where such disclosure
+              is required or permitted by law, regulation, legal process, or governmental request; or
+              where it is necessary to protect our rights, property, or safety, or that of the Users,
+              employees, or the public.</p>
+            <p><span class="abc-para">h)</span> Marketing and Advertising Partners: With Third-Party
+              marketing or advertising partners for purposes of delivering promotional communications,
+              personalized recommendations, or advertisements, to the extent permitted by Applicable
+              Laws and subject to User consent, where required.</p>
+            <p><span class="abc-para">i)</span> Anonymized or Aggregated Data: We may use and share
+              anonymized or de-identified information for research, analytics, service improvement, or
+              other business purposes, provided that such data does not identify any individual.</p>
+            <p><span class="abc-para">j)</span> Payments: To facilitate payments using our Third-Party
+              payment providers, billing, refunds, and prevent unauthorised transactions, where
+              applicable. These Third-Party payment providers do not share your financial information,
+              like credit card number, with us, but may share limited information with us related to
+              your purchase, like success or failure of a transaction.</p>
+            <p>By using the Platform, you hereby grant your consent to us to share/disclose your
+              Personal Data (i) to the concerned Third Parties in connection with the Services; and
+              (ii) with the governmental authorities, quasi-governmental authorities, judicial
+              authorities, and quasi-judicial authorities, in accordance with Applicable Laws.</p>
+            <p>We ensure, to a reasonable extent, that any Third Party with whom it shares Personal Data
+              maintains security and confidentiality measures that are in line with this Privacy
+              Policy and Applicable Laws. In case we use or disclose your Personal Data for any
+              purpose not specified above, we will take your consent.</p>
+            <h3>Third Party Links</h3>
+            <p>When using the Platform or Services, you may encounter links to Third-Party
+              websites/apps, service provider ads that are not affiliated with us. We are not
+              responsible for the privacy practices or the content of those linked websites. Such
+              websites are not operated, controlled, or endorsed by us, and we make no representations
+              or warranties regarding their accuracy, completeness, or reliability. With this Privacy
+              Policy we're only addressing the disclosure and use of Personal Data collected by us. If
+              you visit any websites through the links on the Platform, please ensure you go through
+              the privacy policies of each of those websites. Their data collection practices, and
+              their policies might be different from this Privacy Policy and neither have control over
+              any of their policies nor do we have any liability in this regard. Any information,
+              communication or Personal Data that you choose to share directly with the Third Party
+              will be governed under their policies and we will not have any accountability for the
+              same.</p>
+            <h3>How Long Do We Retain Your Data</h3>
+            <p>We may retain Personal Data collected for a minimum period of one (1) year for complying
+              with legal obligations, for facilitating services to enable us to offer you additional
+              or enhanced services in the future. We may also be required to retain data for longer
+              periods to comply with Applicable Laws and regulations depending on the category of data
+              collected.</p>
+            <p>We will notify you and obtain your consent before using your Personal Data for any new
+              purpose not originally disclosed to you.</p>
+            <p>We will retain your Personal Data for as long as needed to fulfil the purpose for which
+              we collected it, or to provide our Services as mentioned in this Privacy Policy or till
+              consent is withdrawn and thereafter, for the mandatory statutory or regulatory periods
+              to comply with audit, accounting, contractual, technical and legal requirements and
+              obligations, for security purposes, and/or to resolve any future disputes. At the expiry
+              of such periods, your Personal Data will be deleted or archived in compliance with the
+              Applicable Laws.</p>
+            <h3>How Do We Keep Your Data Secure</h3>
+            <p>We endeavor to protect your Personal Data and to maintain its accuracy as confirmed by
+              You. We have implemented reasonable physical, administrative and technical safeguards to
+              help us protect your Personal Data from unauthorized access, use and disclosure which
+              include:</p>
+            <p><span class="abc-para">a)</span> We use encryption to keep your data private while in
+              transit;</p>
+            <p><span class="abc-para">b)</span> We anonymize or pseudonymize your data wherever feasible
+              to uphold your privacy;</p>
+            <p><span class="abc-para">c)</span> We review our information collection, storage, and
+              processing practices, including physical security measures, to prevent unauthorized
+              access to our systems;</p>
+            <p><span class="abc-para">d)</span> We restrict access to Personal Data to our employees,
+              contractors, and agents who need that information in order to process it. Anyone with
+              this access is subject to contractual confidentiality obligations and may be disciplined
+              or terminated if they fail to meet these obligations;</p>
+            <p><span class="abc-para">e)</span> We ensure compliance & cooperation with Regulations and
+              Applicable Laws;</p>
+            <p><span class="abc-para">f)</span> We regularly review this Privacy Policy and make sure
+              that we process your information in ways that comply with it;</p>
+            <p><span class="abc-para">g)</span> We maintain your Personal Data on servers located in
+              India unless there are any specific data storage requirements under applicable laws. We
+              also comply with certain legal frameworks relating to the transfer of data as mentioned
+              and required under Applicable Laws.</p>
+            <h3>Processing For Targeted Advertising And Sale Of Personal Data</h3>
+            <p>Facilon may process your Personal Data for purposes of targeted advertising to provide
+              you with content, recommendations, and promotional communications that are more relevant
+              to your interests and as per Applicable Laws. <strong>Facilon does not engage in the
+                sale or
+                rental of any information provided by Users.</strong></p>
+            <p>As per Applicable Laws, you have the right to opt out of the processing of your Personal
+              Data for targeted advertising;</p>
+            <p>To exercise your right to opt out, you may also contact us using the details provided in
+              the "Customer Grievance" section of this Privacy Policy to submit an opt-out request.
+            </p>
+            <h3>Children Personal Data</h3>
+            <p>Facilon's Platform or Services are not available for children (under the age of 18 or any
+              other age of "Child" or "Children" as per the Applicable Laws) and do not provide
+              information aimed at or specifically targeting Children. We do not knowingly collect
+              Personal Data of Children directly from them. If you are categorized as a Child under
+              the Applicable Laws and use our Platform and our Services, then we shall presume that
+              you are using our Platform and our Services only under the guidance and involvement of a
+              parent or legal guardian. If it becomes known that a Child has provided Personal Data,
+              we will take appropriate steps to delete such Children Personal Data from its systems.
+              If you believe that a Child has provided Personal Data to us, please contact us using
+              the details provided in the "Customer Grievance" section of this Privacy Policy.</p>
+            <h3>Your Rights</h3>
+            <p>Depending upon your location and in accordance with Applicable Laws, you may have certain
+              rights in relation to your Personal Data which include:</p>
+            <p><span class="abc-para">a)</span> to access your Personal Data held by us, our Processing
+              activities, and the Third Parties with whom Personal Data has been shared, along with a
+              description of such data (right to access);</p>
+            <p><span class="abc-para">b)</span> to review/update/rectify/correct/complete inaccurate
+              Personal Data and ensure it is accurate, true, updated, and complete (right to
+              rectification);</p>
+            <p><span class="abc-para">c)</span> to erase/delete your Personal Data (right to erasure;
+              right to be forgotten);</p>
+            <p><span class="abc-para">d)</span> to raise grievance in accordance with the "Customer
+              Grievance" section below; and</p>
+            <p><span class="abc-para">e)</span> to make a complaint with the appropriate authority.</p>
+            <p>Depending on the jurisdiction in which you reside, you may be entitled to additional or
+              specific rights regarding your Personal Data under the Applicable Laws. Please refer to
+              the Country-Specific Addendum below for details of the rights available to you under
+              your local laws.</p>
+            <p>If you would like to exercise any of these rights, please contact us as set forth below
+              in the "Customer Grievance" section of this Privacy Policy. Upon verifying the
+              authenticity of such a request, we will process such requests in accordance with
+              Applicable Laws. We try to respond to all legitimate requests at the earliest within the
+              timelines as per Applicable Laws of the jurisdiction you are a resident of and will
+              contact you if we need additional information from you to honor your request.</p>
+            <h3>Verification Process For Exercising Rights</h3>
+            <p>To protect your privacy, we verify privacy rights requests to ensure that only you (or
+              your authorized representative) can exercise rights pertaining to your Personal Data. As
+              part of our verification process, we may request you to submit additional information.
+            </p>
+            <p>If you are an authorized representative wishing to exercise rights on behalf of a User,
+              please contact us as per the "Customer Grievance" section on this Privacy Policy and
+              provide us with a copy of the User's written authorization designating you as their
+              representative. We may need to verify your identity and place of residence before
+              completing your rights request.</p>
+            <h3>Non-discrimination</h3>
+            <p>We will not discriminate against you for exercising your privacy rights as per Applicable
+              Laws. Specifically, we will not: (a) Deny you goods or Services (except for the Services
+              for which consent has been specifically withdrawn); (b) Charge you different prices or
+              rates for Services; or (c) Provide you a different level or quality of Services; or (d)
+              Suggest that you will receive a different price or quality of Services as a result of
+              exercising your rights.</p>
+            <h3>Modification To Privacy Policy</h3>
+            <p>We may modify, revise or change this Privacy Policy from time to time. We will take
+              appropriate measures to notify you of any changes by posting the new Privacy Policy on
+              this page. We will let you know via email, in-app messages, pop-ups, or a notice on the
+              Platform, prior to the change becoming effective and update <strong>"Last
+                Updated"</strong> at the top of
+              this Privacy Policy so that you have an opportunity to review the revised Privacy Policy
+              before it is effective. If your consent is required by Applicable Laws, We will obtain
+              your consent to collect your Personal Data before the revised Privacy Policy applies to
+              you.</p>
+            <p>We encourage you to review this Privacy Policy periodically for any changes. Changes to
+              this Privacy Policy are effective as and when they are posted on this page. Unless
+              stated otherwise, our Privacy Policy applies to all information that we have about you.
+            </p>
+            <h3>Customer Greivance</h3>
+            <p>We support and encourage all users to contact us for questions, concerns, or suggestions relating to our
+              Platform, Services, Terms of Use and our Privacy Policy or practices involving the usage of Personal Data.
+              You may contact our designated Grievance Officer (by whatever name called under Applicable Laws) at:</p>
+            <p>Email: <a href="mailto:privacy@facilonservices.com"><span
+                  class="__cf_email__">privacy@facilonservices.com</span></a></p>
+            <p>The Grievance Officer will acknowledge and address your complaint in accordance with applicable legal
+              requirements and within the timelines prescribed thereunder.</p>
+          </div>
+          <hr>
+            
+            
+            
+            <h3>Jurisdiction Specific Additional Terms</h3>
+            
+            <h4>Additional Terms Applicable if You are a Resident of the European Union and the European Economic Area
+              (EEA)</h4>
+            <p>If you are located in the European Union or European Economic Area, this section applies to you and
+              supplements the other provisions of this Privacy Policy. Facilon processes your Personal Data in
+              accordance with the General Data Protection Regulation (EU) 2016/679 (“GDPR”), and any applicable data
+              protection laws of the EU/EEA Member State in which you reside.</p>
+            <h4>Legal Basis for Processing</h4>
+            <p>We process your Personal Data under one or more of the following legal bases as permitted under the GDPR:
+            </p>
+            <ul class="cookie-list">
+              <li><strong>Consent:</strong> Where you have provided your explicit consent for the collection or
+                Processing of your Personal Data for one or more specific purposes. </li>
+              <li><strong>Performance of a Contract:</strong> Where Processing is necessary for the performance of a
+                contract to which you are a party or to take steps at your request prior to entering into a contract.
+              </li>
+              <li><strong>Legal Obligation:</strong> Where Processing is necessary for compliance with a legal
+                obligation to
+                which Facilon is subject. </li>
+              <li><strong>Legitimate Interests:</strong> Where Processing is necessary for the purposes of our
+                legitimate
+                interests or those of a third party, except where such interests are overridden by your rights and
+                freedoms. </li>
+              <li><strong>Vital Interests:</strong> Where Processing is necessary to protect your vital interests or
+                those of another
+                natural person.</li>
+            </ul>
+            <h4>Your Rights</h4>
+            <ul class="cookie-list">
+              <li><strong>Right of Access:</strong> To obtain confirmation as to whether your Personal Data is being
+                processed and, if so, to request access to such information along with details regarding its Processing.
+              </li>
+              <li><strong>Right to Rectification:</strong> To request correction or completion of any inaccurate or
+                incomplete Personal Data we hold about you. </li>
+              <li><strong>Right to Erasure (“Right to be Forgotten”):</strong> To request deletion of your Personal Data
+                in certain circumstances, such as when the information is no longer necessary for the purposes for which
+                it was collected or you withdraw consent. </li>
+              <li><strong>Right to Restrict Processing:</strong> To request restriction on the Processing of your
+                Personal Data under certain circumstances (for example, where the accuracy of the information is
+                contested). </li>
+              <li><strong>Right to Data Portability:</strong> To receive your Personal Data in a structured, commonly
+                used, and machine-readable format and to have that data transmitted to another controller where
+                technically feasible. </li>
+              <li><strong>Right to Object:</strong> To object to the Processing of your Personal Data on grounds
+                relating to your particular situation, including Processing for direct marketing purposes. </li>
+              <li><strong>Right Not to Be Subject to Automated Decision-Making:</strong> To not be subject to a decision
+                based solely on automated Processing, including profiling, which produces legal effects concerning you
+                or similarly significantly affects you. </li>
+              <li><strong>Right to Withdraw Consent:</strong> To withdraw your consent at any time where Processing is
+                based on consent, without affecting the lawfulness of Processing based on consent before its withdrawal.
+              </li>
+            </ul>
+            <p>You may exercise these rights by contacting us in accordance with the Customer Grievance section of this
+              Privacy Policy. We try to respond to all legitimate requests at the earliest within the timelines as per
+              Applicable Law and will contact you if we need additional information from you in order to honour your
+              request. For your protection, we may require that the request be sent through the email address associated
+              with your account, and we may need to verify your identity before implementing your request.</p>
+            <h4>How to Lodge a Complaint</h4>
+            <p>If you believe that your grievance has not been resolved by us and/or your Personal Data has been
+              processed in violation of the GDPR, you have the right to lodge a complaint with your local supervisory
+              authority. </p>
+            <h4>International Data Transfers</h4>
+            <p>Your Personal Data may be transferred to and processed in countries outside the EU/EEA, including
+              jurisdictions that may not provide the same level of data protection as your home country. Where such
+              transfers occur, Facilon ensures that appropriate safeguards are implemented, including:
+              For EU/EEA Personal Data: the use of European Commission-approved Standard Contractual Clauses (SCCs) or
+              other lawful transfer mechanisms recognized under the GDPR.</p>
+            <p>Further details regarding such safeguards can be obtained by contacting us through the details provided
+              in the Customer Grievance section of this Privacy Policy.</p>
+            <p>The provisions contained in this section are specifically applicable to you. However, all other terms and
+              clauses set forth in the main Privacy Policy shall continue to apply in full force and effect. This
+              section is intended to supplement, and not replace, the main <a href="privacy-policy.html">Privacy Policy</a>.</p>
+            <h3>AdditionalTerms Applicable if You are a Resident of California (United States)</h3>
+            <p>If you are a resident of the State of California, United States, this section applies to you and
+              supplements the other provisions of this Privacy Policy. Facilon complies with the California Online
+              Privacy Protection Act (“CalOPPA”) as applicable to the collection and use of personally identifiable
+              information (“PII”) from California residents through the Platform.</p>
+            <h4>Your Rights</h4>
+            <ul class="cookie-list">
+              <li>Access and Review of Personal Data: You may request access to the PII that we hold about you, and
+                where applicable, review and request correction of any such information that you believe to be
+                inaccurate or incomplete.</li>
+              <li>Changes to Personal Data: Where we maintain a process for Users to review and request changes to their
+                PII collected through the Platform, we will describe such process on the Platform and enable you to
+                submit a request to update, correct, or delete your information in accordance with Applicable Laws.</li>
+            </ul>
+            <p>You may exercise these rights by contacting us in accordance with the Customer Grievance section of this
+              Privacy Policy. We try to respond to all legitimate requests at the earliest within the timelines as per
+              Applicable Law and will contact you if we need additional information from you in order to honor your
+              request. For your protection, we may require that the request be sent through the email address associated
+              with your account, and we may need to verify your identity before implementing your request.</p>
+            <p>California’s Shine the Light law gives California residents the right to ask companies once a year what
+              Personal Data they share with third parties for those third parties' direct marketing purposes. More
+              information can be found <a
+                href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1798.81.5"
+                target="_blank">here</a>.</p>
+            <p>To obtain this information from us, you may contact us at the details provided in the Customer Grievance
+              section of this Privacy Policy. Upon confirmation and validation of your identity and request, we will
+              provide the requested information to you.</p>
+            <h4>“Do Not Track” Signals</h4>
+            <p>Certain web browsers and devices allow users to send “Do Not Track” (“DNT”) signals, indicating a
+              preference that a website or online service should not track online activities over time and across
+              third-party websites. At this time, Facilon does not respond to DNT signals or similar mechanisms because
+              no uniform industry standard for recognizing and responding to such signals has been established. If you
+              turn on the "Do Not Track" setting on your browser, our Platforms are not currently capable of following
+              whatever Do Not Track preferences you set. For more information about Do Not Track, visit <a
+                href="https://www.eff.org/issues/do-not-track" target="_blank">Do Not Track |
+                Electronic Frontier Foundation.</a></p>
+            <p>The provisions contained in this section are specifically applicable to you. However, all other terms and
+              clauses set forth in the main Privacy Policy shall continue to apply in full force and effect. This
+              section is intended to supplement, and not replace, the main Privacy Policy.</p>
+            <h3>Additional Terms Applicable if You are a Resident of Colorado (United States)</h3>
+            <p>If you are located in the State of Colorado, United States, this section applies to you and supplements
+              the other provisions of this Privacy Policy. Facilon handles your Personal Data in accordance with the
+              Colorado Privacy Act (“CPA”), as may be amended from time to time.</p>
+            <h4>Your Rights </h4>
+            <p>If you are a Colorado resident, you have the following rights with respect to your Personal Data:</p>
+            <ul class="cookie-list">
+              <li><strong>Right to Access:</strong> You have the right to confirm whether we are processing your
+                Personal Data and to access such information.</li>
+              <li><strong>Right to Correction:</strong> You have the right to request correction of inaccuracies in your
+                Personal Data, taking into account the nature of the information and the purposes for which it is
+                processed. </li>
+              <li><strong>Right to Deletion:</strong> You have the right to request deletion of your Personal Data that
+                we have collected from you, subject to certain exceptions as permitted by law. </li>
+              <li><strong>Right to Data Portability:</strong> You have the right to obtain your Personal Data in a
+                portable and, to the extent technically feasible, readily usable format that allows you to transmit the
+                data to another entity without hindrance. </li>
+              <li><strong>Right to Opt Out:</strong> You have the right to opt out of the processing of your Personal
+                Data for: (a) Targeted advertising; (b) The sale of Personal Data; or (c) Profiling in furtherance of
+                decisions that produce legal or similarly significant effects concerning you. </li>
+            </ul>
+            <h4>How to Exercise Your Rights</h4>
+            <p>You may exercise these rights by contacting us in accordance with the Customer Grievance section of this
+              Privacy Policy. We try to respond to all legitimate requests at the earliest within the timelines as per
+              Applicable Law and will contact you if we need additional information from you in order to honor your
+              request. For your protection, we may require that the request be sent through the email address associated
+              with your account, and we may need to verify your identity before implementing your request. If we are
+              unable to fulfil your request, you will be informed of the reasons for refusal and the process to appeal
+              our decision. You may submit an appeal with us at <a
+                href="mailto:privacy@facilonservices.com">privacy@facilonservices.com</a> and we will respond within
+              the timeframe required by law. Depending on where you live, you may contact your State Attorney General
+              through its respective and designated website regarding any complaints you may have with respect to the
+              exercise of your rights. </p>
+            <p>The provisions contained in this section are specifically applicable to you. However, all other terms and
+              clauses set forth in the main Privacy Policy shall continue to apply in full force and effect. This
+              section is intended to supplement, and not replace, the main <a href="privacy-policy.html">Privacy Policy</a>.</p>
+            <h3>Additional Terms Applicable if You are a Resident of Nebraska (United States)</h3>
+            <p>If you are located in the State of Nebraska, United States, this section applies to you and supplements
+              the other provisions of this Privacy Policy. Facilon handles your Personal Data in accordance with the
+              Nebraska Data Privacy Act (the “NDPA”), as may be amended from time to time.</p>
+            <h4>Your Rights </h4>
+            <p>If you are a Nebraska resident, you have the following rights with respect to your Personal Data:</p>
+            <ul class="cookie-list">
+              <li><strong>Right to Access/Confirmation:</strong> To confirm whether we are processing your Personal Data
+                and to access such Personal Data. </li>
+              <li><strong>Right to Correction:</strong> To request correction of inaccuracies in your Personal Data,
+                taking into account the nature of the Personal Data and the purposes of the processing.</li>
+              <li><strong>Right to Deletion:</strong> To request deletion of Personal Data provided by you or obtained
+                about you, subject to exceptions permitted by Applicable Law.</li>
+              <li><strong>Right to Data Portability:</strong> If the Personal Data is available in a digital format and
+                processed by automated means, to obtain a copy of the Personal Data you previously provided to us in a
+                portable and, to the extent technically feasible, readily usable format that allows you to transmit the
+                data to another controller without hindrance.</li>
+              <li><strong>Right to Opt-Out:</strong> To opt out of the processing of your Personal Data for targeted
+                advertising; and profiling in furtherance of decisions that produce legal or similarly significant
+                effects concerning you. </li>
+            </ul>
+            <h4>How to Exercise Your Rights</h4>
+            <p>You may submit a request to exercise your rights by contacting us in accordance with the Customer
+              Grievance section of this Privacy Policy. We will respond to your authenticated request without undue
+              delay and, in any event, within forty-five (45) days of receipt. Where reasonably necessary, we may extend
+              the response period once by an additional forty-five (45) days and will inform you of the extension and
+              the reasons for it within the initial response period. </p>
+            <p>If we are unable to authenticate your request using commercially reasonable efforts, we may request
+              additional information reasonably necessary to verify your identity and your request. Information provided
+              in response to a request will be provided free of charge up to twice per year per consumer. If a request
+              is manifestly unfounded, excessive, or repetitive, we may charge a reasonable fee to cover administrative
+              costs or decline to act on the request, as permitted by Applicable Law. </p>
+            <h4>Appeal Process </h4>
+            <p>If we decline to take action on your request, we will inform you of the reasons for our decision. You may
+              submit an appeal by writing to us at <a
+                href="mailto:privacy@facilonservices.com">privacy@facilonservices.com</a>. We will inform you in writing
+              of any
+              action taken or not taken in response to your appeal within sixty (60) days of receipt of your appeal,
+              including a written explanation of the reasons for the decision. If your appeal is denied, we will provide
+              you with information on how you may contact the Nebraska Attorney General to submit a complaint. </p>
+            <h4>Authorized Agent </h4>
+            <p>You may designate an authorized agent to act on your behalf to opt out of the processing of your Personal
+              Data for targeted advertising or the sale of Personal Data. We will comply with such a request where we
+              are able, using commercially reasonable efforts, to verify your identity and the authority of the
+              authorized agent to act on your behalf. </p>
+            <h4>Non-Discrimination</h4>
+            <p>Facilon will not discriminate against you for exercising any of your rights under the NDPA, including by
+              denying goods or services, charging different prices or rates, or providing a different level or quality
+              of Services.</p>
+            <h3>Additional Terms Applicable if You are a Resident of Texas (United States)</h3>
+            <p>If you are located in the State of Texas, United States, this section applies to you and supplements the
+              other provisions of this Privacy Policy. Facilon handles your Personal Data in accordance with the Texas
+              Data Privacy and Security Act (“TDPSA”), as may be amended from time to time.</p>
+            <h4>Your Rights</h4>
+            <p>If you are a Texas resident, you have the following rights with respect to your Personal Data:</p>
+            <ul class="cookie-list">
+              <li><strong>Right to Access and Confirmation:</strong> You have the right to confirm whether Facilon is
+                processing your Personal Data and to access such information.</li>
+              <li><strong>Right to Correction:</strong> You have the right to request correction of inaccuracies in your
+                Personal Data, taking into account the nature of the information and the purposes for which it is
+                processed. </li>
+              <li><strong>Right to Deletion:</strong> You have the right to request deletion of Personal Data provided
+                by you or obtained about you, subject to applicable legal exceptions. </li>
+              <li><strong>Right to Data Portability:</strong> Where the Personal Data is available in a digital format,
+                you have the right to obtain a copy of the Personal Data you previously provided to Facilon in a
+                portable and, to the extent technically feasible, readily usable format that allows you to transmit the
+                data to another controller without hindrance. </li>
+              <li><strong>Right to Opt Out:</strong> You have the right to opt out of the processing of your Personal
+                Data for: targeted advertising; the sale of Personal Data; and profiling in furtherance of decisions
+                that produce legal or similarly significant effects concerning you. </li>
+            </ul>
+            <p>Where Facilon processes Personal Data of a child, a parent or legal guardian shall exercise these rights
+              on behalf of the child.</p>
+            <h4>How to Exercise Your Rights</h4>
+            <p>You may exercise the rights described above by submitting a request through the contact details provided
+              in the "Customer Grievance” section of this Privacy Policy. Facilon will respond to your request without
+              undue delay and, in any event, within forty-five (45) days from the date of receipt of the request. Where
+              reasonably necessary, the response period may be extended once by an additional forty-five (45) days, and
+              you will be informed of such extension and the reasons for it within the initial response period.</p>
+            <p>Facilon will provide information in response to your request free of charge at least twice per year.
+              Where a request is manifestly unfounded, excessive, or repetitive, Facilon may charge a reasonable fee to
+              cover administrative costs or may decline to act on the request, as permitted under Applicable Law. If
+              Facilon is unable to authenticate your request using commercially reasonable efforts, Facilon may request
+              additional information reasonably necessary to verify your identity and your request.</p>
+            <h4>Appeal of Decisions</h4>
+            <p>If we decline to take action on your request, we will inform you of the reasons for our decision. You may
+              submit an appeal by writing to us at <a
+                href="mailto:privacy@facilonservices.com">privacy@facilonservices.com</a>. Facilon will inform you in
+              writing of
+              any action taken or not taken in response to your appeal within sixty (60) days of receipt of the appeal,
+              together with a written explanation of the reasons for the decision. </p>
+            <p>If your appeal is denied, Facilon will provide you with the relevant online mechanism through which you
+              may contact the Office of the Texas Attorney General to submit a complaint.</p>
+            <h4>Authorized Agents </h4>
+            <p>You may designate an authorized agent to act on your behalf to opt out of the processing of your Personal
+              Data for targeted advertising or the sale of Personal Data. Facilon will comply with a request submitted
+              by an authorized agent where Facilon is able to verify, using commercially reasonable efforts, your
+              identity and the authorized agent’s authority to act on your behalf.</p>
+            <h4>Sale of Personal Data and Targeted Advertising</h4>
+            <p>If Facilon sells Personal Data to third parties or processes Personal Data for purposes of targeted
+              advertising, Facilon will clearly and conspicuously disclose such processing and the manner in which you
+              may exercise your right to opt out of such processing, in accordance with the <a href="#">Privacy
+                Policy</a>.</p>
+            <h4>Non-Discrimination </h4>
+            <p>Facilon will not discriminate against you for exercising any of your rights under the TDPSA, including by
+              denying goods or services, charging different prices or rates, or providing a different level or quality
+              of goods or services.</p>
+            <h3>Additional Terms Applicable if You are a Resident of Virginia (United States)</h3>
+            <p>If you are located in the Commonwealth of Virginia, United States, this section applies to you and
+              supplements the other provisions of this Privacy Policy. Facilon handles your Personal Data in accordance
+              with the Virginia Consumer Data Protection Act (“VCDPA”), as may be amended from time to time.</p>
+            <h4>Your Rights</h4>
+            <p>If you are a Virginia resident, you have the following rights with respect to your Personal Data:</p>
+            <ul class="cookie-list">
+              <li><strong>Right to Access:</strong> To confirm whether we are processing your Personal Data and to
+                access such information.</li>
+              <li><strong>Right to Correction:</strong> To request correction of inaccuracies in your Personal Data,
+                taking into account the nature of the Personal Data and the purposes for which it is processed. </li>
+              <li><strong>Right to Deletion:</strong> To request deletion of your Personal Data that we have collected
+                from or about you, subject to certain exceptions permitted by Applicable Law. </li>
+              <li><strong>Right to Data Portability:</strong> To obtain a copy of your Personal Data in a portable and,
+                to the extent technically feasible, readily usable format that allows you to transmit the data to
+                another controller without hindrance. </li>
+              <li><strong>Right to Opt-Out:</strong> To opt out of the processing of your Personal Data for: (a)
+                Targeted advertising; (b) The sale of Personal Data; or (c) Profiling in furtherance of decisions that
+                produce legal or similarly significant effects concerning you. </li>
+            </ul>
+            <h4>How to Exercise Your Rights</h4>
+            <p>You may exercise these rights by contacting us in accordance with the "Customer Grievance" section of
+              this Privacy Policy. We try to respond to all legitimate requests at the earliest within the timelines as
+              per Applicable Law and will contact you if we need additional information from you in order to honor your
+              request. For your protection, we may require that the request be sent through the email address associated
+              with your account, and we may need to verify your identity before implementing your request. If we are
+              unable to fulfil your request, you will be informed of the reasons for refusal and the process to appeal
+              our decision. You may submit an appeal with us, and we will notify you in writing within 60 days of any
+              action taken or not taken in response to the appeal, including a written explanation of the reasons for
+              the decisions. If your appeal is denied, you may contact the Office of the Virginia Attorney General via
+              the contact details available at <a href="www.virginia.gov/agencies/office-of-the-attorney-general/#vagov"
+                target="_blank">www.virginia.gov/agencies/office-of-the-attorney-general/#vagov</a>.</p>
+            <p>The provisions contained in this section are specifically applicable to you. However, all other terms and
+              clauses set forth in the main Privacy Policy shall continue to apply in full force and effect. This
+              section is intended to supplement, and not replace, the main <a href="privacy-policy.html">Privacy Policy</a>.</p>
+            
+            </div>
+          </div>
+        </div>
+    </section>
+
+
+  </main>
+  
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-brand-sec navbar-brand">
+            <img src="images/logo.webp" alt="Facilon">
+          </div>
+          <p>
+            A neutral digital facilitation and workflow platform supporting structured,
+            consent-led engagement between investors, authorised participants and Service Providers.
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-4">
+          <!--<h3>Service Providers</h3>-->
+          <!--<div class="footer-links">-->
+          <!--  <a href="#modules">Facilon Modules</a>-->
+          <!--  <a href="#discussion">Request a Discussion</a>-->
+          <!--  <a href="#signin">Service Provider Sign In</a>-->
+          <!--</div>-->
+        </div>
+        
+        <div class="col-lg-3 col-md-4">
+          <h3>Investors</h3>
+          <div class="footer-links">
+            <a href="investor-access-navigator.html">Investor Access Navigator</a>
+            <a href="learning-centre.html">Learning Centre</a>
+            <a href="for-service-providers.html">For Service Providers</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <h3>Trust &amp; Legal</h3>
+          <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="cookies-policy.html">Cookie Policy</a>
+            <a href="terms-of-use.html">Terms of Use</a>
+            <a href="disclaimer.html">Platform Disclaimer</a>
+            <!--<a href="#rights">Investor Rights</a>-->
+            <!--<a href="#security">Security at Facilon</a>-->
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex justify-content-between flex-wrap gap-3">
+        <div>© <span id="year"></span> Facilon Services Private Limited. All rights reserved.</div>
+        <div>Final investor acceptance and regulated decisions remain with the relevant Service Provider.</div>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/forms.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const select = document.getElementById("type");
+    document.querySelectorAll(".topic").forEach((t) =>
+      t.addEventListener("click", () => {
+        document.querySelectorAll(".topic").forEach((x) => x.classList.remove("active"));
+        t.classList.add("active");
+        select.value = t.dataset.type;
+        FacilonForms.clearError("enquiry_type");
+        select.scrollIntoView({ behavior: "smooth", block: "center" });
+      })
+    );
+    const q = new URLSearchParams(location.search).get("type");
+    if (q === "service-provider") select.value = "Service Provider Discussion";
+    if (q === "investor") select.value = "Investor Support";
+
+    const form = document.getElementById("contactForm");
+    // Clear a field's inline error as the user corrects it.
+    form.addEventListener("input", (e) => {
+      const holder = e.target.closest("[data-field]");
+      if (holder) FacilonForms.clearError(holder.getAttribute("data-field"), form);
+      if (e.target.id === "contactConsent") FacilonForms.clearError("consent", form);
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      FacilonForms.clearAll(form);
+
+      const data = {
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        organisation: document.getElementById("org").value.trim(),
+        enquiry_type: select.value,
+        subject: document.getElementById("subject").value.trim(),
+        message: document.getElementById("message").value.trim(),
+        consent: document.getElementById("contactConsent").checked,
+      };
+
+      const errs = {};
+      if (!data.name) errs.name = "Please enter your name.";
+      else if (!FacilonForms.isName(data.name)) errs.name = "Name cannot contain numbers or special characters.";
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errs.email = "Please enter a valid email address.";
+      if (!data.phone) errs.phone = "Please enter your phone / mobile number.";
+      else if (!FacilonForms.isMobile(data.phone)) errs.phone = "Please enter a valid mobile number (10 to 15 digits, no letters).";
+      if (!data.enquiry_type) errs.enquiry_type = "Please select an enquiry type.";
+      if (!data.subject) errs.subject = "Please enter a subject.";
+      if (!data.message) errs.message = "Please tell us how we can help.";
+      if (!data.consent) errs.consent = "Please accept the privacy confirmation to continue.";
+      if (Object.keys(errs).length) {
+        FacilonForms.showErrors(errs, form);
+        FacilonForms.toast("Please correct the highlighted fields.");
+        return;
+      }
+
+      const btn = document.getElementById("contactSubmitBtn");
+      const label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = "Submitting…";
+
+      const res = await FacilonForms.post("api/submit-contact.php", data);
+
+      btn.disabled = false;
+      btn.textContent = label;
+
+      if (!res.ok) {
+        if (res.data && res.data.errors) FacilonForms.showErrors(res.data.errors, form);
+        FacilonForms.toast((res.data && res.data.message) || "We could not submit your enquiry. Please try again.");
+        return;
+      }
+
+      form.reset();
+      document.querySelectorAll(".topic").forEach((x) => x.classList.remove("active"));
+      window.location.href = "thank-you.html?ref=" + encodeURIComponent(res.data.reference || "");
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+
+</html>

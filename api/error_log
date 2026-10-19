@@ -1,0 +1,6 @@
+[01-Oct-2026 05:31:17 UTC] PHP Fatal error:  Uncaught TypeError: facilon_log_email(): Argument #4 ($to) must be of type string, array given, called in /home/mbihosting/public_html/facilonservices/api/graph.php on line 100 and defined in /home/mbihosting/public_html/facilonservices/api/db.php:132
+Stack trace:
+#0 /home/mbihosting/public_html/facilonservices/api/graph.php(100): facilon_log_email(Object(PDO), 'contact', 3, Array, 'admin', '[Investor Suppo...', 'failed', 'facilon_log_ema...')
+#1 /home/mbihosting/public_html/facilonservices/api/submit-contact.php(96): send_notifications(Array, Object(PDO), 'contact', 3, Array)
+#2 {main}
+  thrown in /home/mbihosting/public_html/facilonservices/api/db.php on line 132
